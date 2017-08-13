@@ -11,6 +11,8 @@ import Foundation
 
 
 class InterfaceController: WKInterfaceController {
+    
+    var int = 0
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -19,9 +21,16 @@ class InterfaceController: WKInterfaceController {
     }
     
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        pickerOutlet.focus()
+
     }
+    
+    @IBOutlet var pickerOutlet: WKInterfacePicker!
+
+    @IBAction func pickerAction(_ value: Int) {
+    }
+    
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
