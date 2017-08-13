@@ -1,0 +1,584 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1828C88B1F40D577003EDD64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C88A1F40D577003EDD64 /* AppDelegate.swift */; };
+		1828C88D1F40D577003EDD64 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C88C1F40D577003EDD64 /* ViewController.swift */; };
+		1828C8901F40D577003EDD64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1828C88E1F40D577003EDD64 /* Main.storyboard */; };
+		1828C8921F40D577003EDD64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1828C8911F40D577003EDD64 /* Assets.xcassets */; };
+		1828C8951F40D577003EDD64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1828C8931F40D577003EDD64 /* LaunchScreen.storyboard */; };
+		1828C89A1F40D577003EDD64 /* MNCraftBeerWatcher WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1828C8991F40D577003EDD64 /* MNCraftBeerWatcher WatchKit App.app */; };
+		1828C8A01F40D577003EDD64 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1828C89E1F40D577003EDD64 /* Interface.storyboard */; };
+		1828C8A21F40D577003EDD64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1828C8A11F40D577003EDD64 /* Assets.xcassets */; };
+		1828C8A91F40D578003EDD64 /* MNCraftBeerWatcher WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1828C8A81F40D578003EDD64 /* MNCraftBeerWatcher WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1828C8AE1F40D578003EDD64 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C8AD1F40D578003EDD64 /* InterfaceController.swift */; };
+		1828C8B01F40D578003EDD64 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C8AF1F40D578003EDD64 /* ExtensionDelegate.swift */; };
+		1828C8B21F40D578003EDD64 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C8B11F40D578003EDD64 /* ComplicationController.swift */; };
+		1828C8B41F40D578003EDD64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1828C8B31F40D578003EDD64 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1828C89B1F40D577003EDD64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1828C87F1F40D577003EDD64 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1828C8981F40D577003EDD64;
+			remoteInfo = "MNCraftBeerWatcher WatchKit App";
+		};
+		1828C8AA1F40D578003EDD64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1828C87F1F40D577003EDD64 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1828C8A71F40D578003EDD64;
+			remoteInfo = "MNCraftBeerWatcher WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1828C8BB1F40D578003EDD64 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1828C8A91F40D578003EDD64 /* MNCraftBeerWatcher WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1828C8BF1F40D578003EDD64 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				1828C89A1F40D577003EDD64 /* MNCraftBeerWatcher WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1828C8871F40D577003EDD64 /* MNCraftBeerWatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MNCraftBeerWatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1828C88A1F40D577003EDD64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1828C88C1F40D577003EDD64 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1828C88F1F40D577003EDD64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1828C8911F40D577003EDD64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1828C8941F40D577003EDD64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1828C8961F40D577003EDD64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1828C8991F40D577003EDD64 /* MNCraftBeerWatcher WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MNCraftBeerWatcher WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1828C89F1F40D577003EDD64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		1828C8A11F40D577003EDD64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1828C8A31F40D577003EDD64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1828C8A81F40D578003EDD64 /* MNCraftBeerWatcher WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MNCraftBeerWatcher WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1828C8AD1F40D578003EDD64 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		1828C8AF1F40D578003EDD64 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		1828C8B11F40D578003EDD64 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		1828C8B31F40D578003EDD64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1828C8B51F40D578003EDD64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1828C8841F40D577003EDD64 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1828C8A51F40D578003EDD64 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1828C87E1F40D577003EDD64 = {
+			isa = PBXGroup;
+			children = (
+				1828C8891F40D577003EDD64 /* MNCraftBeerWatcher */,
+				1828C89D1F40D577003EDD64 /* MNCraftBeerWatcher WatchKit App */,
+				1828C8AC1F40D578003EDD64 /* MNCraftBeerWatcher WatchKit Extension */,
+				1828C8881F40D577003EDD64 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1828C8881F40D577003EDD64 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1828C8871F40D577003EDD64 /* MNCraftBeerWatcher.app */,
+				1828C8991F40D577003EDD64 /* MNCraftBeerWatcher WatchKit App.app */,
+				1828C8A81F40D578003EDD64 /* MNCraftBeerWatcher WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1828C8891F40D577003EDD64 /* MNCraftBeerWatcher */ = {
+			isa = PBXGroup;
+			children = (
+				1828C88A1F40D577003EDD64 /* AppDelegate.swift */,
+				1828C88C1F40D577003EDD64 /* ViewController.swift */,
+				1828C88E1F40D577003EDD64 /* Main.storyboard */,
+				1828C8911F40D577003EDD64 /* Assets.xcassets */,
+				1828C8931F40D577003EDD64 /* LaunchScreen.storyboard */,
+				1828C8961F40D577003EDD64 /* Info.plist */,
+			);
+			path = MNCraftBeerWatcher;
+			sourceTree = "<group>";
+		};
+		1828C89D1F40D577003EDD64 /* MNCraftBeerWatcher WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				1828C89E1F40D577003EDD64 /* Interface.storyboard */,
+				1828C8A11F40D577003EDD64 /* Assets.xcassets */,
+				1828C8A31F40D577003EDD64 /* Info.plist */,
+			);
+			path = "MNCraftBeerWatcher WatchKit App";
+			sourceTree = "<group>";
+		};
+		1828C8AC1F40D578003EDD64 /* MNCraftBeerWatcher WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1828C8AD1F40D578003EDD64 /* InterfaceController.swift */,
+				1828C8AF1F40D578003EDD64 /* ExtensionDelegate.swift */,
+				1828C8B11F40D578003EDD64 /* ComplicationController.swift */,
+				1828C8B31F40D578003EDD64 /* Assets.xcassets */,
+				1828C8B51F40D578003EDD64 /* Info.plist */,
+			);
+			path = "MNCraftBeerWatcher WatchKit Extension";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1828C8861F40D577003EDD64 /* MNCraftBeerWatcher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1828C8C01F40D578003EDD64 /* Build configuration list for PBXNativeTarget "MNCraftBeerWatcher" */;
+			buildPhases = (
+				1828C8831F40D577003EDD64 /* Sources */,
+				1828C8841F40D577003EDD64 /* Frameworks */,
+				1828C8851F40D577003EDD64 /* Resources */,
+				1828C8BF1F40D578003EDD64 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1828C89C1F40D577003EDD64 /* PBXTargetDependency */,
+			);
+			name = MNCraftBeerWatcher;
+			productName = MNCraftBeerWatcher;
+			productReference = 1828C8871F40D577003EDD64 /* MNCraftBeerWatcher.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1828C8981F40D577003EDD64 /* MNCraftBeerWatcher WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1828C8BC1F40D578003EDD64 /* Build configuration list for PBXNativeTarget "MNCraftBeerWatcher WatchKit App" */;
+			buildPhases = (
+				1828C8971F40D577003EDD64 /* Resources */,
+				1828C8BB1F40D578003EDD64 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1828C8AB1F40D578003EDD64 /* PBXTargetDependency */,
+			);
+			name = "MNCraftBeerWatcher WatchKit App";
+			productName = "MNCraftBeerWatcher WatchKit App";
+			productReference = 1828C8991F40D577003EDD64 /* MNCraftBeerWatcher WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		1828C8A71F40D578003EDD64 /* MNCraftBeerWatcher WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1828C8B81F40D578003EDD64 /* Build configuration list for PBXNativeTarget "MNCraftBeerWatcher WatchKit Extension" */;
+			buildPhases = (
+				1828C8A41F40D578003EDD64 /* Sources */,
+				1828C8A51F40D578003EDD64 /* Frameworks */,
+				1828C8A61F40D578003EDD64 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MNCraftBeerWatcher WatchKit Extension";
+			productName = "MNCraftBeerWatcher WatchKit Extension";
+			productReference = 1828C8A81F40D578003EDD64 /* MNCraftBeerWatcher WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1828C87F1F40D577003EDD64 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Impulse Coupled Development";
+				TargetAttributes = {
+					1828C8861F40D577003EDD64 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 4Q332864D3;
+						ProvisioningStyle = Automatic;
+					};
+					1828C8981F40D577003EDD64 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 4Q332864D3;
+						ProvisioningStyle = Automatic;
+					};
+					1828C8A71F40D578003EDD64 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 4Q332864D3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1828C8821F40D577003EDD64 /* Build configuration list for PBXProject "MNCraftBeerWatcher" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1828C87E1F40D577003EDD64;
+			productRefGroup = 1828C8881F40D577003EDD64 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1828C8861F40D577003EDD64 /* MNCraftBeerWatcher */,
+				1828C8981F40D577003EDD64 /* MNCraftBeerWatcher WatchKit App */,
+				1828C8A71F40D578003EDD64 /* MNCraftBeerWatcher WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1828C8851F40D577003EDD64 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1828C8951F40D577003EDD64 /* LaunchScreen.storyboard in Resources */,
+				1828C8921F40D577003EDD64 /* Assets.xcassets in Resources */,
+				1828C8901F40D577003EDD64 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1828C8971F40D577003EDD64 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1828C8A21F40D577003EDD64 /* Assets.xcassets in Resources */,
+				1828C8A01F40D577003EDD64 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1828C8A61F40D578003EDD64 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1828C8B41F40D578003EDD64 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1828C8831F40D577003EDD64 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1828C88D1F40D577003EDD64 /* ViewController.swift in Sources */,
+				1828C88B1F40D577003EDD64 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1828C8A41F40D578003EDD64 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1828C8B01F40D578003EDD64 /* ExtensionDelegate.swift in Sources */,
+				1828C8AE1F40D578003EDD64 /* InterfaceController.swift in Sources */,
+				1828C8B21F40D578003EDD64 /* ComplicationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1828C89C1F40D577003EDD64 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1828C8981F40D577003EDD64 /* MNCraftBeerWatcher WatchKit App */;
+			targetProxy = 1828C89B1F40D577003EDD64 /* PBXContainerItemProxy */;
+		};
+		1828C8AB1F40D578003EDD64 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1828C8A71F40D578003EDD64 /* MNCraftBeerWatcher WatchKit Extension */;
+			targetProxy = 1828C8AA1F40D578003EDD64 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1828C88E1F40D577003EDD64 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1828C88F1F40D577003EDD64 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1828C8931F40D577003EDD64 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1828C8941F40D577003EDD64 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		1828C89E1F40D577003EDD64 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1828C89F1F40D577003EDD64 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1828C8B61F40D578003EDD64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1828C8B71F40D578003EDD64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1828C8B91F40D578003EDD64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				DEVELOPMENT_TEAM = 4Q332864D3;
+				INFOPLIST_FILE = "MNCraftBeerWatcher WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ImpulseCoupledDevelopment.MNCraftBeerWatcher.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		1828C8BA1F40D578003EDD64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				DEVELOPMENT_TEAM = 4Q332864D3;
+				INFOPLIST_FILE = "MNCraftBeerWatcher WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ImpulseCoupledDevelopment.MNCraftBeerWatcher.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
+		1828C8BD1F40D578003EDD64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4Q332864D3;
+				IBSC_MODULE = MNCraftBeerWatcher_WatchKit_Extension;
+				INFOPLIST_FILE = "MNCraftBeerWatcher WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ImpulseCoupledDevelopment.MNCraftBeerWatcher.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		1828C8BE1F40D578003EDD64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4Q332864D3;
+				IBSC_MODULE = MNCraftBeerWatcher_WatchKit_Extension;
+				INFOPLIST_FILE = "MNCraftBeerWatcher WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ImpulseCoupledDevelopment.MNCraftBeerWatcher.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
+		1828C8C11F40D578003EDD64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4Q332864D3;
+				INFOPLIST_FILE = MNCraftBeerWatcher/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ImpulseCoupledDevelopment.MNCraftBeerWatcher;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		1828C8C21F40D578003EDD64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4Q332864D3;
+				INFOPLIST_FILE = MNCraftBeerWatcher/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ImpulseCoupledDevelopment.MNCraftBeerWatcher;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1828C8821F40D577003EDD64 /* Build configuration list for PBXProject "MNCraftBeerWatcher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1828C8B61F40D578003EDD64 /* Debug */,
+				1828C8B71F40D578003EDD64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1828C8B81F40D578003EDD64 /* Build configuration list for PBXNativeTarget "MNCraftBeerWatcher WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1828C8B91F40D578003EDD64 /* Debug */,
+				1828C8BA1F40D578003EDD64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1828C8BC1F40D578003EDD64 /* Build configuration list for PBXNativeTarget "MNCraftBeerWatcher WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1828C8BD1F40D578003EDD64 /* Debug */,
+				1828C8BE1F40D578003EDD64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1828C8C01F40D578003EDD64 /* Build configuration list for PBXNativeTarget "MNCraftBeerWatcher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1828C8C11F40D578003EDD64 /* Debug */,
+				1828C8C21F40D578003EDD64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1828C87F1F40D577003EDD64 /* Project object */;
+}
