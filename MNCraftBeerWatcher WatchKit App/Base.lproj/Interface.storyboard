@@ -24,6 +24,7 @@
                         <button width="1" height="28" alignment="left" verticalAlignment="bottom" title="Contact" id="ADo-Ho-rAi"/>
                     </items>
                     <connections>
+                        <outlet property="locationLabel" destination="0XY-lj-lxk" id="mtF-Qw-leL"/>
                         <outlet property="pickerOutlet" destination="IoQ-rT-nxh" id="HPU-8c-Ikv"/>
                     </connections>
                 </controller>

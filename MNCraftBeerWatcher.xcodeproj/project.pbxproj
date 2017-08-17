@@ -20,6 +20,7 @@
 		1828C8B01F40D578003EDD64 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C8AF1F40D578003EDD64 /* ExtensionDelegate.swift */; };
 		1828C8B21F40D578003EDD64 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C8B11F40D578003EDD64 /* ComplicationController.swift */; };
 		1828C8B41F40D578003EDD64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1828C8B31F40D578003EDD64 /* Assets.xcassets */; };
+		1836CBA01F43637400053AC0 /* BreweryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836CB9F1F43637400053AC0 /* BreweryData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		1828C8B11F40D578003EDD64 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		1828C8B31F40D578003EDD64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1828C8B51F40D578003EDD64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1836CB9F1F43637400053AC0 /* BreweryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreweryData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				1828C8AD1F40D578003EDD64 /* InterfaceController.swift */,
 				1828C8AF1F40D578003EDD64 /* ExtensionDelegate.swift */,
 				1828C8B11F40D578003EDD64 /* ComplicationController.swift */,
+				1836CB9F1F43637400053AC0 /* BreweryData.swift */,
 				1828C8B31F40D578003EDD64 /* Assets.xcassets */,
 				1828C8B51F40D578003EDD64 /* Info.plist */,
 			);
@@ -306,6 +309,7 @@
 			files = (
 				1828C8B01F40D578003EDD64 /* ExtensionDelegate.swift in Sources */,
 				1828C8AE1F40D578003EDD64 /* InterfaceController.swift in Sources */,
+				1836CBA01F43637400053AC0 /* BreweryData.swift in Sources */,
 				1828C8B21F40D578003EDD64 /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -561,6 +565,7 @@
 				1828C8BA1F40D578003EDD64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1828C8BC1F40D578003EDD64 /* Build configuration list for PBXNativeTarget "MNCraftBeerWatcher WatchKit App" */ = {
 			isa = XCConfigurationList;
@@ -569,6 +574,7 @@
 				1828C8BE1F40D578003EDD64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1828C8C01F40D578003EDD64 /* Build configuration list for PBXNativeTarget "MNCraftBeerWatcher" */ = {
 			isa = XCConfigurationList;
@@ -577,6 +583,7 @@
 				1828C8C21F40D578003EDD64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
