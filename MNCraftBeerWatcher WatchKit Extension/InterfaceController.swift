@@ -22,9 +22,17 @@ class InterfaceController: WKInterfaceController {
             breweriesSorted.append(i.breweryName)
         }
         breweriesSorted.sort()
-        // This label may change, used as a prototype thus far.
-        // Consider changing to a button which brings up the map.
         locationLabel.setText("\(allBreweries[0].location)")
+        
+        table.setNumberOfRows(7, withRowType: "Row")
+        
+        // Likely incorporate a Switch statement in conjunction with what brewery is selected to display the proper hours in the proper rows.
+        for rowIndex in 0...7 {
+            guard let row = table.rowController(at: rowIndex) as? BreweryHoursRow else { continue }
+            row.hoursLabel.setText("Row \(rowIndex)")
+        }
+        
+        
     }
     
     override func willActivate() {
@@ -51,6 +59,8 @@ class InterfaceController: WKInterfaceController {
     }
     
     @IBOutlet var locationLabel: WKInterfaceLabel!
+    
+    @IBOutlet var table: WKInterfaceTable!
     
     
     override func didDeactivate() {
