@@ -52,14 +52,34 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var pickerOutlet: WKInterfacePicker!
     @IBAction func pickerAction(_ value: Int) {
         breweryIdentifier = value
-        // This label may change, used as a prototype thus far
         // Consider changing to a button which brings up the map.
         locationLabel.setText("\(allBreweries[breweryIdentifier].location)")
+        
+        for rowIndex in 0...6 {
+            guard let row = table.rowController(at: rowIndex) as? BreweryHoursRow else { continue }
+            switch rowIndex {
+            case 0:
+                row.hoursLabel.setText("Sun: \(allBreweries[breweryIdentifier].sun)")
+            case 1:
+                row.hoursLabel.setText("Mon: \(allBreweries[breweryIdentifier].mon)")
+            case 2:
+                row.hoursLabel.setText("Tue: \(allBreweries[breweryIdentifier].tue)")
+            case 3:
+                row.hoursLabel.setText("Wed: \(allBreweries[breweryIdentifier].wed)")
+            case 4:
+                row.hoursLabel.setText("Thu: \(allBreweries[breweryIdentifier].thur)")
+            case 5:
+                row.hoursLabel.setText("Fri: \(allBreweries[breweryIdentifier].fri)")
+            case 6:
+                row.hoursLabel.setText("Sat: \(allBreweries[breweryIdentifier].sat)")
+            default:
+                row.hoursLabel.setText("Row \(rowIndex)")
+            }
+        }
         
     }
     
     @IBOutlet var locationLabel: WKInterfaceLabel!
-    
     @IBOutlet var table: WKInterfaceTable!
     
     
