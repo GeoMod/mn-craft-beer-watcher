@@ -7,12 +7,12 @@
 //
 
 import WatchKit
-import Foundation
-
+import MapKit
 
 class InterfaceController: WKInterfaceController {
     
     var breweriesSorted = [String]()
+    @IBOutlet var table: WKInterfaceTable!
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -22,17 +22,30 @@ class InterfaceController: WKInterfaceController {
             breweriesSorted.append(i.breweryName)
         }
         breweriesSorted.sort()
-        locationLabel.setText("\(allBreweries[0].location)")
-        
+        locationButtonTitle.setTitle("\(allBreweries[0].location)")
         table.setNumberOfRows(7, withRowType: "Row")
         
-        // Likely incorporate a Switch statement in conjunction with what brewery is selected to display the proper hours in the proper rows.
-        for rowIndex in 0...7 {
+        for rowIndex in 0...6 {
             guard let row = table.rowController(at: rowIndex) as? BreweryHoursRow else { continue }
-            row.hoursLabel.setText("Row \(rowIndex)")
+            switch rowIndex {
+            case 0:
+                row.hoursLabel.setText("Sun: \(allBreweries[0].sun)")
+            case 1:
+                row.hoursLabel.setText("Mon: \(allBreweries[0].mon)")
+            case 2:
+                row.hoursLabel.setText("Tue: \(allBreweries[0].tue)")
+            case 3:
+                row.hoursLabel.setText("Wed: \(allBreweries[0].wed)")
+            case 4:
+                row.hoursLabel.setText("Thu: \(allBreweries[0].thur)")
+            case 5:
+                row.hoursLabel.setText("Fri: \(allBreweries[0].fri)")
+            case 6:
+                row.hoursLabel.setText("Sat: \(allBreweries[0].sat)")
+            default:
+                row.hoursLabel.setText("Row \(rowIndex)")
+            }
         }
-        
-        
     }
     
     override func willActivate() {
@@ -46,14 +59,47 @@ class InterfaceController: WKInterfaceController {
             items.append(item)
         }
         pickerOutlet.setItems(items)
+    }
+    
+    var sixOneTwo = MKMapItem()
+    
+    @IBOutlet var locationButtonTitle: WKInterfaceButton!
+    @IBAction func locationButton() {
+        openMaps(with: [sixOneTwo])
+    }
+    
+    
+    func openMaps(with mapItems: [MKMapItem], launchOptions: [String : Any]? = nil) -> Bool {
+//        let regionRadius: CLLocationDistance = 1000 // 1000 meters to display on the map.
+        let latitude: CLLocationDegrees = allBreweries[breweryIdentifier].latitude
+        let longitude: CLLocationDegrees = allBreweries[breweryIdentifier].longitude
         
+        let breweryLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let region = MKCoordinateRegionMake(breweryLocation, MKCoordinateSpanMake(latitude, longitude))
+        let placeMark = MKPlacemark(coordinate: breweryLocation, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placeMark)
+
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocation),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)  // regionSpan.span
+        ]
+
+        mapItem.name = ("\(allBreweries[breweryIdentifier].breweryName)")
+        mapItem.openInMaps(launchOptions: options)
+        
+        return true
     }
     
     @IBOutlet var pickerOutlet: WKInterfacePicker!
     @IBAction func pickerAction(_ value: Int) {
         breweryIdentifier = value
-        // Consider changing to a button which brings up the map.
-        locationLabel.setText("\(allBreweries[breweryIdentifier].location)")
+        locationButtonTitle.setTitle("\(allBreweries[breweryIdentifier].location)")
+    
+        /*
+         All of the logic to get the hours string produced here 
+         might be better as a static method on the enum itself
+         that you call in the for loop
+ */
         
         for rowIndex in 0...6 {
             guard let row = table.rowController(at: rowIndex) as? BreweryHoursRow else { continue }
@@ -76,11 +122,7 @@ class InterfaceController: WKInterfaceController {
                 row.hoursLabel.setText("Row \(rowIndex)")
             }
         }
-        
     }
-    
-    @IBOutlet var locationLabel: WKInterfaceLabel!
-    @IBOutlet var table: WKInterfaceTable!
     
     
     override func didDeactivate() {

@@ -113,6 +113,7 @@
 				1828C89D1F40D577003EDD64 /* MNCraftBeerWatcher WatchKit App */,
 				1828C8AC1F40D578003EDD64 /* MNCraftBeerWatcher WatchKit Extension */,
 				1828C8881F40D577003EDD64 /* Products */,
+				188980991F4DDA5A008C767C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,6 +162,13 @@
 				1828C8B51F40D578003EDD64 /* Info.plist */,
 			);
 			path = "MNCraftBeerWatcher WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		188980991F4DDA5A008C767C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,16 +241,34 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 4Q332864D3;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					1828C8981F40D577003EDD64 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 4Q332864D3;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes.watchos.app = {
+								enabled = 0;
+							};
+						};
 					};
 					1828C8A71F40D578003EDD64 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 4Q332864D3;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes.watchos.extension = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};

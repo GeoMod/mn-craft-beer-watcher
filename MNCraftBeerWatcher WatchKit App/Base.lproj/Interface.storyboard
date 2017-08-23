@@ -19,13 +19,18 @@
                                 <action selector="pickerAction:" destination="tnL-0m-WgO" id="VWA-oi-Z63"/>
                             </connections>
                         </picker>
-                        <label height="15" alignment="center" text="Location" id="0XY-lj-lxk"/>
+                        <button width="1" height="28" alignment="left" title="Location" id="ADo-Ho-rAi">
+                            <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="0.80248531879194629" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="locationButton" destination="tnL-0m-WgO" id="Uw4-9D-3bZ"/>
+                            </connections>
+                        </button>
                         <table alignment="left" id="YUC-Ob-3hq">
                             <items>
                                 <tableRow identifier="Row" selectable="NO" id="sqB-vj-bHw" customClass="BreweryHoursRow" customModule="MNCraftBeerWatcher_WatchKit_Extension">
                                     <group key="rootItem" width="1" height="20" alignment="left" id="gwp-Lk-u9o">
                                         <items>
-                                            <label alignment="left" verticalAlignment="center" text="Sun: 10a-11p" id="XHi-iE-Ciw">
+                                            <label alignment="left" verticalAlignment="center" text="Sun: 10a-11p" textAlignment="left" id="XHi-iE-Ciw">
                                                 <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                             </label>
                                         </items>
@@ -36,10 +41,9 @@
                                 </tableRow>
                             </items>
                         </table>
-                        <button width="1" height="28" alignment="left" verticalAlignment="bottom" title="Contact" id="ADo-Ho-rAi"/>
                     </items>
                     <connections>
-                        <outlet property="locationLabel" destination="0XY-lj-lxk" id="mtF-Qw-leL"/>
+                        <outlet property="locationButtonTitle" destination="ADo-Ho-rAi" id="rL6-N6-mfn"/>
                         <outlet property="pickerOutlet" destination="IoQ-rT-nxh" id="HPU-8c-Ikv"/>
                         <outlet property="table" destination="YUC-Ob-3hq" id="YsZ-7S-rsh"/>
                     </connections>
