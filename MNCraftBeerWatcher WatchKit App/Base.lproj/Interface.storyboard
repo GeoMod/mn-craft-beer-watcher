@@ -14,13 +14,13 @@
             <objects>
                 <controller id="tnL-0m-WgO" customClass="InterfaceController" customModule="MNCraftBeerWatcher_WatchKit_Extension">
                     <items>
-                        <picker height="30" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="IoQ-rT-nxh">
+                        <picker height="35" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="IoQ-rT-nxh">
                             <connections>
                                 <action selector="pickerAction:" destination="tnL-0m-WgO" id="VWA-oi-Z63"/>
                             </connections>
                         </picker>
-                        <button width="1" height="28" alignment="left" title="Location" id="ADo-Ho-rAi">
-                            <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="0.80248531879194629" colorSpace="calibratedRGB"/>
+                        <button width="1" alignment="left" title="Location" id="ADo-Ho-rAi">
+                            <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="0.5" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="locationButton" destination="tnL-0m-WgO" id="Uw4-9D-3bZ"/>
                             </connections>
@@ -28,12 +28,14 @@
                         <table alignment="left" id="YUC-Ob-3hq">
                             <items>
                                 <tableRow identifier="Row" selectable="NO" id="sqB-vj-bHw" customClass="BreweryHoursRow" customModule="MNCraftBeerWatcher_WatchKit_Extension">
-                                    <group key="rootItem" width="1" height="20" alignment="left" id="gwp-Lk-u9o">
+                                    <group key="rootItem" width="1" height="19" alignment="left" layout="vertical" id="gwp-Lk-u9o">
                                         <items>
-                                            <label alignment="left" verticalAlignment="center" text="Sun: 10a-11p" textAlignment="left" id="XHi-iE-Ciw">
-                                                <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                            <label alignment="left" text="Sun: 10a-11p" textAlignment="left" baselineAdjustment="alignCenters" id="XHi-iE-Ciw">
+                                                <fontDescription key="font" type="system" pointSize="15"/>
                                             </label>
                                         </items>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        <edgeInsets key="margins" left="4" right="0.0" top="0.0" bottom="0.0"/>
                                     </group>
                                     <connections>
                                         <outlet property="hoursLabel" destination="XHi-iE-Ciw" id="JhM-8A-Hsq"/>

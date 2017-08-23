@@ -61,15 +61,14 @@ class InterfaceController: WKInterfaceController {
         pickerOutlet.setItems(items)
     }
     
-    var sixOneTwo = MKMapItem()
     
     @IBOutlet var locationButtonTitle: WKInterfaceButton!
     @IBAction func locationButton() {
-        openMaps(with: [sixOneTwo])
+        openMaps()
     }
     
     
-    func openMaps(with mapItems: [MKMapItem], launchOptions: [String : Any]? = nil) -> Bool {
+    func openMaps() {
 //        let regionRadius: CLLocationDistance = 1000 // 1000 meters to display on the map.
         let latitude: CLLocationDegrees = allBreweries[breweryIdentifier].latitude
         let longitude: CLLocationDegrees = allBreweries[breweryIdentifier].longitude
@@ -87,8 +86,8 @@ class InterfaceController: WKInterfaceController {
         mapItem.name = ("\(allBreweries[breweryIdentifier].breweryName)")
         mapItem.openInMaps(launchOptions: options)
         
-        return true
     }
+    
     
     @IBOutlet var pickerOutlet: WKInterfacePicker!
     @IBAction func pickerAction(_ value: Int) {
