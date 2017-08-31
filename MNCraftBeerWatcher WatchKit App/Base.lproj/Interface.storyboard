@@ -21,6 +21,7 @@
                         </picker>
                         <button width="1" alignment="left" title="Location" id="ADo-Ho-rAi">
                             <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="0.5" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" pointSize="18"/>
                             <connections>
                                 <action selector="locationButton" destination="tnL-0m-WgO" id="Uw4-9D-3bZ"/>
                             </connections>

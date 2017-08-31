@@ -69,13 +69,13 @@ class InterfaceController: WKInterfaceController {
     
     
     func openMaps() {
-//        let regionRadius: CLLocationDistance = 1000 // 1000 meters to display on the map.
         let latitude: CLLocationDegrees = allBreweries[breweryIdentifier].latitude
         let longitude: CLLocationDegrees = allBreweries[breweryIdentifier].longitude
         
         let breweryLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let region = MKCoordinateRegionMake(breweryLocation, MKCoordinateSpanMake(latitude, longitude))
-        let placeMark = MKPlacemark(coordinate: breweryLocation, addressDictionary: nil)
+        let placeMark = MKPlacemark(coordinate: breweryLocation, addressDictionary: ["address": "Blahh"])
+        
         let mapItem = MKMapItem(placemark: placeMark)
 
         let options = [
