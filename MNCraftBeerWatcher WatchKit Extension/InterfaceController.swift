@@ -50,6 +50,7 @@ class InterfaceController: WKInterfaceController {
     
     override func willActivate() {
         super.willActivate()
+        print("\(breweriesSorted.count) Breweries Entered")
         pickerOutlet.focus()
         
         var items = [WKPickerItem]()

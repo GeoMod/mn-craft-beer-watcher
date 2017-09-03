@@ -21,7 +21,7 @@ struct BreweryData {
     let thur: String
     let fri: String
     let sat: String
-    var rating: String
+    var rating: String // Could also be used as "been here?"
 }
 
 
@@ -70,15 +70,52 @@ let Bauhaus = BreweryData(breweryName: "Bauhaus Brew Labs", location: "Minneapol
 let BeaverIsland = BreweryData(breweryName: "Beaver Island Brewing", location: "St. Cloud", latitude: 45.558394, longitude: -94.156472, sun: "11a-7p", mon: "Closed", tue: "Closed", wed: "4p-10p", thur: "4p-10p", fri: "4p-10p", sat: "12p-10p", rating: "")
     // 216 6th Ave S, St Cloud, MN 56301
     // (320) 253-5907
+let Bemidji = BreweryData(breweryName: "Bemidji Brewing", location: "Bemidji", latitude: 47.470031, longitude: -94.884894, sun: "12p-7p", mon: "Closed", tue: "Closed", wed: "12p-11p", thur: "12p-11p", fri: "12p-11p", sat: "12p-11p", rating: "")
+    // 211 America Ave. NW Bemidji, MN 56601
+    // 218-444-7011
+let BentBrew = BreweryData(breweryName: "Bent Brewstillery", location: "Roseville", latitude: 45.024532, longitude: -93.173723, sun: "12p-9p", mon: "Closed", tue: "4p-10p", wed: "4p-10p", thur: "4p-10p", fri: "2:30p-12p", sat: "12p-12a", rating: "")
+    // 1744 Terrace Drive Roseville, MN 55113
+    // 844-879-2368
+let BentPaddle = BreweryData(breweryName: "Bent Paddle", location: "Duluth", latitude: 46.767688, longitude: -92.121918, sun: "12p-7p", mon: "Closed", tue: "12p-10p", wed: "12p-10p", thur: "12p-10p", fri: "12p-11p", sat: "12p-11p", rating: "")
+    // 1912 W. Michigan St. Duluth, MN 55806
+    // 218-279-2722
+let BigAxe = BreweryData(breweryName: "Bix Axe", location: "Nisswa", latitude: 46.519928, longitude: -94.289047, sun: "11a-9p", mon: "11a-9p", tue: "11a-9p", wed: "11a-9p", thur: "11a-9p", fri: "11a-11p", sat: "11a-10p", rating: "")
+    // 25435 Main St. Nisswa, MN 56468
+    // 218-961-2337
+let BigWood = BreweryData(breweryName: "Big Wood", location: "White Bear Lake", latitude: 45.085096, longitude: -93.006731, sun: "12p-6p", mon: "Closed", tue: "4p-10p", wed: "4p-10p", thur: "4p-10p", fri: "3p-11p", sat: "1p-11p", rating: "")
+    // 2222 Fourth St. White Bear Lake, MN 55110
+    // 612-360-2986
+let Birch = BreweryData(breweryName: "Birch's Brewhose", location: "Long Lake", latitude: 44.985398, longitude: -93.555631, sun: "10a-Close", mon: "11a-Close", tue: "11a-Close", wed: "11a-Close", thur: "11a-Close", fri: "11a-Close", sat: "10a-Close", rating: "")
+    // 1310 W. Wayzata Blvd. Long Lake, MN 55356
+    // 952-473-7373
+let Blacklist = BreweryData(breweryName: "Blacklist Artisan", location: "Duluth", latitude: 46.788249, longitude: -92.095550, sun: "11a-1a", mon: "3p-12a", tue: "3p-12a", wed: "3p-12a", thur: "3p-12a", fri: "11a-1a", sat: "11a-1a", rating: "")
+    // 120 E. Superior St. Duluth, MN 55802
+let Boathouse = BreweryData(breweryName: "Boathouse", location: "Ely", latitude: 47.903452, longitude: -91.865235, sun: "11a-11p", mon: "11a-11p", tue: "11a-11p", wed: "11a-11p", thur: "11a-11p", fri: "11a-11p", sat: "11a-11p", rating: "")
+    // 47 E. Sheridan St. Ely, MN 55731
+    // 218-365-4301
+let BoomIsland = BreweryData(breweryName: "Boom Island", location: "Minneapolis", latitude: 44.999852, longitude: -93.281025, sun: "1p-6p", mon: "Closed", tue: "Closed", wed: "4p-9p", thur: "4p-9p", fri: "4p-9p", sat: "1p-9p", rating: "")
+    // 2014 Washington Ave. N. Minneapolis, MN 55411
+/* Currently no taproom
+let Borealis = BreweryData(breweryName: "Borealis Fermentery", location: "Knife River", latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>, sun: <#T##String#>, mon: <#T##String#>, tue: <#T##String#>, wed: <#T##String#>, thur: <#T##String#>, fri: <#T##String#>, sat: <#T##String#>, rating: <#T##String#>)
+ P.O. Box 130 Knife River, MN 55609
+*/
+let Brau = BreweryData(breweryName: "Brau Brothers", location: "Marshall", latitude: 44.436837, longitude: -95.777819, sun: "11a-9p", mon: "11a-11p", tue: "11a-11p", wed: "11a-11p", thur: "11a-11p", fri: "11a-11p", sat: "11a-11p", rating: "")
+    // 1010 E. Southview Drive Marshall, MN 56258
+    // 507-929-2337
+let BrokenClock = BreweryData(breweryName: "Brocken Clock", location: "Minneapolis", latitude: 45.025588, longitude: -93.270154, sun: "11a-6p", mon: "Closed", tue: "Closed", wed: "Closed", thur: "3p-9p", fri: "3p-10p", sat: "11a-10p", rating: "")
+    // 3134 California St. NE, Ste. 122 Minneapolis, MN 55418
+    // 612-440-4570
+let BurningBros = BreweryData(breweryName: "Burning Brothers", location: "St. Paul", latitude: 44.958781, longitude: -93.173987, sun: "12-6p", mon: "Closed", tue: "Closed", wed: "4p-10p", thur: "4p-10p", fri: "2p-10p", sat: "12p-10p", rating: "")
+    // 1750 Thomas Ave. St. Paul, MN 55104
+    // 651-444-8882
 
 
-// Update from here
+// Update from here.
 
 
+var allBreweries = [ TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, Shell, BadHabit, BadWeather, BadgerHill, BaldMan, Bang, Bank, BarleyJohns, BarrelTheory, Bauhaus, BeaverIsland, Bemidji, BentBrew, BentPaddle, BigAxe, BigWood, Birch, Blacklist, Boathouse, BoomIsland, Brau, BrokenClock, BurningBros ]
 
-var allBreweries = [ TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, Shell, BadHabit, BadWeather, BadgerHill, BaldMan, Bang, Bank, BarleyJohns, BarrelTheory, Bauhaus, BeaverIsland ]
-
-var breweryIdentifier   = 0
-var currentBrewery      = String()
-var currentRating       = String()
+var breweryIdentifier = 0
+var currentBrewery = String()
+var currentRating = String()
 
