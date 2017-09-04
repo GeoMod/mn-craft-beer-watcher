@@ -169,11 +169,36 @@ let GreatWaters = BreweryData(breweryName: "Great Waters", location: "St. Paul",
 let GullDam = BreweryData(breweryName: "Gull Dam", location: "Nisswa", latitude: 46.497667, longitude: -94.297032, sun: "12p-5p", mon: "Closed", tue: "Closed", wed: "12p-10p", thur: "12p-10p", fri: "12p-10p", sat: "12p-10p", rating: "")
     // 23836 Smiley Road Nisswa, MN 56468
     // 218-963-2739
+let GunFlint = BreweryData(breweryName: "Gun Flint Brewpub", location: "Grand Marais", latitude: 47.749400, longitude: -90.334957, sun: "11a-1a", mon: "11a-1a", tue: "11a-1a", wed: "11a-1a", thur: "11a-1a", fri: "11a-1a", sat: "11a-1a", rating: "")
+    // 111 W. Wisconsin St. Grand Marais, MN 55604
+    // (218) 387-1563
+let Hammerheart = BreweryData(breweryName: "Hammerheart Brewing", location: "Lino Lakes", latitude: 45.189003, longitude: -93.106505, sun: "12p-8p", mon: "Closed", tue: "2p-10p", wed: "2p-10p", thur: "2p-10p", fri: "2p-10p", sat: "2p-10p", rating: "")
+let Hayes = BreweryData(breweryName: "Hayes' Public House", location: "Buffalo", latitude: 45.170585, longitude: -93.874256, sun: "2p-7p", mon: "Closed", tue: "Closed", wed: "5p-10p", thur: "5p-10p", fri: "3p-10p", sat: "3p-10p", rating: "")
+    // 112 First St. S. Buffalo, MN 55313
+let HeadFlyer = BreweryData(breweryName: "Headflyer", location: "Minneapolis", latitude: 44.991699, longitude: -93.242915, sun: "12p-9p", mon: "3p-10p", tue: "3p-10p", wed: "3p-10p", thur: "3p-10p", fri: "2p-12a", sat: "12p-12a", rating: "")
+    // 861 E Hennepin Ave Minneapolis, MN 55414
+    // 612-567-6345
+let Hoops = BreweryData(breweryName: "Hoops Brewing", location: "Duluth", latitude: 46.783510, longitude: -92.095574, sun: "11a-12a", mon: "11a-12a", tue: "11a-12a", wed: "11a-12a", thur: "11a-12a", fri: "11a-12a", sat: "11a-12a", rating: "")
+    // 325 Lake Ave. South, #110 Duluth, MN 55802
+let Imminent = BreweryData(breweryName: "Imminent Brewing", location: "Northfield", latitude: 44.454182, longitude: -93.158891, sun: "11a-8p", mon: "Closed", tue: "Closed", wed: "Closed", thur: "3p-11p", fri: "3p-11p", sat: "11a-11p", rating: "")
+    // 519 Division St. S., Unit 2 Northfield, MN 55057
+let Inbound = BreweryData(breweryName: "Inbound BrewCo", location: "Minneapolis", latitude: 44.985587, longitude: -93.281217, sun: "11a-12a", mon: "12p-12a", tue: "12p-12a", wed: "12p-12a", thur: "12p-12a", fri: "12p-12a", sat: "11a-12a", rating: "")
+    // 701 N. Fifth St. Minneapolis, MN 55401
+    // (612) 615-8243
+let Indeed = BreweryData(breweryName: "Indeed Brewing", location: "Minneapolis", latitude: 45.003401, longitude: -93.250898, sun: "12p-8p", mon: "Closed", tue: "Closed", wed: "3p-11p", thur: "3p-11P", fri: "12p-11p", sat: "12p-11p", rating: "")
+    // 711 15th Ave. NE Minneapolis, MN 55413
+    // 612-843-5090
+let Insight = BreweryData(breweryName: "Insight Brewing", location: "Minneapolis", latitude: 44.991965, longitude: -93.212224, sun: "12p-11p", mon: "3p-11p", tue: "3p-11p", wed: "3p-11p", thur: "3p-11p", fri: "3p-12a", sat: "12p-12a", rating: "")
+    // 2821 E. Hennepin Ave. Minneapolis, MN 55413
+    // (612) 722-7222
+let IslandCity = BreweryData(breweryName: "Island City", location: "Winona", latitude: 44.053641, longitude: -91.633926, sun: "12p-8p", mon: "Closed", tue: "4p-10p", wed: "4p-10p", thur: "4p-10p", fri: "12p-12a", sat: "12p-12a", rating: "")
+    // 65 E Front Street Winona, MN 55987
 
 
+// Update from here
 
 
-var allBreweries = [ TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, Shell, BadHabit, BadWeather, BadgerHill, BaldMan, Bang, Bank, BarleyJohns, BarrelTheory, Bauhaus, BeaverIsland, Bemidji, BentBrew, BentPaddle, BigAxe, BigWood, Birch, Blacklist, Boathouse, BoomIsland, Brau, BrokenClock, BurningBros, CanalPark, CarmodyIrish, CastleDanger, Clockwerks, Cosmos, DangerousMan, DayBlock, Disgruntled, EastLake, Enki, Excelsior, FTown, FairState, Finnegans, Fitgers, FlatEarth, Forager, FoxHole, Fulton, GoatRidge, GrandRounds, GreatWaters, GullDam ]
+var allBreweries = [ TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, Shell, BadHabit, BadWeather, BadgerHill, BaldMan, Bang, Bank, BarleyJohns, BarrelTheory, Bauhaus, BeaverIsland, Bemidji, BentBrew, BentPaddle, BigAxe, BigWood, Birch, Blacklist, Boathouse, BoomIsland, Brau, BrokenClock, BurningBros, CanalPark, CarmodyIrish, CastleDanger, Clockwerks, Cosmos, DangerousMan, DayBlock, Disgruntled, EastLake, Enki, Excelsior, FTown, FairState, Finnegans, Fitgers, FlatEarth, Forager, FoxHole, Fulton, GoatRidge, GrandRounds, GreatWaters, GullDam, GunFlint, Hammerheart, Hayes, HeadFlyer, Hoops, Imminent, Inbound, Indeed, Insight, IslandCity ]
 
 var breweryIdentifier = 0
 var currentBrewery = String()
