@@ -11,17 +11,20 @@ import MapKit
 
 class InterfaceController: WKInterfaceController {
     
-    var breweriesSorted = [String]()
+//    var breweriesSorted = [String]()
+    // Sorts the breweries alphabetically.
+    let breweriesSorted = allBreweries.map { $0.breweryName }
     @IBOutlet var table: WKInterfaceTable!
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        // For display in the watch picker.
+        /* For display in the watch picker.
         for i in allBreweries {
             breweriesSorted.append(i.breweryName)
         }
         breweriesSorted.sort()
+        */
         locationButtonTitle.setTitle("\(allBreweries[0].location)")
         table.setNumberOfRows(7, withRowType: "Row")
         
@@ -81,7 +84,7 @@ class InterfaceController: WKInterfaceController {
 
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocation),
-            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)  // regionSpan.span
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)
         ]
 
         mapItem.name = ("\(allBreweries[breweryIdentifier].breweryName)")
