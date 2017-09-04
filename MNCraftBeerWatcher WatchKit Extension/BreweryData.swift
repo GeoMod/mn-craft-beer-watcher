@@ -246,11 +246,33 @@ let Montgomery = BreweryData(breweryName: "Montgomery", location: "Montgomery", 
     // 306 2nd St. NW Montgomery, MN 56069
 let MooseLake = BreweryData(breweryName: "Moose Lake", location: "Moose Lake", latitude: 46.447550, longitude: -92.767315, sun: "11a-5p", mon: "12p-9p", tue: "12p-9p", wed: "12p-9p", thur: "12p-9p", fri: "12p-10p", sat: "12p-10p", beenHere: false)
     // 244 Lakeshore Drive Moose Lake MN 55767
+let Northbound = BreweryData(breweryName: "Northbound Smokehouse", location: "Minneapolis", latitude: 44.934239, longitude: -93.232941, sun: "10a-1a", mon: "11a-1a", tue: "11a-1a", wed: "11a-1a", thur: "11a-1a", fri: "11a-2a", sat: "11a-2a", beenHere: false)
+    // 2716 East 38th Street, Minneapolis, MN 55406
+    // 612-208-1450
+let Northgate = BreweryData(breweryName: "Northgate Brewing", location: "Minneapolis", latitude: 44.998325, longitude: -93.220656, sun: "12p-8p", mon: "Closed", tue: "Closed", wed: "4p-10p", thur: "4p-10p", fri: "3p-12a", sat: "12p-12a", beenHere: false)
+    // 783 Harding St NE Mpls, MN 55413
+    // 612-354-2858
+let NutmegB = BreweryData(breweryName: "Nutmeg 'Burns'", location: "Burnsville", latitude: 44.745770, longitude: -93.303500, sun: "11a-10p", mon: "11a-11p", tue: "11a-11p", wed: "11a-11p", thur: "11a-11p", fri: "11a-11p", sat: "11a-11p", beenHere: false)
+    // 1905 Co Rd 42 W Burnsville MN
+    // 952.892.1438
+let NutmegA = BreweryData(breweryName: "Nutmeg 'Arden'", location: "Arden Hills", latitude: 45.051868, longitude: -93.148811, sun: "11a-10p", mon: "11a-10p", tue: "11a-10p", wed: "11a-10p", thur: "11a-10p", fri: "11a-11p", sat: "11a-11p", beenHere: false)
+    // 3673 Lexington Ave N Arden Hills MN
+    // 651.340.8812
+let Omni = BreweryData(breweryName: "Omni", location: "Maple Grove", latitude: 45.126473, longitude: -93.424548, sun: "12p-10p", mon: "Closed", tue: "3p-10p", wed: "3p-10p", thur: "3p-10p", fri: "12p-11p", sat: "12p-11p", beenHere: false)
+    // 9462 Deerwood Lane Maple Grove, MN
+    // (763) 424 - 6664 
+let Portage = BreweryData(breweryName: "Portage", location: "Walker", latitude: 47.101046, longitude: -94.581324, sun: "12p-5p", mon: "12p-5p", tue: "Closed", wed: "2p-9p", thur: "2p-9p", fri: "2p-9p", sat: "12p-9p", beenHere: false)
+    // 107 5th St South, Walker, MN 56484
+let Pryes = BreweryData(breweryName: "Pryes", location: "Minneapolis", latitude: 44.993557, longitude: -93.276071, sun: "11a-9p", mon: "Closed", tue: "Closed", wed: "4p-10", thur: "4p-11p", fri: "3p-12a", sat: "11a-12a", beenHere: false)
+    // 1401 West River Road N, Minneapolis, MN 55411
+    // (612) 787-7937
+
 
 // Update from here.
 
 
-var allBreweries = [ TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, Shell, BadHabit, BadWeather, BadgerHill, BaldMan, Bang, Bank, BarleyJohns, BarrelTheory, Bauhaus, BeaverIsland, Bemidji, BentBrew, BentPaddle, BigAxe, BigWood, Birch, Blacklist, Boathouse, BoomIsland, Brau, BrokenClock, BurningBros, CanalPark, CarmodyIrish, CastleDanger, Clockwerks, Cosmos, DangerousMan, DayBlock, Disgruntled, EastLake, Enki, Excelsior, FTown, FairState, Finnegans, Fitgers, FlatEarth, Forager, FoxHole, Fulton, GoatRidge, GrandRounds, GreatWaters, GullDam, GunFlint, Hammerheart, Hayes, HeadFlyer, Hoops, Imminent, Inbound, Indeed, Insight, IslandCity, JackPine, JosephWolf, JunkYard, KinneyCreek, LakeMonster, LakesLegends, Lakeville, LiftBridge, LTD, LTS, Lupine, Lupulin, Lynlake, Mankato, MapleIsland, TownHall, Modist, Montgomery, MooseLake ]
+
+var allBreweries = [ TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, Shell, BadHabit, BadWeather, BadgerHill, BaldMan, Bang, Bank, BarleyJohns, BarrelTheory, Bauhaus, BeaverIsland, Bemidji, BentBrew, BentPaddle, BigAxe, BigWood, Birch, Blacklist, Boathouse, BoomIsland, Brau, BrokenClock, BurningBros, CanalPark, CarmodyIrish, CastleDanger, Clockwerks, Cosmos, DangerousMan, DayBlock, Disgruntled, EastLake, Enki, Excelsior, FTown, FairState, Finnegans, Fitgers, FlatEarth, Forager, FoxHole, Fulton, GoatRidge, GrandRounds, GreatWaters, GullDam, GunFlint, Hammerheart, Hayes, HeadFlyer, Hoops, Imminent, Inbound, Indeed, Insight, IslandCity, JackPine, JosephWolf, JunkYard, KinneyCreek, LakeMonster, LakesLegends, Lakeville, LiftBridge, LTD, LTS, Lupine, Lupulin, Lynlake, Mankato, MapleIsland, TownHall, Modist, Montgomery, MooseLake, Northbound, Northgate, NutmegA, NutmegB, Omni, Portage, Pryes ]
 
 var breweryIdentifier = 0
 var currentBrewery = String()
