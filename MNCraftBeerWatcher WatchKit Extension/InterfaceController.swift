@@ -11,7 +11,6 @@ import MapKit
 
 class InterfaceController: WKInterfaceController {
     
-//    var breweriesSorted = [String]()
     // Sorts the breweries alphabetically.
     let breweriesSorted = allBreweries.map { $0.breweryName }
     @IBOutlet var table: WKInterfaceTable!
@@ -19,12 +18,6 @@ class InterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        /* For display in the watch picker.
-        for i in allBreweries {
-            breweriesSorted.append(i.breweryName)
-        }
-        breweriesSorted.sort()
-        */
         locationButtonTitle.setTitle("\(allBreweries[0].location)")
         table.setNumberOfRows(7, withRowType: "Row")
         
@@ -53,8 +46,8 @@ class InterfaceController: WKInterfaceController {
     
     override func willActivate() {
         super.willActivate()
-        print("\(breweriesSorted.count) Breweries Entered")
         pickerOutlet.focus()
+        print(allBreweries.count)
         
         var items = [WKPickerItem]()
         for brewery in breweriesSorted {
@@ -69,6 +62,7 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var locationButtonTitle: WKInterfaceButton!
     @IBAction func locationButton() {
         openMaps()
+
     }
     
     
@@ -98,12 +92,6 @@ class InterfaceController: WKInterfaceController {
         breweryIdentifier = value
         locationButtonTitle.setTitle("\(allBreweries[breweryIdentifier].location)")
     
-        /*
-         All of the logic to get the hours string produced here 
-         might be better as a static method on the enum itself
-         that you call in the for loop
- */
-        
         for rowIndex in 0...6 {
             guard let row = table.rowController(at: rowIndex) as? BreweryHoursRow else { continue }
             switch rowIndex {
