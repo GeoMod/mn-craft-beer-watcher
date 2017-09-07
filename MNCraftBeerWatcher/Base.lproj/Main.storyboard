@@ -24,30 +24,27 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="25" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rp2-M0-nZN">
                                 <rect key="frame" x="16" y="28" width="343" height="570"/>
-                                <string key="text">Welcome to MN Craft Beer Watcher. The Apple Watch app to guide you to Minnesota’s incredible craft breweries.
+                                <mutableString key="text">Welcome to MN Breweries. The Apple Watch app to guide you to Minnesota’s incredible craft breweries.
 
-Please open MN Craft Beer Watcher on your Apple Watch and enjoy experiencing Minnesota’s vibrant craft breweries and culture.
+Please open MN Breweries on your Apple Watch to find a list of craft breweries and their hours of operation in our beautiful state. Tapping the city will give you directions to the brewery of your choice. Updates are already in the works to adjust sorting by city, as well as viewing the closest brewery right on your watch face.
+
+For now enjoy experiencing Minnesota’s vibrant craft breweries and culture
 
 Thank you,
 
 Dan O’Leary
-Impulse Coupled Developemnt</string>
+Impulse Coupled Developemnt
+Rosemount, MN</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUn-mc-MCt">
-                                <rect key="frame" x="163.5" y="617" width="47" height="30"/>
-                                <state key="normal" title="Tip Jar"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="rp2-M0-nZN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="0VO-Rh-QZ1"/>
                             <constraint firstItem="rp2-M0-nZN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="2SE-uT-wc0"/>
-                            <constraint firstItem="dUn-mc-MCt" firstAttribute="centerX" secondItem="rp2-M0-nZN" secondAttribute="centerX" id="50n-cz-TrZ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="rp2-M0-nZN" secondAttribute="bottom" constant="69" id="O94-SB-Gsk"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dUn-mc-MCt" secondAttribute="bottom" constant="20" id="WcN-lx-Ped"/>
                             <constraint firstItem="rp2-M0-nZN" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="goq-Ur-zfA"/>
                         </constraints>
                     </view>
