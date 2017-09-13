@@ -33,10 +33,12 @@ let FiveSix = BreweryData(breweryName: "56 Brewing", location: "Minneapolis", la
     // (612) 404-0056
 let SixOneTwo = BreweryData(breweryName: "612 Brew", location: "Minneapolis", latitude: 44.998902155805844, longitude: -93.2468569278717, sun: "12p-8p", mon: "4p-10p", tue: "4p-10p", wed: "4p-10p", thur: "4p-10p", fri: "2:30p-12a", sat: "12p-12a", beenHere: false)
 let Able = BreweryData(breweryName: "Able Seedhouse", location: "Minneapolis", latitude: 44.998966641683346, longitude: -93.25122892856598, sun: "12p-8p", mon: "Closed", tue: "Closed", wed: "3p-11p", thur: "3p-11p", fri: "12p-11p", sat: "12p-11p", beenHere: false)
+let AngryInch = BreweryData(breweryName: "Angry Inch", location: "Lakeville", latitude: 44.647636, longitude: -93.242677, sun: "12p-8p", mon: "Closed", tue: "Closed", wed: "2p-10p", thur: "2p-10p", fri: "12p-12a", sat: "12p-12a", beenHere: false)
+    // 20841 Holyoke Avenue Lakeville, MN 55068
 let Alloy = BreweryData(breweryName: "Alloy Brewing", location: "Coon Rapids", latitude: 45.169803, longitude:  -93.336746, sun: "12p-8p", mon: "Closed", tue: "Closed", wed: "4p-10p", thur: "4p-10p", fri: "4p-10p", sat: "12p-11p", beenHere: false)
     // 2700 COON RAPIDS BOULEVARD NORTHWEST, COON RAPIDS, MN
     // 763-432-0939
-let Shell = BreweryData(breweryName: "August Shell", location: "New Ulm", latitude: 44.289622, longitude: -94.448947, sun: "12p-5p", mon: "12p-5p", tue: "12p-5p", wed: "12p-5p", thur: "12p-5p", fri: "12p-5p", sat: "11p-5p", beenHere: false)
+let AugustShell = BreweryData(breweryName: "August Shell", location: "New Ulm", latitude: 44.289622, longitude: -94.448947, sun: "12p-5p", mon: "12p-5p", tue: "12p-5p", wed: "12p-5p", thur: "12p-5p", fri: "12p-5p", sat: "11p-5p", beenHere: false)
     // 1860 Schell's Road New Ulm, MN 56073
     // 800-770-5020
     // Hours listed are for brewery tours. No tap room.
@@ -296,7 +298,7 @@ let Tanzenwald = BreweryData(breweryName: "Tanzenwald", location: "Northfield", 
     //  507-366-2337
 let Freehouse = BreweryData(breweryName: "Freehouse", location: "Minneapolis", latitude: 44.987493, longitude: -93.277782, sun: "6:30a-2a", mon: "6:30a-2a", tue: "6:30a-2a", wed: "6:30a-2a", thur: "6:30a-2a", fri: "6:30a-2a", sat: "6:30a-2a", beenHere: false)
     // 701 N. Washington Ave., Ste 101 Minneapolis, MN 55401
-let Herkimer = BreweryData(breweryName: "Herkimer", location: "Minneapolis", latitude: 44.949142, longitude: -93.287874, sun: "10a-3p", mon: "12p-2a", tue: "12p-2a", wed: "12p-2a", thur: "12p-2a", fri: "12p-2a", sat: "10a-6p", beenHere: false)
+let Herkimer = BreweryData(breweryName: "Herkimer", location: "Minneapolis", latitude: 44.949142, longitude: -93.287874, sun: "10a-2a", mon: "12p-2a", tue: "12p-2a", wed: "12p-2a", thur: "12p-2a", fri: "12p-2a", sat: "120a-2a", beenHere: false)
     // 2922 Lyndale Avenue South Minneapolis, MN 55408
 let ThirdStreet = BreweryData(breweryName: "Third Street", location: "Cold Spring", latitude: 45.458913, longitude: -94.429050, sun: "Closed", mon: "Closed", tue: "Closed", wed: "Closed", thur: "Closed", fri: "4p-8p", sat: "12p-5p", beenHere: false)
     // 219 Red River Ave N, Cold Spring, MN 56320
@@ -329,15 +331,18 @@ let Wayzata = BreweryData(breweryName: "Wayzata", location: "Wayzata", latitude:
     // 294 Grove Ln E, Wayzata, MN 55391
     // (952) 737-1023
 let Wicked = BreweryData(breweryName: "Wicked Wort", location: "Robbinsdale", latitude: 45.030926, longitude: -93.338835, sun: "11:30a-9p", mon: "3p-10p", tue: "3p-11p", wed: "3p-11p", thur: "3p-11p", fri: "12p-12a", sat: "12p-12a", beenHere: false)
-// 4165 W Broadway Ave. Robbinsdale, MN 55422
-// 763-504-9977
+    // 4165 W Broadway Ave. Robbinsdale, MN 55422
+    // 763-504-9977
 let WildMind = BreweryData(breweryName: "Wild Mind", location: "Minneapolis", latitude: 44.893139, longitude: -93.281309, sun: "12p-8p", mon: "Closed", tue: "4p-10p", wed: "4p-10p", thur: "4p-10p", fri: "2p-11p", sat: "12p-11p", beenHere: false)
     // 6031 PILLSBURY AVENUE SOUTH, MINNEAPOLIS MN 55419
     // 612-345-4514
+let BlackStack = BreweryData(breweryName: "Black Stack", location: "St. Paul", latitude: 44.963947, longitude: -93.182632, sun: "12p-10p", mon: "4p-11p", tue: "4p-11p", wed: "4p-11p", thur: "4p-11p", fri: "12p-12a", sat: "12p-12a", beenHere: false)
+    // 755 Prior Ave North St. Paul, MN 55104
+let TwelveEyes = BreweryData(breweryName: "12welve Eyes", location: "St. Paul", latitude: 44.947100, longitude: -93.089205, sun: "12p-8p", mon: "4p-9p", tue: "4p-9p", wed: "4p-9p", thur: "4p-9p", fri: "3p-10p", sat: "12p-10p", beenHere: false)
+    // 141 E. 4TH ST, SUITE LL2, SAINT PAUL, MN 55101
 
 
-
-var allBreweries = [ TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, Shell, BadHabit, BadWeather, BadgerHill, BaldMan, Bang, Bank, BarleyJohns, BarrelTheory, Bauhaus, BeaverIsland, Bemidji, BentBrew, BentPaddle, BigAxe, BigWood, Birch, Blacklist, Boathouse, BoomIsland, Brau, BrokenClock, BurningBros, CanalPark, CarmodyIrish, CastleDanger, Clockwerks, Cosmos, DangerousMan, DayBlock, Disgruntled, EastLake, Enki, Excelsior, FTown, FairState, Finnegans, Fitgers, FlatEarth, Forager, FoxHole, Fulton, GoatRidge, GrandRounds, GreatWaters, GullDam, GunFlint, Hammerheart, Hayes, HeadFlyer, Hoops, Imminent, Inbound, Indeed, Insight, IslandCity, JackPine, JosephWolf, JunkYard, KinneyCreek, LakeMonster, LakesLegends, Lakeville, LiftBridge, LTD, LTS, Lupine, Lupulin, Lynlake, Mankato, MapleIsland, TownHall, Modist, Montgomery, MooseLake, Northbound, Northgate, NutmegA, NutmegB, Omni, Portage, Pryes, ReadsLanding, RedWing, Revelation, RockBotton, SpilledGrain, SteelToe, Summit, Surly, Take16, TalkingWaters, Tanzenwald, Freehouse, Herkimer, ThirdStreet, TinWhiskers, U4ic, Unmapped, UrbanGrowler, Utepils, VinePark, Voyageur, Wabasha, Waconia, Wayzata, Wicked, WildMind ]
+var allBreweries = [ TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, AngryInch, AugustShell, BadHabit, BadWeather, BadgerHill, BaldMan, Bang, Bank, BarleyJohns, BarrelTheory, Bauhaus, BeaverIsland, Bemidji, BentBrew, BentPaddle, BigAxe, BigWood, Birch, Blacklist, Boathouse, BoomIsland, Brau, BrokenClock, BurningBros, CanalPark, CarmodyIrish, CastleDanger, Clockwerks, Cosmos, DangerousMan, DayBlock, Disgruntled, EastLake, Enki, Excelsior, FTown, FairState, Finnegans, Fitgers, FlatEarth, Forager, FoxHole, Fulton, GoatRidge, GrandRounds, GreatWaters, GullDam, GunFlint, Hammerheart, Hayes, HeadFlyer, Hoops, Imminent, Inbound, Indeed, Insight, IslandCity, JackPine, JosephWolf, JunkYard, KinneyCreek, LakeMonster, LakesLegends, Lakeville, LiftBridge, LTD, LTS, Lupine, Lupulin, Lynlake, Mankato, MapleIsland, TownHall, Modist, Montgomery, MooseLake, Northbound, Northgate, NutmegA, NutmegB, Omni, Portage, Pryes, ReadsLanding, RedWing, Revelation, RockBotton, SpilledGrain, SteelToe, Summit, Surly, Take16, TalkingWaters, Tanzenwald, Freehouse, Herkimer, ThirdStreet, TinWhiskers, U4ic, Unmapped, UrbanGrowler, Utepils, VinePark, Voyageur, Wabasha, Waconia, Wayzata, Wicked, WildMind, BlackStack, TwelveEyes ]
 
 
 
