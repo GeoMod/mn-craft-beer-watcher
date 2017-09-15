@@ -8,19 +8,40 @@
 
 import WatchKit
 import MapKit
+import WatchConnectivity
 
-class InterfaceController: WKInterfaceController {
+
+class InterfaceController: WKInterfaceController, WCSessionDelegate {
+    
+    // To request store review
+    class UserDefaultsManager {
+        
+        private static let timesOpened = "Times Opened"
+        static var count: Int {   // numberOfTimesOpened
+            get {
+                return UserDefaults.standard.integer(forKey: timesOpened)
+            }
+            set {
+                UserDefaults.standard.set(newValue, forKey: timesOpened)
+            }
+        }
+    }
+    
+    
+    @IBOutlet var table: WKInterfaceTable!
+    @IBOutlet var locationButtonTitle: WKInterfaceButton!
+    @IBOutlet var pickerOutlet: WKInterfacePicker!
     
     // Sorts the breweries alphabetically.
     let breweriesSorted = allBreweries.map { $0.breweryName }
-    @IBOutlet var table: WKInterfaceTable!
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
+        setUpWatchConnectivity()
+        
         locationButtonTitle.setTitle("\(allBreweries[0].location)")
         table.setNumberOfRows(7, withRowType: "Row")
-        
         for rowIndex in 0...6 {
             guard let row = table.rowController(at: rowIndex) as? BreweryHoursRow else { continue }
             switch rowIndex {
@@ -44,10 +65,11 @@ class InterfaceController: WKInterfaceController {
         }
     }
     
+    
     override func willActivate() {
         super.willActivate()
         pickerOutlet.focus()
-        print(allBreweries.count)
+        print("\(allBreweries.count) Breweries")
         
         var items = [WKPickerItem]()
         for brewery in breweriesSorted {
@@ -59,10 +81,15 @@ class InterfaceController: WKInterfaceController {
     }
     
     
-    @IBOutlet var locationButtonTitle: WKInterfaceButton!
     @IBAction func locationButton() {
+            UserDefaultsManager.count += 1
+            print(UserDefaultsManager.count)
+        
+        // Becuase my son picked "8".
+            if UserDefaultsManager.count == 5 {
+                sendCountToPhone()
+            }
         openMaps()
-
     }
     
     
@@ -72,8 +99,8 @@ class InterfaceController: WKInterfaceController {
         
         let breweryLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let region = MKCoordinateRegionMake(breweryLocation, MKCoordinateSpanMake(latitude, longitude))
-        let placeMark = MKPlacemark(coordinate: breweryLocation, addressDictionary: ["address": "Blahh"])
-        
+//        let placeMark = MKPlacemark(coordinate: breweryLocation, addressDictionary: ["address": "Blahh"])
+        let placeMark = MKPlacemark(coordinate: breweryLocation)
         let mapItem = MKMapItem(placemark: placeMark)
 
         let options = [
@@ -87,7 +114,6 @@ class InterfaceController: WKInterfaceController {
     }
     
     
-    @IBOutlet var pickerOutlet: WKInterfacePicker!
     @IBAction func pickerAction(_ value: Int) {
         breweryIdentifier = value
         locationButtonTitle.setTitle("\(allBreweries[breweryIdentifier].location)")
@@ -112,6 +138,39 @@ class InterfaceController: WKInterfaceController {
             default:
                 row.hoursLabel.setText("Row \(rowIndex)")
             }
+        }
+    }
+    
+    // MARK: Watch Connectivity.
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if let error = error {
+            print("Activation failed with error: \(error.localizedDescription)")
+            return
+        }
+        print("Watch activated with state: \(activationState.rawValue)")
+    }
+    
+    
+    func sendCountToPhone() {
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            session.delegate = self
+            session.activate()
+            do {
+                let message = ["message": true ]
+                try session.updateApplicationContext(message)
+            } catch {
+                print("Error of type \(error) in sendCountToPhone.")
+            }
+        }
+    }
+    
+    
+    func setUpWatchConnectivity() {
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            session.delegate = self
+            session.activate()
         }
     }
     
