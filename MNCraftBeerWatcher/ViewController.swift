@@ -13,38 +13,15 @@ import WatchConnectivity
 class ViewController: UIViewController, WCSessionDelegate {
     
     @IBOutlet var label: UILabel!
-//    var count = 0
-    
-    
-//    class UserDefaultsManager {
-//        
-//        private static let timesOpened = "Times Opened"
-//        static var count: Int {   // numberOfTimesOpened
-//            get {
-//                return UserDefaults.standard.integer(forKey: timesOpened)
-//            }
-//            set {
-//                UserDefaults.standard.set(newValue, forKey: timesOpened)
-//            }
-//        }
-//    }
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpWatchConnectivity()
-        
-//        UserDefaultsManager.numberOfTimesOpened += 1
-//        print(UserDefaultsManager.numberOfTimesOpened)
-//
-//        if UserDefaultsManager.numberOfTimesOpened == 7 {
-//            SKStoreReviewController.requestReview()
-//        }
     }
     
    
-// MARK: Watch Connectivity
-
+    // MARK: Watch Connectivity. Used to request App Store Rating.
     func sessionDidBecomeInactive(_ session: WCSession) {
         print("WC Session did become inactive.")
     }
@@ -69,19 +46,6 @@ class ViewController: UIViewController, WCSessionDelegate {
         } else {
             print("not true")
         }
-//        let message = applicationContext["message"] as? String
-//        let message = applicationContext["message"] as? Int
-//
-//        UserDefaultsManager.count += message!
-//        print(UserDefaultsManager.count)
-//        label.text = "\(message!)"
-//        print("\(message!)")
-//
-//        if UserDefaultsManager.count == 7 {
-//            SKStoreReviewController.requestReview()
-//        }
-//
-        
     }
     
     func setUpWatchConnectivity() {
@@ -97,7 +61,6 @@ class ViewController: UIViewController, WCSessionDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }
 
