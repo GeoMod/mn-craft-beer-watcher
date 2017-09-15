@@ -15,9 +15,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     // To request store review
     class UserDefaultsManager {
-        
         private static let timesOpened = "Times Opened"
-        static var count: Int {   // numberOfTimesOpened
+        static var count: Int {
             get {
                 return UserDefaults.standard.integer(forKey: timesOpened)
             }
@@ -27,14 +26,14 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
+    // Sorts the breweries alphabetically.
+    let breweriesSorted = allBreweries.map { $0.breweryName }
     
     @IBOutlet var table: WKInterfaceTable!
     @IBOutlet var locationButtonTitle: WKInterfaceButton!
     @IBOutlet var pickerOutlet: WKInterfacePicker!
     
-    // Sorts the breweries alphabetically.
-    let breweriesSorted = allBreweries.map { $0.breweryName }
-
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
@@ -86,7 +85,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             print(UserDefaultsManager.count)
         
         // Becuase my son picked "8".
-            if UserDefaultsManager.count == 5 {
+            if UserDefaultsManager.count == 8 {
                 sendCountToPhone()
             }
         openMaps()
@@ -99,7 +98,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         let breweryLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let region = MKCoordinateRegionMake(breweryLocation, MKCoordinateSpanMake(latitude, longitude))
-//        let placeMark = MKPlacemark(coordinate: breweryLocation, addressDictionary: ["address": "Blahh"])
+//        let placeMark = MKPlacemark(coordinate: breweryLocation, addressDictionary: ["address": "test label"])
         let placeMark = MKPlacemark(coordinate: breweryLocation)
         let mapItem = MKMapItem(placemark: placeMark)
 
@@ -141,7 +140,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-    // MARK: Watch Connectivity.
+    // MARK: Watch Connectivity. Used send a message from the Watch to iPhone requesting App Store Rating.
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error = error {
             print("Activation failed with error: \(error.localizedDescription)")
