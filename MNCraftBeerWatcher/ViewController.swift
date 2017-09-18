@@ -10,18 +10,47 @@ import UIKit
 import StoreKit
 import WatchConnectivity
 
-class ViewController: UIViewController, WCSessionDelegate {
+class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    @IBOutlet var label: UILabel!
-
-
+    @IBOutlet var CitiesLabel: UIButton!
+    @IBOutlet var BreweriesPicker: UIPickerView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        BreweriesPicker.dataSource = self
+        BreweriesPicker.delegate = self
         setUpWatchConnectivity()
     }
     
+    
+    @IBAction func CitiesButton(_ sender: Any) {
+        print("Button Pressed")
+    }
+    
+    // MARK: Pickerview for the scrollable list of breweries.
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return allBreweries.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let breweries = allBreweries[row]
+        return breweries.breweryName
+    }
+
    
-    // MARK: Watch Connectivity. Used to request App Store Rating.
+    
+    
+    
+    
+    
+    // MARK: Watch Connectivity.
+    // Used to request App Store Rating.
     func sessionDidBecomeInactive(_ session: WCSession) {
         print("WC Session did become inactive.")
     }

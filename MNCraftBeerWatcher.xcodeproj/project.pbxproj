@@ -22,6 +22,7 @@
 		1828C8B21F40D578003EDD64 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C8B11F40D578003EDD64 /* ComplicationController.swift */; };
 		1828C8B41F40D578003EDD64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1828C8B31F40D578003EDD64 /* Assets.xcassets */; };
 		1836CBA01F43637400053AC0 /* BreweryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836CB9F1F43637400053AC0 /* BreweryData.swift */; };
+		185099CD1F7019F2007898E0 /* BreweryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836CB9F1F43637400053AC0 /* BreweryData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		1828C87E1F40D577003EDD64 = {
 			isa = PBXGroup;
 			children = (
+				1836CB9F1F43637400053AC0 /* BreweryData.swift */,
 				1828C8891F40D577003EDD64 /* MNCraftBeerWatcher */,
 				1828C89D1F40D577003EDD64 /* MNCraftBeerWatcher WatchKit App */,
 				1828C8AC1F40D578003EDD64 /* MNCraftBeerWatcher WatchKit Extension */,
@@ -157,7 +159,6 @@
 				1828C8AF1F40D578003EDD64 /* ExtensionDelegate.swift */,
 				1828C8B11F40D578003EDD64 /* ComplicationController.swift */,
 				182242241F46657500FA0495 /* BreweryHoursRow.swift */,
-				1836CB9F1F43637400053AC0 /* BreweryData.swift */,
 				1828C8B31F40D578003EDD64 /* Assets.xcassets */,
 				1828C8B51F40D578003EDD64 /* Info.plist */,
 			);
@@ -329,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185099CD1F7019F2007898E0 /* BreweryData.swift in Sources */,
 				1828C88D1F40D577003EDD64 /* ViewController.swift in Sources */,
 				1828C88B1F40D577003EDD64 /* AppDelegate.swift in Sources */,
 			);
