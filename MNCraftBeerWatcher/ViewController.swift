@@ -8,46 +8,98 @@
 
 import UIKit
 import StoreKit
+import MapKit
 import WatchConnectivity
 
-class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+   
     
-    @IBOutlet var CitiesLabel: UIButton!
-    @IBOutlet var BreweriesPicker: UIPickerView!
+    @IBOutlet var pickerView: UIPickerView!
+    @IBOutlet var mapButtonLabel: UIButton!
+    
+    // Hours Labels
+    @IBOutlet var sundayLabel: UILabel!
+    @IBOutlet var mondayLabel: UILabel!
+    @IBOutlet var tuesdayLabel: UILabel!
+    @IBOutlet var wednesdayLabel: UILabel!
+    @IBOutlet var thursdayLabel: UILabel!
+    @IBOutlet var fridayLabel: UILabel!
+    @IBOutlet var saturdayLabel: UILabel!
     
     
+    // Sorts the breweries alphabetically.
+    let breweriesSorted = allBreweries.sorted(by: { $0.breweryName < $1.breweryName })
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        BreweriesPicker.dataSource = self
-        BreweriesPicker.delegate = self
         setUpWatchConnectivity()
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        
+        mapButtonLabel.setTitle(breweriesSorted[0].location, for: .normal)
+        sundayLabel.text = "Sunday: \(breweriesSorted[0].sun)"
+        mondayLabel.text = "Monday: \(breweriesSorted[0].mon)"
+        tuesdayLabel.text = "Tuesday: \(breweriesSorted[0].tue)"
+        wednesdayLabel.text = "Wednesday: \(breweriesSorted[0].wed)"
+        thursdayLabel.text = "Thursday: \(breweriesSorted[0].thur)"
+        fridayLabel.text = "Friday: \(breweriesSorted[0].fri)"
+        saturdayLabel.text = "Saturday: \(breweriesSorted[0].sat)"
     }
     
     
-    @IBAction func CitiesButton(_ sender: Any) {
-        print("Button Pressed")
+    @IBAction func MapButton(_ sender: Any) {
+        openMaps()
     }
     
-    // MARK: Pickerview for the scrollable list of breweries.
+    // Consdier just putting this inside the MapButton()
+    func openMaps() {
+        let latitude: CLLocationDegrees = breweriesSorted[breweryIdentifier].latitude
+        let longitude: CLLocationDegrees = breweriesSorted[breweryIdentifier].longitude
+        
+        let breweryLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let region = MKCoordinateRegionMake(breweryLocation, MKCoordinateSpanMake(latitude, longitude))
+        //        let placeMark = MKPlacemark(coordinate: breweryLocation, addressDictionary: ["address": "test label"])
+        let placeMark = MKPlacemark(coordinate: breweryLocation)
+        let mapItem = MKMapItem(placemark: placeMark)
+        
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocation),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)
+        ]
+        
+        mapItem.name = ("\(breweriesSorted[breweryIdentifier].breweryName)")
+        mapItem.openInMaps(launchOptions: options)
+        
+    }
+    
+    
+    // MARK: Pickerview Data Source
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return allBreweries.count
+        return breweriesSorted.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let breweries = allBreweries[row]
-        return breweries.breweryName
+    // Pickerview Delegates
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?  {
+        return breweriesSorted[row].breweryName
     }
-
-   
     
-    
-    
-    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        breweryIdentifier = row // Used for setting the mapButtonTitle
+        mapButtonLabel.setTitle(breweriesSorted[row].location, for: .normal)
+        
+        sundayLabel.text = "Sunday: \(breweriesSorted[row].sun)"
+        mondayLabel.text = "Monday: \(breweriesSorted[row].mon)"
+        tuesdayLabel.text = "Tuesday: \(breweriesSorted[row].tue)"
+        wednesdayLabel.text = "Wednesday: \(breweriesSorted[row].wed)"
+        thursdayLabel.text = "Thursday: \(breweriesSorted[row].thur)"
+        fridayLabel.text = "Friday: \(breweriesSorted[row].fri)"
+        saturdayLabel.text = "Saturday: \(breweriesSorted[row].sat)"
+        
+    }
     
     // MARK: Watch Connectivity.
     // Used to request App Store Rating.

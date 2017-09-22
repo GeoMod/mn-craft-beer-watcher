@@ -21,8 +21,8 @@
 		1828C8B01F40D578003EDD64 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C8AF1F40D578003EDD64 /* ExtensionDelegate.swift */; };
 		1828C8B21F40D578003EDD64 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C8B11F40D578003EDD64 /* ComplicationController.swift */; };
 		1828C8B41F40D578003EDD64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1828C8B31F40D578003EDD64 /* Assets.xcassets */; };
-		1836CBA01F43637400053AC0 /* BreweryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836CB9F1F43637400053AC0 /* BreweryData.swift */; };
-		185099CD1F7019F2007898E0 /* BreweryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836CB9F1F43637400053AC0 /* BreweryData.swift */; };
+		184CE3651F72A61B001E12CB /* BreweryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836CB9F1F43637400053AC0 /* BreweryData.swift */; };
+		184CE3681F72A6BB001E12CB /* BreweryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836CB9F1F43637400053AC0 /* BreweryData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -330,8 +330,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				185099CD1F7019F2007898E0 /* BreweryData.swift in Sources */,
 				1828C88D1F40D577003EDD64 /* ViewController.swift in Sources */,
+				184CE3681F72A6BB001E12CB /* BreweryData.swift in Sources */,
 				1828C88B1F40D577003EDD64 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,10 +340,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				184CE3651F72A61B001E12CB /* BreweryData.swift in Sources */,
 				1828C8B01F40D578003EDD64 /* ExtensionDelegate.swift in Sources */,
 				182242251F46657500FA0495 /* BreweryHoursRow.swift in Sources */,
 				1828C8AE1F40D578003EDD64 /* InterfaceController.swift in Sources */,
-				1836CBA01F43637400053AC0 /* BreweryData.swift in Sources */,
 				1828C8B21F40D578003EDD64 /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -27,7 +27,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     // Sorts the breweries alphabetically.
-    let breweriesSorted = allBreweries.map { $0.breweryName }
+    let breweriesSorted = allBreweries.sorted(by: { $0.breweryName < $1.breweryName })
     
     @IBOutlet var table: WKInterfaceTable!
     @IBOutlet var locationButtonTitle: WKInterfaceButton!
@@ -39,25 +39,25 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         setUpWatchConnectivity()
         
-        locationButtonTitle.setTitle("\(allBreweries[0].location)")
+        locationButtonTitle.setTitle("\(breweriesSorted[0].location)")
         table.setNumberOfRows(7, withRowType: "Row")
         for rowIndex in 0...6 {
             guard let row = table.rowController(at: rowIndex) as? BreweryHoursRow else { continue }
             switch rowIndex {
             case 0:
-                row.hoursLabel.setText("Sun: \(allBreweries[0].sun)")
+                row.hoursLabel.setText("Sun: \(breweriesSorted[0].sun)")
             case 1:
-                row.hoursLabel.setText("Mon: \(allBreweries[0].mon)")
+                row.hoursLabel.setText("Mon: \(breweriesSorted[0].mon)")
             case 2:
-                row.hoursLabel.setText("Tue: \(allBreweries[0].tue)")
+                row.hoursLabel.setText("Tue: \(breweriesSorted[0].tue)")
             case 3:
-                row.hoursLabel.setText("Wed: \(allBreweries[0].wed)")
+                row.hoursLabel.setText("Wed: \(breweriesSorted[0].wed)")
             case 4:
-                row.hoursLabel.setText("Thu: \(allBreweries[0].thur)")
+                row.hoursLabel.setText("Thu: \(breweriesSorted[0].thur)")
             case 5:
-                row.hoursLabel.setText("Fri: \(allBreweries[0].fri)")
+                row.hoursLabel.setText("Fri: \(breweriesSorted[0].fri)")
             case 6:
-                row.hoursLabel.setText("Sat: \(allBreweries[0].sat)")
+                row.hoursLabel.setText("Sat: \(breweriesSorted[0].sat)")
             default:
                 row.hoursLabel.setText("Row \(rowIndex)")
             }
@@ -73,7 +73,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         var items = [WKPickerItem]()
         for brewery in breweriesSorted {
             let item = WKPickerItem()
-            item.title = brewery
+            item.title = brewery.breweryName
             items.append(item)
         }
         pickerOutlet.setItems(items)
@@ -115,25 +115,25 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     @IBAction func pickerAction(_ value: Int) {
         breweryIdentifier = value
-        locationButtonTitle.setTitle("\(allBreweries[breweryIdentifier].location)")
-    
+        locationButtonTitle.setTitle("\(breweriesSorted[breweryIdentifier].location)")
+        print(breweryIdentifier)
         for rowIndex in 0...6 {
             guard let row = table.rowController(at: rowIndex) as? BreweryHoursRow else { continue }
             switch rowIndex {
             case 0:
-                row.hoursLabel.setText("Sun: \(allBreweries[breweryIdentifier].sun)")
+                row.hoursLabel.setText("Sun: \(breweriesSorted[breweryIdentifier].sun)")
             case 1:
-                row.hoursLabel.setText("Mon: \(allBreweries[breweryIdentifier].mon)")
+                row.hoursLabel.setText("Mon: \(breweriesSorted[breweryIdentifier].mon)")
             case 2:
-                row.hoursLabel.setText("Tue: \(allBreweries[breweryIdentifier].tue)")
+                row.hoursLabel.setText("Tue: \(breweriesSorted[breweryIdentifier].tue)")
             case 3:
-                row.hoursLabel.setText("Wed: \(allBreweries[breweryIdentifier].wed)")
+                row.hoursLabel.setText("Wed: \(breweriesSorted[breweryIdentifier].wed)")
             case 4:
-                row.hoursLabel.setText("Thu: \(allBreweries[breweryIdentifier].thur)")
+                row.hoursLabel.setText("Thu: \(breweriesSorted[breweryIdentifier].thur)")
             case 5:
-                row.hoursLabel.setText("Fri: \(allBreweries[breweryIdentifier].fri)")
+                row.hoursLabel.setText("Fri: \(breweriesSorted[breweryIdentifier].fri)")
             case 6:
-                row.hoursLabel.setText("Sat: \(allBreweries[breweryIdentifier].sat)")
+                row.hoursLabel.setText("Sat: \(breweriesSorted[breweryIdentifier].sat)")
             default:
                 row.hoursLabel.setText("Row \(rowIndex)")
             }
