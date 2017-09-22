@@ -51,7 +51,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         openMaps()
     }
     
-    // Consdier just putting this inside the MapButton()
+
     func openMaps() {
         let latitude: CLLocationDegrees = breweriesSorted[breweryIdentifier].latitude
         let longitude: CLLocationDegrees = breweriesSorted[breweryIdentifier].longitude

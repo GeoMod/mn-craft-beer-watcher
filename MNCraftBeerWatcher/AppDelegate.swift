@@ -41,39 +41,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-
-// MARK:  Would rather Watch Connectivity be here, but I can't seem to get it to work. 09/14/17
-
-/*
-
-extension AppDelegate: WCSessionDelegate {
-
- func sessionDidBecomeInactive(_ session: WCSession) {
-        print("WC Session did become inactive.")
-    }
-    
-    func sessionDidDeactivate(_ session: WCSession) {
-        WCSession.default.activate()
-        print("WC Session did deactivate.")
-    }
- 
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        if let error = error {
-            print("WC Session activation failed with error:" + "\(error.localizedDescription)")
-            return
-        }
-        print("Phone activated with state:" + "\(activationState.rawValue)")
-    }
-    
-    func setUpWatchConnectivity() {
-        if WCSession.isSupported() {
-            let session = WCSession.default
-            session.delegate = self
-            session.activate()
-        }
-    }
-}
-*/
 
