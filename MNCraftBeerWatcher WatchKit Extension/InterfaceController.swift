@@ -98,7 +98,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         let breweryLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let region = MKCoordinateRegionMake(breweryLocation, MKCoordinateSpanMake(latitude, longitude))
-//        let placeMark = MKPlacemark(coordinate: breweryLocation, addressDictionary: ["address": "test label"])
         let placeMark = MKPlacemark(coordinate: breweryLocation)
         let mapItem = MKMapItem(placemark: placeMark)
 
