@@ -1,0 +1,23 @@
+{
+  "stickers" : [
+    {
+      "filename" : "MN Breweries Sticker Original.sticker"
+    },
+    {
+      "filename" : "MN Craft Beer.sticker"
+    },
+    {
+      "filename" : "LoonSticker.sticker"
+    },
+    {
+      "filename" : "hops.sticker"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "properties" : {
+    "grid-size" : "regular"
+  }
+}
