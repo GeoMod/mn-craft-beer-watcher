@@ -37,13 +37,13 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         pickerView.delegate = self
         
         mapButtonLabel.setTitle(breweriesSorted[0].location, for: .normal)
-        sundayLabel.text = "Sunday: \(breweriesSorted[0].sun.uppercased())"
-        mondayLabel.text = "Monday: \(breweriesSorted[0].mon.uppercased())"
-        tuesdayLabel.text = "Tuesday: \(breweriesSorted[0].tue.uppercased())"
-        wednesdayLabel.text = "Wednesday: \(breweriesSorted[0].wed.uppercased())"
-        thursdayLabel.text = "Thursday: \(breweriesSorted[0].thur.uppercased())"
-        fridayLabel.text = "Friday: \(breweriesSorted[0].fri.uppercased())"
-        saturdayLabel.text = "Saturday: \(breweriesSorted[0].sat.uppercased())"
+        sundayLabel.text = breweriesSorted[0].sun.uppercased()
+        mondayLabel.text = breweriesSorted[0].mon.uppercased()
+        tuesdayLabel.text = breweriesSorted[0].tue.uppercased()
+        wednesdayLabel.text = breweriesSorted[0].wed.uppercased()
+        thursdayLabel.text = breweriesSorted[0].thur.uppercased()
+        fridayLabel.text = breweriesSorted[0].fri.uppercased()
+        saturdayLabel.text = breweriesSorted[0].sat.uppercased()
     }
     
     
@@ -91,13 +91,13 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         breweryIdentifier = row // Used for setting the mapButtonTitle
         mapButtonLabel.setTitle(breweriesSorted[row].location, for: .normal)
         
-        sundayLabel.text = "Sunday: \(breweriesSorted[row].sun.uppercased())"
-        mondayLabel.text = "Monday: \(breweriesSorted[row].mon.uppercased())"
-        tuesdayLabel.text = "Tuesday: \(breweriesSorted[row].tue.uppercased())"
-        wednesdayLabel.text = "Wednesday: \(breweriesSorted[row].wed.uppercased())"
-        thursdayLabel.text = "Thursday: \(breweriesSorted[row].thur.uppercased())"
-        fridayLabel.text = "Friday: \(breweriesSorted[row].fri.uppercased())"
-        saturdayLabel.text = "Saturday: \(breweriesSorted[row].sat.uppercased())"
+        sundayLabel.text = breweriesSorted[row].sun.uppercased()
+        mondayLabel.text = breweriesSorted[row].mon.uppercased()
+        tuesdayLabel.text = breweriesSorted[row].tue.uppercased()
+        wednesdayLabel.text = breweriesSorted[row].wed.uppercased()
+        thursdayLabel.text = breweriesSorted[row].thur.uppercased()
+        fridayLabel.text = breweriesSorted[row].fri.uppercased()
+        saturdayLabel.text = breweriesSorted[row].sat.uppercased()
         
     }
     
