@@ -21,11 +21,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TKL-4N-90c">
+                                <rect key="frame" x="16" y="36" width="343" height="66.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearby Brewery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESx-pn-NmJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="26.5"/>
+                                        <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="0.51921665268456374" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PG6-8Z-odA">
+                                        <rect key="frame" x="0.0" y="26.5" width="343" height="40"/>
+                                        <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="0.51921665268456374" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title=" 🍺"/>
+                                        <connections>
+                                            <action selector="nearbyBreweryButton:" destination="eaN-ey-ANP" eventType="touchUpInside" id="ZI7-IK-0Xa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brewery Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fo5-xR-cwR">
+                                <rect key="frame" x="94.5" y="122" width="187.5" height="26.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDE-6d-IVf">
-                                <rect key="frame" x="0.0" y="28" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="149" width="375" height="216"/>
                             </pickerView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2ct-vc-QJf">
-                                <rect key="frame" x="41" y="252" width="293" height="199"/>
+                                <rect key="frame" x="40" y="373" width="293" height="199"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbr-K3-hj7">
                                         <rect key="frame" x="0.0" y="0.0" width="293" height="40"/>
@@ -185,18 +212,25 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="2ct-vc-QJf" firstAttribute="leading" secondItem="KD3-7b-2LA" secondAttribute="leadingMargin" constant="25" id="6rE-hv-D0x"/>
-                            <constraint firstItem="2ct-vc-QJf" firstAttribute="top" secondItem="hgb-WI-VmG" secondAttribute="bottom" constant="232" id="BKe-mY-c97"/>
+                            <constraint firstItem="2ct-vc-QJf" firstAttribute="leading" secondItem="KD3-7b-2LA" secondAttribute="leadingMargin" constant="24" id="6rE-hv-D0x"/>
+                            <constraint firstItem="tDE-6d-IVf" firstAttribute="top" secondItem="TKL-4N-90c" secondAttribute="bottom" constant="46.5" id="7aM-oa-e4Q"/>
+                            <constraint firstItem="2ct-vc-QJf" firstAttribute="top" secondItem="hgb-WI-VmG" secondAttribute="bottom" constant="353" id="BKe-mY-c97"/>
+                            <constraint firstItem="TKL-4N-90c" firstAttribute="top" secondItem="hgb-WI-VmG" secondAttribute="bottom" constant="16" id="LM7-ex-7PA"/>
+                            <constraint firstItem="fo5-xR-cwR" firstAttribute="centerX" secondItem="KD3-7b-2LA" secondAttribute="centerX" id="PV8-AT-4go"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TKL-4N-90c" secondAttribute="trailing" id="UmC-zh-u3Y"/>
                             <constraint firstItem="tDE-6d-IVf" firstAttribute="leading" secondItem="KD3-7b-2LA" secondAttribute="leading" id="VGM-TH-QKb"/>
                             <constraint firstAttribute="trailing" secondItem="tDE-6d-IVf" secondAttribute="trailing" id="Vyi-DM-leF"/>
-                            <constraint firstItem="tDE-6d-IVf" firstAttribute="top" secondItem="hgb-WI-VmG" secondAttribute="bottom" constant="8" id="mds-DV-Fdm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="2ct-vc-QJf" secondAttribute="trailing" constant="25" id="okB-SB-K6L"/>
+                            <constraint firstItem="tDE-6d-IVf" firstAttribute="top" secondItem="hgb-WI-VmG" secondAttribute="bottom" constant="129" id="mds-DV-Fdm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2ct-vc-QJf" secondAttribute="trailing" constant="26" id="okB-SB-K6L"/>
+                            <constraint firstItem="TKL-4N-90c" firstAttribute="leading" secondItem="KD3-7b-2LA" secondAttribute="leadingMargin" id="pGU-1f-1Zj"/>
+                            <constraint firstItem="fo5-xR-cwR" firstAttribute="top" secondItem="hgb-WI-VmG" secondAttribute="bottom" constant="102" id="s6g-EX-Xo1"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="fridayLabel" destination="9bf-KK-Cha" id="bfS-Qf-vSo"/>
                         <outlet property="mapButtonLabel" destination="Zbr-K3-hj7" id="u4K-YE-vw0"/>
                         <outlet property="mondayLabel" destination="xnP-Hk-3cP" id="AhE-cl-cmH"/>
+                        <outlet property="nearbyBreweryLabel" destination="PG6-8Z-odA" id="iYG-th-IGj"/>
                         <outlet property="pickerView" destination="tDE-6d-IVf" id="we1-No-5xx"/>
                         <outlet property="saturdayLabel" destination="jhF-hs-ccj" id="GY4-Vm-SNf"/>
                         <outlet property="sundayLabel" destination="mY2-yE-Uzu" id="iWW-SM-7EA"/>

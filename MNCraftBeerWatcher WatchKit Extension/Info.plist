@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>Allow it!!</string>
+	<string>To find nearest brewery.</string>
 	<key>CFBundleDisplayName</key>
 	<string>MN Breweries</string>
 	<key>CFBundleExecutable</key>
@@ -43,7 +43,7 @@
 		<string>com.apple.watchkit</string>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Authorize Watch!</string>
+	<string>To find your nearest brewery.</string>
 	<key>WKExtensionDelegateClassName</key>
 	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
 </dict>

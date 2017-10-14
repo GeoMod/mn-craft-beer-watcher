@@ -254,10 +254,10 @@ let Northbound = BreweryData(breweryName: "Northbound", location: "Minneapolis",
 let Northgate = BreweryData(breweryName: "Northgate Brewing", location: "Minneapolis", latitude: 44.998325, longitude: -93.220656, sun: "12p-8p", mon: "Closed", tue: "Closed", wed: "4p-10p", thur: "4p-10p", fri: "3p-12a", sat: "12p-12a", beenHere: false)
     // 783 Harding St NE Mpls, MN 55413
     // 612-354-2858
-let NutmegB = BreweryData(breweryName: "Nutmeg 'Burns'", location: "Burnsville", latitude: 44.745770, longitude: -93.303500, sun: "11a-10p", mon: "11a-11p", tue: "11a-11p", wed: "11a-11p", thur: "11a-11p", fri: "11a-11p", sat: "11a-11p", beenHere: false)
+let NutmegB = BreweryData(breweryName: "Nutmeg Burnsville", location: "Burnsville", latitude: 44.745770, longitude: -93.303500, sun: "11a-10p", mon: "11a-11p", tue: "11a-11p", wed: "11a-11p", thur: "11a-11p", fri: "11a-11p", sat: "11a-11p", beenHere: false)
     // 1905 Co Rd 42 W Burnsville MN
     // 952.892.1438
-let NutmegA = BreweryData(breweryName: "Nutmeg 'Arden'", location: "Arden Hills", latitude: 45.051868, longitude: -93.148811, sun: "11a-10p", mon: "11a-10p", tue: "11a-10p", wed: "11a-10p", thur: "11a-10p", fri: "11a-11p", sat: "11a-11p", beenHere: false)
+let NutmegA = BreweryData(breweryName: "Nutmeg Arden Hills", location: "Arden Hills", latitude: 45.051868, longitude: -93.148811, sun: "11a-10p", mon: "11a-10p", tue: "11a-10p", wed: "11a-10p", thur: "11a-10p", fri: "11a-11p", sat: "11a-11p", beenHere: false)
     // 3673 Lexington Ave N Arden Hills MN
     // 651.340.8812
 let Omni = BreweryData(breweryName: "Omni", location: "Maple Grove", latitude: 45.126473, longitude: -93.424548, sun: "12p-10p", mon: "Closed", tue: "3p-10p", wed: "3p-10p", thur: "3p-10p", fri: "12p-11p", sat: "12p-11p", beenHere: false)
@@ -343,15 +343,20 @@ let TwelveEyes = BreweryData(breweryName: "12welve Eyes", location: "St. Paul", 
 let Oswald = BreweryData(breweryName: "Oswald Brewing", location: "Blue Earth", latitude: 43.638219, longitude: -94.102716, sun: "Closed", mon: "Closed", tue: "Closed", wed: "Closed", thur: "3p-7p", fri: "3p-10p", sat: "1p-10p", beenHere: false)
 
 
-/* Check back on. As of 10/4/17 they were not open to the public yet.
+/* Check back on. As of 10/14/17 they were not open to the public yet.
 let StackedDeck = BreweryData(breweryName: "Stacked Deck", location: "St. Paul", latitude: 44.947191, longitude: -93.094266, sun: "Closed", mon: "Closed", tue: "Closed", wed: "Closed", thur: "Closed", fri: "Closed", sat: "Closed", beenHere: false)
 */
 
 
 var allBreweries = [ AngryInch, TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, AugustShell, BadHabit, BadWeather, BadgerHill, BaldMan, Bang, Bank, BarleyJohns, BarrelTheory, Bauhaus, BeaverIsland, Bemidji, BentBrew, BentPaddle, BigAxe, BigWood, Birch, Blacklist, Boathouse, BoomIsland, Brau, BrokenClock, BurningBros, CanalPark, CarmodyIrish, CastleDanger, Clockwerks, Cosmos, DangerousMan, DayBlock, Disgruntled, EastLake, Enki, Excelsior, FTown, FairState, Finnegans, Fitgers, FlatEarth, Forager, FoxHole, Fulton, GoatRidge, GrandRounds, GreatWaters, GullDam, GunFlint, Hammerheart, Hayes, HeadFlyer, Hoops, Imminent, Inbound, Indeed, Insight, IslandCity, JackPine, JosephWolf, JunkYard, KinneyCreek, LakeMonster, LakesLegends, Lakeville, LiftBridge, LTD, LTS, Lupine, Lupulin, Lynlake, Mankato, MapleIsland, TownHall, Modist, Montgomery, MooseLake, Northbound, Northgate, NutmegA, NutmegB, Omni, Portage, Pryes, ReadsLanding, RedWing, Revelation, RockBotton, SpilledGrain, SteelToe, Summit, Surly, Take16, TalkingWaters, Tanzenwald, Freehouse, Herkimer, ThirdStreet, TinWhiskers, U4ic, Unmapped, UrbanGrowler, Utepils, VinePark, Voyageur, Wabasha, Waconia, Wayzata, Wicked, WildMind, BlackStack, TwelveEyes, Oswald ]
 
+// For listing nearest brewery to user.
+var nearbyBreweryNameArray = [String]()
+var nearbyLatitude = CLLocationDegrees()
+var nearbyLongitude = CLLocationDegrees()
 
+// Used in the brewery picker.
 var breweryIdentifier = 0
 var currentBrewery = String()
-var currentbeenHere = String()
+//var currentbeenHere = String()
 
