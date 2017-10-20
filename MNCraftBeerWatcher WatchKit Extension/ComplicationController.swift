@@ -7,9 +7,9 @@
 //
 
 import ClockKit
+import WatchConnectivity
 
-
-class ComplicationController: NSObject, CLKComplicationDataSource {
+class ComplicationController: NSObject, CLKComplicationDataSource, WCSessionDelegate {
     
     // MARK: - Timeline Configuration
     
@@ -31,6 +31,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     // MARK: - Timeline Population
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
+        
         switch complication.family {
         case .modularSmall:
             let modularSmall = CLKComplicationTemplateModularSmallSimpleText()
@@ -43,22 +44,23 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             modularLarge.headerTextProvider = CLKSimpleTextProvider(text: "MN Craft Breweries")
             modularLarge.body1TextProvider = CLKSimpleTextProvider(text: "Enjoy Minnesota")
             modularLarge.body2TextProvider = CLKSimpleTextProvider(text: "Craft Beer")
-            let timelineEntry = CLKComplicationTimelineEntry(date: Date.init(timeIntervalSinceNow: 0), complicationTemplate: modularLarge)
+            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: modularLarge)
             handler(timelineEntry)
         case .circularSmall:
             let circularSmall = CLKComplicationTemplateCircularSmallSimpleText()
             circularSmall.textProvider = CLKSimpleTextProvider(text: "MN🍺")
-            let timelineEntry = CLKComplicationTimelineEntry(date: Date.init(timeIntervalSinceNow: 0), complicationTemplate: circularSmall)
+            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: circularSmall)
             handler(timelineEntry)
         case .utilitarianSmall:
             let utilitarianSmall = CLKComplicationTemplateUtilitarianSmallFlat()
             utilitarianSmall.textProvider = CLKSimpleTextProvider(text: "MN🍺")
-            let timelineEntry = CLKComplicationTimelineEntry(date: Date.init(timeIntervalSinceNow: 0), complicationTemplate: utilitarianSmall)
+            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: utilitarianSmall)
             handler(timelineEntry)
         case .utilitarianLarge:
             let utilitarianLarge = CLKComplicationTemplateUtilitarianLargeFlat()
-            utilitarianLarge.textProvider = CLKSimpleTextProvider(text: "MN Breweries", shortText: "Breweries")
-            let timelineEntry = CLKComplicationTimelineEntry(date: Date.init(timeIntervalSinceNow: 0), complicationTemplate: utilitarianLarge)
+            let currentBrewery = UserDefaults.standard.string(forKey: "NearbyBreweryForComplication") ?? "MN Breweries"
+            utilitarianLarge.textProvider = CLKSimpleTextProvider(text: currentBrewery)
+            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: utilitarianLarge)
             handler(timelineEntry)
         default:
             print("Default")
@@ -108,5 +110,16 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         }
         handler(nil)
     }
+    
+    
+    // MARK: Watch Connectivity
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if let error = error {
+            print("Activation failed with error: \(error.localizedDescription)")
+            return
+        }
+        print("Watch complication activated with state: \(activationState.rawValue)")
+    }
+    
     
 }

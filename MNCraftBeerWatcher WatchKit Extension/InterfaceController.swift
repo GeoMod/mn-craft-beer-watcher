@@ -37,7 +37,11 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        setUpWatchConnectivity()
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            session.delegate = self
+            session.activate()
+        }
         
         locationButtonTitle.setTitle("\(breweriesSorted[0].location)")
         table.setNumberOfRows(7, withRowType: "Row")
@@ -148,14 +152,13 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         print("Watch activated with state: \(activationState.rawValue)")
     }
     
-    
     func sendCountToPhone() {
         if WCSession.isSupported() {
             let session = WCSession.default
             session.delegate = self
             session.activate()
             do {
-                let message = ["message": true ]
+                let message = ["UsageCount": true ]
                 try session.updateApplicationContext(message)
             } catch {
                 print("Error of type \(error) in sendCountToPhone.")
@@ -163,14 +166,28 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-    
-    func setUpWatchConnectivity() {
-        if WCSession.isSupported() {
-            let session = WCSession.default
-            session.delegate = self
-            session.activate()
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+        DispatchQueue.main.async {
+            if let receivedNearbyBrewery = userInfo["nearbyBrewery"] as? String {
+                complicationData.append(receivedNearbyBrewery)
+            } else if let brewery = userInfo["complication"] as? String {
+                UserDefaults.standard.set(brewery, forKey: "NearbyBreweryForComplication")
+                let server = CLKComplicationServer.sharedInstance()
+                guard let complications = server.activeComplications else { return }
+                for complication in complications {
+                    server.reloadTimeline(for: complication)
+                }
+            }
         }
     }
+    
+//    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+//        DispatchQueue.main.async {
+//            if let receivedNearbyBrewery = message["nearbyBrewery"] as? String {
+//                complicationData.append(receivedNearbyBrewery)
+//            }
+//        }
+//    }
     
     
     override func didDeactivate() {

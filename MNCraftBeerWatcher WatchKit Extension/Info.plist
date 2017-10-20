@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>To find nearest brewery.</string>
+	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>MN Breweries</string>
 	<key>CFBundleExecutable</key>

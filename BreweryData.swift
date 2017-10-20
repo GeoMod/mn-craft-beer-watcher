@@ -358,5 +358,5 @@ var nearbyLongitude = CLLocationDegrees()
 // Used in the brewery picker.
 var breweryIdentifier = 0
 var currentBrewery = String()
-//var currentbeenHere = String()
 
+var complicationData = String()
