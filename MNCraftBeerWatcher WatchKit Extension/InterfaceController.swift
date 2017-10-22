@@ -181,14 +181,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-//    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-//        DispatchQueue.main.async {
-//            if let receivedNearbyBrewery = message["nearbyBrewery"] as? String {
-//                complicationData.append(receivedNearbyBrewery)
-//            }
-//        }
-//    }
-    
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible

@@ -41,6 +41,15 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         // Clear the Brewery Array.
         nearbyBreweryNameArray.removeAll(keepingCapacity: false)
         
+        locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        locationManager.delegate = self
+        receiveLocationUpdates()
+        
+        if nearbyBreweryNameArray.count != 0 {
+            nearbyBreweryLabel.setTitle(nearbyBreweryNameArray[0], for: .normal)
+        }
+        
         if WCSession.isSupported() {
             let session = WCSession.default
             session.delegate = self
@@ -48,11 +57,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         }
         pickerView.dataSource = self
         pickerView.delegate = self
-        
-        locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        locationManager.delegate = self
-        receiveLocationUpdates()
         
         mapButtonLabel.setTitle(breweriesSorted[0].location, for: .normal)
         sundayLabel.text = breweriesSorted[0].sun.uppercased()
