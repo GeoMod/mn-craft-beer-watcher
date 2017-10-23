@@ -352,6 +352,7 @@ var allBreweries = [ AngryInch, TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, Au
 
 // For listing nearest brewery to user.
 var nearbyBreweryNameArray = [String]()
+
 var nearbyLatitude = CLLocationDegrees()
 var nearbyLongitude = CLLocationDegrees()
 

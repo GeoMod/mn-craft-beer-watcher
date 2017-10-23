@@ -15,6 +15,11 @@ import WatchConnectivity
 class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager!
+    var oneMileBrewery: String?
+    var halfMileBrewery: String?
+    var fiveMileBrewery: String?
+    var tenMileBrewery: String?
+    
     
     @IBOutlet var pickerView: UIPickerView!
     @IBOutlet var mapButtonLabel: UIButton!
@@ -39,16 +44,13 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         super.viewDidLoad()
         
         // Clear the Brewery Array.
-        nearbyBreweryNameArray.removeAll(keepingCapacity: false)
+//        nearbyBreweryNameArray.removeAll(keepingCapacity: false) // May no longer need this.
+        print("App Launch")
         
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.delegate = self
         receiveLocationUpdates()
-        
-        if nearbyBreweryNameArray.count != 0 {
-            nearbyBreweryLabel.setTitle(nearbyBreweryNameArray[0], for: .normal)
-        }
         
         if WCSession.isSupported() {
             let session = WCSession.default
@@ -66,6 +68,12 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         thursdayLabel.text = breweriesSorted[0].thur.uppercased()
         fridayLabel.text = breweriesSorted[0].fri.uppercased()
         saturdayLabel.text = breweriesSorted[0].sat.uppercased()
+        
+        // Slated for deletion
+//        if nearbyBreweryNameArray.count != 0 {
+//            nearbyBreweryLabel.setTitle(nearbyBreweryNameArray[0], for: .normal)
+//        }
+
     }
     
     // All Breweries Map Button
@@ -90,6 +98,8 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     // Nearby Brewery Button.
     @IBAction func nearbyBreweryButton(_ sender: UIButton) {
         // Take user to map of nearby Brewery here.
+        
+        // Address the use of the array here. May not need an Array.
         if nearbyBreweryNameArray.count != 0 {
         
         let breweryLocation = CLLocationCoordinate2D(latitude: nearbyLatitude, longitude: nearbyLongitude)
@@ -153,50 +163,82 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("Location Manager")
-        locationManager.distanceFilter = 9656 // Distance in meters needed to move before app updates again. 6 miles
+
+        locationManager.distanceFilter = 4827 // Distance in meters needed to move before app updates again. 3 miles
         let userCurrentLocation = locationManager.location
         print("\(nearbyBreweryNameArray.count) is the brewery count.")
+        halfMileBrewery = nil
+        oneMileBrewery = nil
+        fiveMileBrewery = nil
+        tenMileBrewery = nil
         
         allBreweryLoop: for localBrewery in breweriesSorted {
             let nearestBrewery = CLLocation(latitude: localBrewery.latitude, longitude: localBrewery.longitude)
  
             if let currentLocation = userCurrentLocation {
                 switch currentLocation.distance(from: nearestBrewery) {
-                case 0..<1609: // 1 mile
+                case 0..<805: // To 1/2 mile
+                    print("Looking at 1/2 mile")
+                    nearbyLatitude = localBrewery.latitude
+                    nearbyLongitude = localBrewery.longitude
+                    oneMileBrewery = localBrewery.breweryName
+//                    nearbyBreweryNameArray.insert(localBrewery.breweryName, at: 0)
+//                    print("\(nearbyBreweryNameArray[0]) found at 1/2 mile")
+                    
+                case 805..<1609: // To 1 mile
                     print("Looking at 1 mile")
-                    nearbyBreweryNameArray.insert(localBrewery.breweryName, at: 0)
+                    
                     nearbyLatitude = localBrewery.latitude
                     nearbyLongitude = localBrewery.longitude
-                    print("\(nearbyBreweryNameArray[0]) found at 1 mile")
-                    // If a brewery is found, break out of the loop.
-                    break allBreweryLoop
-                case 0..<8046: // To 5 miles
-                    print("Looking at 5 mile")
-                    nearbyBreweryNameArray.insert(localBrewery.breweryName, at: 0)
+                    oneMileBrewery = localBrewery.breweryName
+//                    nearbyBreweryNameArray.insert(localBrewery.breweryName, at: 0)
+//                    print("\(nearbyBreweryNameArray[0]) found at 1 mile")
+                    
+                case 1610..<8046: // To 5 miles
+                    print("Looking at 5 miles")
                     nearbyLatitude = localBrewery.latitude
                     nearbyLongitude = localBrewery.longitude
-                    print("\(nearbyBreweryNameArray[0]) found at 5 miles")
-                    break allBreweryLoop
-                case 0..<16090: // To 10 miles
-                    print("Looking at 10 mile")
-                    nearbyBreweryNameArray.insert(localBrewery.breweryName, at: 0)
+                    fiveMileBrewery = localBrewery.breweryName
+//                    nearbyBreweryNameArray.insert(localBrewery.breweryName, at: 0)
+//                    print("\(nearbyBreweryNameArray[0]) found at 5 miles")
+                    
+                case 8047..<16090: // To 10 miles
+                    print("Looking at 10 miles")
                     nearbyLatitude = localBrewery.latitude
                     nearbyLongitude = localBrewery.longitude
-                    print("\(nearbyBreweryNameArray[0]) found at 10 miles")
-                    break allBreweryLoop
+                    tenMileBrewery = localBrewery.breweryName
+//                    nearbyBreweryNameArray.insert(localBrewery.breweryName, at: 0)
+//                    print("\(nearbyBreweryNameArray[0]) found at 10 miles")
+
                 default:
+                    nearbyBreweryNameArray.removeAll()
                     print("Default")
-                    break
+
                 }
             }
-            
-            if nearbyBreweryNameArray.count != 0 {
-            nearbyBreweryLabel.setTitle(nearbyBreweryNameArray[0], for: .normal)
+        }
+        if halfMileBrewery != nil {
+            nearbyBreweryLabel.setTitle(halfMileBrewery, for: .normal)
+            nearbyBreweryNameArray.insert(halfMileBrewery!, at: 0)
+        } else if oneMileBrewery != nil {
+            nearbyBreweryLabel.setTitle(oneMileBrewery, for: .normal)
+            nearbyBreweryNameArray.insert(oneMileBrewery!, at: 0)
+        } else if fiveMileBrewery != nil {
+            nearbyBreweryLabel.setTitle(fiveMileBrewery, for: .normal)
+            nearbyBreweryNameArray.insert(fiveMileBrewery!, at: 0)
+        } else if tenMileBrewery != nil {
+            nearbyBreweryLabel.setTitle(tenMileBrewery, for: .normal)
+            nearbyBreweryNameArray.insert(tenMileBrewery!, at: 0)
+        } else {
+            nearbyBreweryLabel.setTitle("Searching", for: .normal)
+            nearbyBreweryNameArray.removeAll()
+            complicationData = "MN Breweries"
+            sendNearbyBreweryToWatch()
+        }
+        if nearbyBreweryNameArray.count != 0 {
             complicationData = nearbyBreweryNameArray[0]
             sendNearbyBreweryToWatch()
-        } else {
-            nearbyBreweryLabel.setTitle("No Nearby Breweries.", for: .normal)
-            }
+            print("\(complicationData) is the Complication Data")
         }
     }
     
