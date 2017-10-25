@@ -42,9 +42,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Clear the Brewery Array.
-//        nearbyBreweryNameArray.removeAll(keepingCapacity: false) // May no longer need this.
         print("App Launch")
         
         locationManager = CLLocationManager()
@@ -182,38 +179,23 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
                     nearbyLatitude = localBrewery.latitude
                     nearbyLongitude = localBrewery.longitude
                     oneMileBrewery = localBrewery.breweryName
-//                    nearbyBreweryNameArray.insert(localBrewery.breweryName, at: 0)
-//                    print("\(nearbyBreweryNameArray[0]) found at 1/2 mile")
-                    
                 case 805..<1609: // To 1 mile
                     print("Looking at 1 mile")
-                    
                     nearbyLatitude = localBrewery.latitude
                     nearbyLongitude = localBrewery.longitude
                     oneMileBrewery = localBrewery.breweryName
-//                    nearbyBreweryNameArray.insert(localBrewery.breweryName, at: 0)
-//                    print("\(nearbyBreweryNameArray[0]) found at 1 mile")
-                    
                 case 1610..<8046: // To 5 miles
                     print("Looking at 5 miles")
                     nearbyLatitude = localBrewery.latitude
                     nearbyLongitude = localBrewery.longitude
                     fiveMileBrewery = localBrewery.breweryName
-//                    nearbyBreweryNameArray.insert(localBrewery.breweryName, at: 0)
-//                    print("\(nearbyBreweryNameArray[0]) found at 5 miles")
-                    
                 case 8047..<16090: // To 10 miles
                     print("Looking at 10 miles")
                     nearbyLatitude = localBrewery.latitude
                     nearbyLongitude = localBrewery.longitude
                     tenMileBrewery = localBrewery.breweryName
-//                    nearbyBreweryNameArray.insert(localBrewery.breweryName, at: 0)
-//                    print("\(nearbyBreweryNameArray[0]) found at 10 miles")
-
                 default:
                     nearbyBreweryNameArray.removeAll()
-                    print("Default")
-
                 }
             }
         }
