@@ -26,6 +26,8 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>To find your nearest brewery.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>To Update Watch Complication</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

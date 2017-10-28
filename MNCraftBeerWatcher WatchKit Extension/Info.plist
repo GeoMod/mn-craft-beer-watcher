@@ -44,6 +44,14 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>To find your nearest brewery.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>To Update Watch Complication.</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>WKExtensionDelegateClassName</key>
 	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
 </dict>

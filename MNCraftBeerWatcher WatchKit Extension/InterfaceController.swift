@@ -19,8 +19,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         static var count: Int {
             get {
                 return UserDefaults.standard.integer(forKey: timesOpened)
-            }
-            set {
+            } set {
                 UserDefaults.standard.set(newValue, forKey: timesOpened)
             }
         }
@@ -72,7 +71,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     override func willActivate() {
         super.willActivate()
         pickerOutlet.focus()
-        print("\(allBreweries.count) Breweries")
+        print("Watch App willActivate.")
         
         var items = [WKPickerItem]()
         for brewery in breweriesSorted {
@@ -119,7 +118,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBAction func pickerAction(_ value: Int) {
         breweryIdentifier = value
         locationButtonTitle.setTitle("\(breweriesSorted[breweryIdentifier].location)")
-        print(breweryIdentifier)
         for rowIndex in 0...6 {
             guard let row = table.rowController(at: rowIndex) as? BreweryHoursRow else { continue }
             switch rowIndex {
@@ -168,9 +166,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         DispatchQueue.main.async {
-            if let receivedNearbyBrewery = userInfo["nearbyBrewery"] as? String {
-                complicationData.append(receivedNearbyBrewery)
-            } else if let brewery = userInfo["complication"] as? String {
+            if let brewery = userInfo["complication"] as? String {
                 UserDefaults.standard.set(brewery, forKey: "NearbyBreweryForComplication")
                 let server = CLKComplicationServer.sharedInstance()
                 guard let complications = server.activeComplications else { return }
@@ -180,6 +176,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             }
         }
     }
+    
     
     
     override func didDeactivate() {

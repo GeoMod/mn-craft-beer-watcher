@@ -12,19 +12,23 @@ import MapKit
 import CoreLocation
 import WatchConnectivity
 
-class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    var locationManager: CLLocationManager!
+    private lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.delegate = self
+        manager.requestAlwaysAuthorization()
+        return manager
+    }()
+    
     var oneMileBrewery: String?
     var halfMileBrewery: String?
     var fiveMileBrewery: String?
     var tenMileBrewery: String?
     
-    
     @IBOutlet var pickerView: UIPickerView!
     @IBOutlet var mapButtonLabel: UIButton!
-    
-    // Nearby Brewery Button-Label
     @IBOutlet var nearbyBreweryLabel: UIButton!
     
     // Hours Labels
@@ -36,18 +40,18 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     @IBOutlet var fridayLabel: UILabel!
     @IBOutlet var saturdayLabel: UILabel!
     
-    
     // Sorts the breweries alphabetically.
     let breweriesSorted = allBreweries.sorted(by: { $0.breweryName < $1.breweryName })
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("App Launch")
         
-        locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        locationManager.delegate = self
-        receiveLocationUpdates()
+        locationManager.startUpdatingLocation()
+        
+//        locationManager = CLLocationManager()
+//        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+//        locationManager.delegate = self
+//        receiveLocationUpdates()
         
         if WCSession.isSupported() {
             let session = WCSession.default
@@ -65,11 +69,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         thursdayLabel.text = breweriesSorted[0].thur.uppercased()
         fridayLabel.text = breweriesSorted[0].fri.uppercased()
         saturdayLabel.text = breweriesSorted[0].sat.uppercased()
-        
-        // Slated for deletion
-//        if nearbyBreweryNameArray.count != 0 {
-//            nearbyBreweryLabel.setTitle(nearbyBreweryNameArray[0], for: .normal)
-//        }
 
     }
     
@@ -147,80 +146,10 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     // MARK: Relative location to Breweries.
     func receiveLocationUpdates() {
-        locationManager.requestWhenInUseAuthorization()
         let authorizationStatus = CLLocationManager.authorizationStatus()
         if authorizationStatus != .authorizedWhenInUse || authorizationStatus != .authorizedAlways {
             // Implement an Alert Action here asking for permission if the user does not grant it.
             nearbyBreweryLabel.setTitle("No Location Available", for: .normal)
-        }
-        locationManager.startUpdatingLocation()
-        print("Receive Location Updates")
-    }
-    
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Location Manager")
-
-        locationManager.distanceFilter = 4827 // Distance in meters needed to move before app updates again. 3 miles
-        let userCurrentLocation = locationManager.location
-        print("\(nearbyBreweryNameArray.count) is the brewery count.")
-        halfMileBrewery = nil
-        oneMileBrewery = nil
-        fiveMileBrewery = nil
-        tenMileBrewery = nil
-        
-        allBreweryLoop: for localBrewery in breweriesSorted {
-            let nearestBrewery = CLLocation(latitude: localBrewery.latitude, longitude: localBrewery.longitude)
- 
-            if let currentLocation = userCurrentLocation {
-                switch currentLocation.distance(from: nearestBrewery) {
-                case 0..<805: // To 1/2 mile
-                    print("Looking at 1/2 mile")
-                    nearbyLatitude = localBrewery.latitude
-                    nearbyLongitude = localBrewery.longitude
-                    oneMileBrewery = localBrewery.breweryName
-                case 805..<1609: // To 1 mile
-                    print("Looking at 1 mile")
-                    nearbyLatitude = localBrewery.latitude
-                    nearbyLongitude = localBrewery.longitude
-                    oneMileBrewery = localBrewery.breweryName
-                case 1610..<8046: // To 5 miles
-                    print("Looking at 5 miles")
-                    nearbyLatitude = localBrewery.latitude
-                    nearbyLongitude = localBrewery.longitude
-                    fiveMileBrewery = localBrewery.breweryName
-                case 8047..<16090: // To 10 miles
-                    print("Looking at 10 miles")
-                    nearbyLatitude = localBrewery.latitude
-                    nearbyLongitude = localBrewery.longitude
-                    tenMileBrewery = localBrewery.breweryName
-                default:
-                    nearbyBreweryNameArray.removeAll()
-                }
-            }
-        }
-        if halfMileBrewery != nil {
-            nearbyBreweryLabel.setTitle(halfMileBrewery, for: .normal)
-            nearbyBreweryNameArray.insert(halfMileBrewery!, at: 0)
-        } else if oneMileBrewery != nil {
-            nearbyBreweryLabel.setTitle(oneMileBrewery, for: .normal)
-            nearbyBreweryNameArray.insert(oneMileBrewery!, at: 0)
-        } else if fiveMileBrewery != nil {
-            nearbyBreweryLabel.setTitle(fiveMileBrewery, for: .normal)
-            nearbyBreweryNameArray.insert(fiveMileBrewery!, at: 0)
-        } else if tenMileBrewery != nil {
-            nearbyBreweryLabel.setTitle(tenMileBrewery, for: .normal)
-            nearbyBreweryNameArray.insert(tenMileBrewery!, at: 0)
-        } else {
-            nearbyBreweryLabel.setTitle("Searching", for: .normal)
-            nearbyBreweryNameArray.removeAll()
-            complicationData = "MN Breweries"
-            sendNearbyBreweryToWatch()
-        }
-        if nearbyBreweryNameArray.count != 0 {
-            complicationData = nearbyBreweryNameArray[0]
-            sendNearbyBreweryToWatch()
-            print("\(complicationData) is the Complication Data")
         }
     }
     
@@ -252,22 +181,22 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         if message == true {
             SKStoreReviewController.requestReview()
         } else {
-            print("not true")
+            return
         }
     }
     
     // Send nearby brewery to watch complication.
     func sendNearbyBreweryToWatch() {
-        let session = WCSession.default
-        
+        let session = WCSession.default // This was moved from inside the func below...
         if session.activationState == .activated && session.isComplicationEnabled {
-            // Get current nearby brewery.
-            let currentNearbyBrwery = complicationData
-            let message = ["complication": currentNearbyBrwery]
-            
-            // transfer to watch complication
+            assert(session.activationState == .activated)
+            assert(session.isComplicationEnabled)
+            // Transfer to watch complication.
+            let message = ["complication": complicationData]
             session.transferCurrentComplicationUserInfo(message)
             print("Remaining transfers: \(session.remainingComplicationUserInfoTransfers)")
+        } else {
+            return
         }
     }
     
@@ -275,6 +204,84 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
+// MARK: - CLLocationManagerDelegate
+extension ViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // Used in Debugging to see location in background.
+//        guard let mostRecentLocation = locations.last else { return }
+        
+        let userCurrentLocation = locationManager.location
+        print("\(nearbyBreweryNameArray.count) is the brewery count.")
+        halfMileBrewery = nil
+        oneMileBrewery = nil
+        fiveMileBrewery = nil
+        tenMileBrewery = nil
+        
+        allBreweryLoop: for localBrewery in breweriesSorted {
+            let nearestBrewery = CLLocation(latitude: localBrewery.latitude, longitude: localBrewery.longitude)
+            
+            if let currentLocation = userCurrentLocation {
+                switch currentLocation.distance(from: nearestBrewery) {
+                case 0..<805: // To 1/2 mile
+                    nearbyLatitude = localBrewery.latitude
+                    nearbyLongitude = localBrewery.longitude
+                    oneMileBrewery = localBrewery.breweryName
+                case 805..<1609: // To 1 mile
+                    nearbyLatitude = localBrewery.latitude
+                    nearbyLongitude = localBrewery.longitude
+                    oneMileBrewery = localBrewery.breweryName
+                case 1610..<8046: // To 5 miles
+                    nearbyLatitude = localBrewery.latitude
+                    nearbyLongitude = localBrewery.longitude
+                    fiveMileBrewery = localBrewery.breweryName
+                case 8047..<16090: // To 10 miles
+                    nearbyLatitude = localBrewery.latitude
+                    nearbyLongitude = localBrewery.longitude
+                    tenMileBrewery = localBrewery.breweryName
+                default:
+                    nearbyBreweryNameArray.removeAll()
+                }
+            }
+        }
+        if halfMileBrewery != nil {
+            nearbyBreweryLabel.setTitle(halfMileBrewery, for: .normal)
+            nearbyBreweryNameArray.insert(halfMileBrewery!, at: 0)
+        } else if oneMileBrewery != nil {
+            nearbyBreweryLabel.setTitle(oneMileBrewery, for: .normal)
+            nearbyBreweryNameArray.insert(oneMileBrewery!, at: 0)
+        } else if fiveMileBrewery != nil {
+            nearbyBreweryLabel.setTitle(fiveMileBrewery, for: .normal)
+            nearbyBreweryNameArray.insert(fiveMileBrewery!, at: 0)
+        } else if tenMileBrewery != nil {
+            nearbyBreweryLabel.setTitle(tenMileBrewery, for: .normal)
+            nearbyBreweryNameArray.insert(tenMileBrewery!, at: 0)
+        } else {
+            nearbyBreweryLabel.setTitle("Searching", for: .normal)
+            nearbyBreweryNameArray.removeAll()
+            complicationData = "MN Breweries"
+            sendNearbyBreweryToWatch()
+        }
+        if nearbyBreweryNameArray.count != 0 {
+            complicationData = nearbyBreweryNameArray[0]
+            sendNearbyBreweryToWatch()
+        }
+//        if UIApplication.shared.applicationState == .active {
+//            print("Foreground")
+//            assert(UIApplication.shared.applicationState == .active)
+//        } else {
+//            let session = WCSession.default
+//            assert(UIApplication.shared.applicationState == .inactive)
+//                print("App is backgrounded. New location is %@", mostRecentLocation)
+//                if WCSession.isSupported() && session.isComplicationEnabled {
+////                    locationManager.startUpdatingLocation()
+//                  //  locationManager.distanceFilter = 400 //  4827 Distance in meters needed to move before app updates again. 3 miles
+//                    sendNearbyBreweryToWatch()
+//                }
+//            }
+        }
+    
 }
 

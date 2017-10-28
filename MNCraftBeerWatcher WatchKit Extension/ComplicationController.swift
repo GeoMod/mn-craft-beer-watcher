@@ -39,7 +39,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource, WCSessionDele
             let timelineEntry = CLKComplicationTimelineEntry(date: Date.init(timeIntervalSinceNow: 0), complicationTemplate: modularSmall)
             handler(timelineEntry)
         case .modularLarge:
-            // This is not displaying
             let modularLarge = CLKComplicationTemplateModularLargeStandardBody()
             modularLarge.headerTextProvider = CLKSimpleTextProvider(text: "MN Craft Breweries")
             modularLarge.body1TextProvider = CLKSimpleTextProvider(text: "Enjoy Minnesota")
@@ -63,7 +62,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource, WCSessionDele
             let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: utilitarianLarge)
             handler(timelineEntry)
         default:
-            print("Default")
+            break
         }
         handler(nil)
     }

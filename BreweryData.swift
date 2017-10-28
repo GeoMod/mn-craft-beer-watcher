@@ -8,7 +8,7 @@
 
 import WatchKit
 
-
+// Introducing a lot of retain cycles with the use of the struct here. class will be more efficient.
 struct BreweryData {
     let breweryName: String
     let location: String
@@ -352,6 +352,7 @@ var allBreweries = [ AngryInch, TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, Au
 
 // For listing nearest brewery to user.
 var nearbyBreweryNameArray = [String]()
+var complicationData = String()
 
 var nearbyLatitude = CLLocationDegrees()
 var nearbyLongitude = CLLocationDegrees()
@@ -360,4 +361,4 @@ var nearbyLongitude = CLLocationDegrees()
 var breweryIdentifier = 0
 var currentBrewery = String()
 
-var complicationData = String()
+
