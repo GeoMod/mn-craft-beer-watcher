@@ -8,6 +8,8 @@
 	<string>MN Breweries</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -42,12 +44,10 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>To find your nearest brewery.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>To Update Watch Complication.</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>To find your nearest brewery.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

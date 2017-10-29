@@ -33,32 +33,39 @@ class ComplicationController: NSObject, CLKComplicationDataSource, WCSessionDele
     // MARK: - Timeline Population
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
         
-//        let locationManager = CLLocationManager()
-        
-        
-//        let server = CLKComplicationServer.sharedInstance()
-        
         switch complication.family {
         case .modularSmall:
             let modularSmall = CLKComplicationTemplateModularSmallSimpleText()
-            modularSmall.textProvider = CLKSimpleTextProvider(text: "MN🍺")
-            let timelineEntry = CLKComplicationTimelineEntry(date: Date.init(timeIntervalSinceNow: 0), complicationTemplate: modularSmall)
+            let currentBrewery = UserDefaults.standard.string(forKey: "NearbyBreweryForComplication") ?? "MN Breweries"
+            if currentBrewery != "MN Breweries" {
+                modularSmall.textProvider = CLKSimpleTextProvider(text: "🍺👍🏻")
+            } else {
+                modularSmall.textProvider = CLKSimpleTextProvider(text: "MN🍺")
+            }
+            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: modularSmall)
             handler(timelineEntry)
         case .modularLarge:
             let modularLarge = CLKComplicationTemplateModularLargeStandardBody()
-            modularLarge.headerTextProvider = CLKSimpleTextProvider(text: "MN Craft Breweries")
-            modularLarge.body1TextProvider = CLKSimpleTextProvider(text: "Enjoy Minnesota")
-            modularLarge.body2TextProvider = CLKSimpleTextProvider(text: "Craft Beer")
+            let currentBrewery = UserDefaults.standard.string(forKey: "NearbyBreweryForComplication") ?? "MN Breweries"
+            if currentBrewery != "MN Breweries" {
+                modularLarge.headerTextProvider = CLKSimpleTextProvider(text: "MN Craft Brewery")
+                modularLarge.body1TextProvider = CLKSimpleTextProvider(text: currentBrewery)
+                modularLarge.body2TextProvider = CLKSimpleTextProvider(text: "nearby.")
+            } else {
+                modularLarge.headerTextProvider = CLKSimpleTextProvider(text: "MN Craft Breweries")
+                modularLarge.body1TextProvider = CLKSimpleTextProvider(text: "Enjoy Minnesota")
+                modularLarge.body2TextProvider = CLKSimpleTextProvider(text: "Craft Beer")
+            }
             let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: modularLarge)
-            handler(timelineEntry)
-        case .circularSmall:
-            let circularSmall = CLKComplicationTemplateCircularSmallSimpleText()
-            circularSmall.textProvider = CLKSimpleTextProvider(text: "MN🍺")
-            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: circularSmall)
             handler(timelineEntry)
         case .utilitarianSmall:
             let utilitarianSmall = CLKComplicationTemplateUtilitarianSmallFlat()
-            utilitarianSmall.textProvider = CLKSimpleTextProvider(text: "MN🍺")
+            let currentBrewery = UserDefaults.standard.string(forKey: "NearbyBreweryForComplication") ?? "MN Breweries"
+            if currentBrewery != "MN Breweries" {
+                utilitarianSmall.textProvider = CLKSimpleTextProvider(text: "🍺👍🏻")
+            } else {
+                utilitarianSmall.textProvider = CLKSimpleTextProvider(text: "MN🍺")
+            }
             let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: utilitarianSmall)
             handler(timelineEntry)
         case .utilitarianLarge:
@@ -66,10 +73,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource, WCSessionDele
             let currentBrewery = UserDefaults.standard.string(forKey: "NearbyBreweryForComplication") ?? "MN Breweries"
             utilitarianLarge.textProvider = CLKSimpleTextProvider(text: currentBrewery)
             let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: utilitarianLarge)
-//            if locationManager.distanceFilter == 400 {
-//                server.reloadTimeline(for: complication)
-//            }
-            
             handler(timelineEntry)
         default:
             break

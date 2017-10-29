@@ -71,7 +71,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     override func willActivate() {
         super.willActivate()
         pickerOutlet.focus()
-        print("Watch App willActivate.")
         
         var items = [WKPickerItem]()
         for brewery in breweriesSorted {
@@ -164,6 +163,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
+    // Updating Complication on watch face.
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         DispatchQueue.main.async {
             if let brewery = userInfo["complication"] as? String {

@@ -45,14 +45,8 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         locationManager.startUpdatingLocation()
-        
-//        locationManager = CLLocationManager()
-//        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-//        locationManager.delegate = self
-//        receiveLocationUpdates()
-        
+    
         if WCSession.isSupported() {
             let session = WCSession.default
             session.delegate = self
@@ -94,8 +88,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     // Nearby Brewery Button.
     @IBAction func nearbyBreweryButton(_ sender: UIButton) {
         // Take user to map of nearby Brewery here.
-        
-        // Address the use of the array here. May not need an Array.
         if nearbyBreweryNameArray.count != 0 {
         
         let breweryLocation = CLLocationCoordinate2D(latitude: nearbyLatitude, longitude: nearbyLongitude)
@@ -148,7 +140,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     func receiveLocationUpdates() {
         let authorizationStatus = CLLocationManager.authorizationStatus()
         if authorizationStatus != .authorizedWhenInUse || authorizationStatus != .authorizedAlways {
-            // Implement an Alert Action here asking for permission if the user does not grant it.
+            // Consider an Alert Action asking for permission if the user does not grant it.
             nearbyBreweryLabel.setTitle("No Location Available", for: .normal)
         }
     }
@@ -213,11 +205,10 @@ extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Used in Debugging to see location in background.
-        guard let mostRecentLocation = locations.last else { return }
+//        guard let mostRecentLocation = locations.last else { return }
         let userCurrentLocation = locationManager.location
-        locationManager.distanceFilter = 400 //  4827 Distance in meters needed to move before app updates again. 3 miles
+        locationManager.distanceFilter = 4827 // Distance in meters needed to move before app updates again. 3 miles
         
-        print("\(nearbyBreweryNameArray.count) is the brewery count.")
         halfMileBrewery = nil
         oneMileBrewery = nil
         fiveMileBrewery = nil
@@ -225,7 +216,6 @@ extension ViewController: CLLocationManagerDelegate {
         
         allBreweryLoop: for localBrewery in breweriesSorted {
             let nearestBrewery = CLLocation(latitude: localBrewery.latitude, longitude: localBrewery.longitude)
-            
             
             if let currentLocation = userCurrentLocation {
                 switch currentLocation.distance(from: nearestBrewery) {
@@ -272,27 +262,17 @@ extension ViewController: CLLocationManagerDelegate {
             complicationData = nearbyBreweryNameArray[0]
             sendNearbyBreweryToWatch()
         }
-//        if UIApplication.shared.applicationState == .background {
-//            let session = WCSession.default
-//            if WCSession.isSupported() && session.isComplicationEnabled {
-//                locationManager.startUpdatingLocation()
-//                sendNearbyBreweryToWatch()
-//            }
-//        }
-        if UIApplication.shared.applicationState == .active {
-            print("Foreground")
-            assert(UIApplication.shared.applicationState == .active)
-        } else {
+        if UIApplication.shared.applicationState != .active {
+//            print("App is not active. New location is %@", mostRecentLocation)
+            assert(UIApplication.shared.applicationState != .active)
             let session = WCSession.default
-//            assert(UIApplication.shared.applicationState == .background)
-                print("App is backgrounded. New location is %@", mostRecentLocation)
-                if WCSession.isSupported() && session.isComplicationEnabled {
-//                    locationManager.startUpdatingLocation()
-                    sendNearbyBreweryToWatch()
-                }
+            if WCSession.isSupported() && session.isComplicationEnabled {
+                sendNearbyBreweryToWatch()
             }
-        
+        } else {
+            return
         }
+    }
     
 }
 
