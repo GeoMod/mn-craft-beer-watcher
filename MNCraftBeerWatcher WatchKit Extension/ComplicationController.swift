@@ -112,10 +112,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource, WCSessionDele
             let utilitarianLarge = CLKComplicationTemplateUtilitarianLargeFlat()
             utilitarianLarge.textProvider = CLKSimpleTextProvider(text: "MN Breweries", shortText: "Breweries")
             handler(utilitarianLarge)
-        case .circularSmall:
-            let circularSmall = CLKComplicationTemplateCircularSmallSimpleText()
-            circularSmall.textProvider = CLKSimpleTextProvider(text: "MN🍺")
-            handler(circularSmall)
         default:
             break
         }
