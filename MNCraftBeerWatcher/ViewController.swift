@@ -191,11 +191,13 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         if session.activationState == .activated && session.isComplicationEnabled {
             assert(session.activationState == .activated)
             assert(session.isComplicationEnabled)
+            locationManager.allowsBackgroundLocationUpdates = true
             // Transfer to watch complication.
             let message = ["complication": complicationData]
             session.transferCurrentComplicationUserInfo(message)
             print("Remaining transfers: \(session.remainingComplicationUserInfoTransfers)")
         } else {
+            locationManager.allowsBackgroundLocationUpdates = false
             return
         }
     }
@@ -211,9 +213,10 @@ extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Used in Debugging to see location in background.
-//        guard let mostRecentLocation = locations.last else { return }
-        
+        guard let mostRecentLocation = locations.last else { return }
         let userCurrentLocation = locationManager.location
+        locationManager.distanceFilter = 400 //  4827 Distance in meters needed to move before app updates again. 3 miles
+        
         print("\(nearbyBreweryNameArray.count) is the brewery count.")
         halfMileBrewery = nil
         oneMileBrewery = nil
@@ -222,6 +225,7 @@ extension ViewController: CLLocationManagerDelegate {
         
         allBreweryLoop: for localBrewery in breweriesSorted {
             let nearestBrewery = CLLocation(latitude: localBrewery.latitude, longitude: localBrewery.longitude)
+            
             
             if let currentLocation = userCurrentLocation {
                 switch currentLocation.distance(from: nearestBrewery) {
@@ -268,19 +272,26 @@ extension ViewController: CLLocationManagerDelegate {
             complicationData = nearbyBreweryNameArray[0]
             sendNearbyBreweryToWatch()
         }
-//        if UIApplication.shared.applicationState == .active {
-//            print("Foreground")
-//            assert(UIApplication.shared.applicationState == .active)
-//        } else {
+//        if UIApplication.shared.applicationState == .background {
 //            let session = WCSession.default
-//            assert(UIApplication.shared.applicationState == .inactive)
-//                print("App is backgrounded. New location is %@", mostRecentLocation)
-//                if WCSession.isSupported() && session.isComplicationEnabled {
-////                    locationManager.startUpdatingLocation()
-//                  //  locationManager.distanceFilter = 400 //  4827 Distance in meters needed to move before app updates again. 3 miles
-//                    sendNearbyBreweryToWatch()
-//                }
+//            if WCSession.isSupported() && session.isComplicationEnabled {
+//                locationManager.startUpdatingLocation()
+//                sendNearbyBreweryToWatch()
 //            }
+//        }
+        if UIApplication.shared.applicationState == .active {
+            print("Foreground")
+            assert(UIApplication.shared.applicationState == .active)
+        } else {
+            let session = WCSession.default
+//            assert(UIApplication.shared.applicationState == .background)
+                print("App is backgrounded. New location is %@", mostRecentLocation)
+                if WCSession.isSupported() && session.isComplicationEnabled {
+//                    locationManager.startUpdatingLocation()
+                    sendNearbyBreweryToWatch()
+                }
+            }
+        
         }
     
 }

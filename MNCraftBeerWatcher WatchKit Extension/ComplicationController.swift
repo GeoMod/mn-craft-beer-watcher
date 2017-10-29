@@ -7,6 +7,7 @@
 //
 
 import ClockKit
+import CoreLocation
 import WatchConnectivity
 
 class ComplicationController: NSObject, CLKComplicationDataSource, WCSessionDelegate {
@@ -31,6 +32,11 @@ class ComplicationController: NSObject, CLKComplicationDataSource, WCSessionDele
     
     // MARK: - Timeline Population
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
+        
+//        let locationManager = CLLocationManager()
+        
+        
+//        let server = CLKComplicationServer.sharedInstance()
         
         switch complication.family {
         case .modularSmall:
@@ -60,13 +66,16 @@ class ComplicationController: NSObject, CLKComplicationDataSource, WCSessionDele
             let currentBrewery = UserDefaults.standard.string(forKey: "NearbyBreweryForComplication") ?? "MN Breweries"
             utilitarianLarge.textProvider = CLKSimpleTextProvider(text: currentBrewery)
             let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: utilitarianLarge)
+//            if locationManager.distanceFilter == 400 {
+//                server.reloadTimeline(for: complication)
+//            }
+            
             handler(timelineEntry)
         default:
             break
         }
         handler(nil)
     }
-    
     
     func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
         // Call the handler with the timeline entries prior to the given date
