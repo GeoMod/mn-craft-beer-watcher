@@ -31,10 +31,10 @@
                                 <rect key="frame" x="0.0" y="149" width="375" height="216"/>
                             </pickerView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2ct-vc-QJf">
-                                <rect key="frame" x="40" y="373" width="293" height="200"/>
+                                <rect key="frame" x="40" y="373" width="293" height="213"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbr-K3-hj7">
-                                        <rect key="frame" x="0.0" y="0.0" width="293" height="41"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="293" height="54"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" button="YES" updatesFrequently="YES"/>
                                         </accessibility>
@@ -45,7 +45,7 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="5sb-PE-Tiw">
-                                        <rect key="frame" x="0.0" y="41" width="293" height="159"/>
+                                        <rect key="frame" x="0.0" y="54" width="293" height="159"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-3" translatesAutoresizingMaskIntoConstraints="NO" id="RVv-V4-B7q">
                                                 <rect key="frame" x="0.0" y="0.0" width="115" height="159"/>
@@ -243,6 +243,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Button.png" width="254" height="41"/>
+        <image name="Button.png" width="286" height="54"/>
     </resources>
 </document>

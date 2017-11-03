@@ -16,7 +16,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
-        manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         manager.delegate = self
         manager.requestAlwaysAuthorization()
         return manager

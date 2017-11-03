@@ -22,7 +22,7 @@
 		1828C8B21F40D578003EDD64 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C8B11F40D578003EDD64 /* ComplicationController.swift */; };
 		1828C8B41F40D578003EDD64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1828C8B31F40D578003EDD64 /* Assets.xcassets */; };
 		184CE3681F72A6BB001E12CB /* BreweryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836CB9F1F43637400053AC0 /* BreweryData.swift */; };
-		18545B251FACAA6A00083081 /* Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 18545B241FACAA6900083081 /* Button.png */; };
+		18545B2B1FACAF0000083081 /* Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 18545B2A1FACAF0000083081 /* Button.png */; };
 		1855A0C51FA2584400603893 /* BreweryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836CB9F1F43637400053AC0 /* BreweryData.swift */; };
 		18CD90531F77506D00558E84 /* Stickers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CD90521F77506D00558E84 /* Stickers.xcassets */; };
 		18CD90571F77506D00558E84 /* StickerPack.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 18CD90501F77506D00558E84 /* StickerPack.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -108,7 +108,7 @@
 		1828C8B31F40D578003EDD64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1828C8B51F40D578003EDD64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1836CB9F1F43637400053AC0 /* BreweryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreweryData.swift; sourceTree = "<group>"; };
-		18545B241FACAA6900083081 /* Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button.png; sourceTree = SOURCE_ROOT; };
+		18545B2A1FACAF0000083081 /* Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button.png; sourceTree = "<group>"; };
 		18CD90501F77506D00558E84 /* StickerPack.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StickerPack.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		18CD90521F77506D00558E84 /* Stickers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Stickers.xcassets; sourceTree = "<group>"; };
 		18CD90541F77506D00558E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -162,8 +162,8 @@
 				1828C88A1F40D577003EDD64 /* AppDelegate.swift */,
 				1828C88C1F40D577003EDD64 /* ViewController.swift */,
 				1828C88E1F40D577003EDD64 /* Main.storyboard */,
+				18545B2A1FACAF0000083081 /* Button.png */,
 				1828C8911F40D577003EDD64 /* Assets.xcassets */,
-				18545B241FACAA6900083081 /* Button.png */,
 				1828C8931F40D577003EDD64 /* LaunchScreen.storyboard */,
 				1828C8961F40D577003EDD64 /* Info.plist */,
 			);
@@ -361,7 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1828C8951F40D577003EDD64 /* LaunchScreen.storyboard in Resources */,
-				18545B251FACAA6A00083081 /* Button.png in Resources */,
+				18545B2B1FACAF0000083081 /* Button.png in Resources */,
 				1828C8921F40D577003EDD64 /* Assets.xcassets in Resources */,
 				1828C8901F40D577003EDD64 /* Main.storyboard in Resources */,
 			);
