@@ -29,7 +29,6 @@
 		<string>CLKComplicationFamilyModularSmall</string>
 		<string>CLKComplicationFamilyModularLarge</string>
 		<string>CLKComplicationFamilyUtilitarianSmall</string>
-		<string>CLKComplicationFamilyUtilitarianSmallFlat</string>
 		<string>CLKComplicationFamilyUtilitarianLarge</string>
 	</array>
 	<key>LSApplicationCategoryType</key>

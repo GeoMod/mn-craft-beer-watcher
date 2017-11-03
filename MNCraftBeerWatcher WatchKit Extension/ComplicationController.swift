@@ -50,11 +50,11 @@ class ComplicationController: NSObject, CLKComplicationDataSource, WCSessionDele
             if currentBrewery != "MN Breweries" {
                 modularLarge.headerTextProvider = CLKSimpleTextProvider(text: "MN Craft Brewery")
                 modularLarge.body1TextProvider = CLKSimpleTextProvider(text: currentBrewery)
-                modularLarge.body2TextProvider = CLKSimpleTextProvider(text: "nearby.")
+                modularLarge.body2TextProvider = CLKSimpleTextProvider(text: "is nearby.")
             } else {
                 modularLarge.headerTextProvider = CLKSimpleTextProvider(text: "MN Craft Breweries")
                 modularLarge.body1TextProvider = CLKSimpleTextProvider(text: "Enjoy Minnesota")
-                modularLarge.body2TextProvider = CLKSimpleTextProvider(text: "Craft Beer")
+                modularLarge.body2TextProvider = CLKSimpleTextProvider(text: "craft beer.")
             }
             let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: modularLarge)
             handler(timelineEntry)
@@ -110,7 +110,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource, WCSessionDele
             handler(utilitarianSmall)
         case .utilitarianLarge:
             let utilitarianLarge = CLKComplicationTemplateUtilitarianLargeFlat()
-            utilitarianLarge.textProvider = CLKSimpleTextProvider(text: "MN Breweries", shortText: "Breweries")
+            utilitarianLarge.textProvider = CLKSimpleTextProvider(text: "MN Breweries", shortText: "MN🍺")
             handler(utilitarianLarge)
         default:
             break

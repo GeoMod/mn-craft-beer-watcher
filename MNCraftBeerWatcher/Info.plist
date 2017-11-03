@@ -24,10 +24,10 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>To find your nearest brewery.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>To Update Watch Complication</string>
+	<string>Use &quot;Always&quot; to provide background location in order to update Watch Complication. Select &quot;While Using&quot; for iPhone only usage.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Select &quot;While Using&quot; for iPhone only usage. No Apple Watch Support.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

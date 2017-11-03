@@ -343,7 +343,7 @@ let TwelveEyes = BreweryData(breweryName: "12welve Eyes", location: "St. Paul", 
 let Oswald = BreweryData(breweryName: "Oswald Brewing", location: "Blue Earth", latitude: 43.638219, longitude: -94.102716, sun: "Closed", mon: "Closed", tue: "Closed", wed: "Closed", thur: "3p-7p", fri: "3p-10p", sat: "1p-10p", beenHere: false)
 
 
-/* Check back on. As of 10/14/17 they were not open to the public yet.
+/* Check back on. As of 11/2/17 they were not open to the public yet.
 let StackedDeck = BreweryData(breweryName: "Stacked Deck", location: "St. Paul", latitude: 44.947191, longitude: -93.094266, sun: "Closed", mon: "Closed", tue: "Closed", wed: "Closed", thur: "Closed", fri: "Closed", sat: "Closed", beenHere: false)
 */
 

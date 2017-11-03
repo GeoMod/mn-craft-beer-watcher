@@ -16,7 +16,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
-        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         manager.delegate = self
         manager.requestAlwaysAuthorization()
         return manager
@@ -102,7 +102,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         
         mapItem.name = ("\(nearbyBreweryNameArray[0])")
         mapItem.openInMaps(launchOptions: options)
-            
         } else {
             return
         }
@@ -135,16 +134,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         fridayLabel.text = breweriesSorted[row].fri.uppercased()
         saturdayLabel.text = breweriesSorted[row].sat.uppercased()
     }
-    
-    // MARK: Relative location to Breweries.
-    func receiveLocationUpdates() {
-        let authorizationStatus = CLLocationManager.authorizationStatus()
-        if authorizationStatus != .authorizedWhenInUse || authorizationStatus != .authorizedAlways {
-            // Consider an Alert Action asking for permission if the user does not grant it.
-            nearbyBreweryLabel.setTitle("No Location Available", for: .normal)
-        }
-    }
-    
     
 // MARK: Watch Connectivity.
     // Used to request App Store Rating and pushing nearest brewery to watch complication.
@@ -179,7 +168,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     // Send nearby brewery to watch complication.
     func sendNearbyBreweryToWatch() {
-        let session = WCSession.default // This was moved from inside the func below...
+        let session = WCSession.default
         if session.activationState == .activated && session.isComplicationEnabled {
             assert(session.activationState == .activated)
             assert(session.isComplicationEnabled)
@@ -187,7 +176,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
             // Transfer to watch complication.
             let message = ["complication": complicationData]
             session.transferCurrentComplicationUserInfo(message)
-            print("Remaining transfers: \(session.remainingComplicationUserInfoTransfers)")
         } else {
             locationManager.allowsBackgroundLocationUpdates = false
             return
@@ -204,8 +192,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
 extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Used in Debugging to see location in background.
-//        guard let mostRecentLocation = locations.last else { return }
+//        guard let mostRecentLocation = locations.last else { return }  // Used in Debugging to see location in background.
         let userCurrentLocation = locationManager.location
         locationManager.distanceFilter = 4827 // Distance in meters needed to move before app updates again. 3 miles
         
@@ -274,5 +261,15 @@ extension ViewController: CLLocationManagerDelegate {
         }
     }
     
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .denied {
+            assert(status == .denied)
+            nearbyBreweryLabel.setTitle("Location not granted.", for: .normal) // No Location Available
+            nearbyBreweryNameArray.removeAll()
+            complicationData = "MN Breweries"
+            return
+        }
+    }
+        
 }
 
