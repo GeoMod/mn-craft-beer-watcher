@@ -17,17 +17,17 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2</string>
+	<string>1.2.1</string>
 	<key>CFBundleVersion</key>
-	<string>6</string>
+	<string>7</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Use &quot;Always&quot; to provide background location in order to update Watch Complication. Select &quot;While Using&quot; for iPhone only usage.</string>
+	<string>Use "Always" to provide background location in order to update Watch Complication. Select "While Using" for iPhone only usage.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Select &quot;While Using&quot; for iPhone only usage. No Apple Watch Support.</string>
+	<string>Select "While Using" for iPhone only usage. No Apple Watch Support.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
