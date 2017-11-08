@@ -209,16 +209,18 @@ extension ViewController: CLLocationManagerDelegate {
                 case 0..<805: // To 1/2 mile
                     nearbyLatitude = localBrewery.latitude
                     nearbyLongitude = localBrewery.longitude
-                    oneMileBrewery = localBrewery.breweryName
+                    halfMileBrewery = localBrewery.breweryName
+                    break allBreweryLoop
                 case 805..<1609: // To 1 mile
                     nearbyLatitude = localBrewery.latitude
                     nearbyLongitude = localBrewery.longitude
                     oneMileBrewery = localBrewery.breweryName
-                case 1610..<8046: // To 5 miles
+                    break allBreweryLoop
+                case 1609..<8046: // To 5 miles
                     nearbyLatitude = localBrewery.latitude
                     nearbyLongitude = localBrewery.longitude
                     fiveMileBrewery = localBrewery.breweryName
-                case 8047..<16090: // To 10 miles
+                case 8046..<16090: // To 10 miles
                     nearbyLatitude = localBrewery.latitude
                     nearbyLongitude = localBrewery.longitude
                     tenMileBrewery = localBrewery.breweryName
