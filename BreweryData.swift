@@ -38,7 +38,7 @@ let AngryInch = BreweryData(breweryName: "Angry Inch", location: "Lakeville", la
 let Alloy = BreweryData(breweryName: "Alloy Brewing", location: "Coon Rapids", latitude: 45.169803, longitude:  -93.336746, sun: "12p-8p", mon: "Closed", tue: "Closed", wed: "4p-10p", thur: "4p-10p", fri: "4p-10p", sat: "12p-11p", beenHere: false)
     // 2700 COON RAPIDS BOULEVARD NORTHWEST, COON RAPIDS, MN
     // 763-432-0939
-let AugustShell = BreweryData(breweryName: "August Shell", location: "New Ulm", latitude: 44.289622, longitude: -94.448947, sun: "12p-5p", mon: "12p-5p", tue: "12p-5p", wed: "12p-5p", thur: "12p-5p", fri: "12p-5p", sat: "11p-5p", beenHere: false)
+let AugustSchell = BreweryData(breweryName: "August Schell", location: "New Ulm", latitude: 44.289622, longitude: -94.448947, sun: "12p-5p", mon: "12p-5p", tue: "12p-5p", wed: "12p-5p", thur: "12p-5p", fri: "12p-5p", sat: "11p-5p", beenHere: false)
     // 1860 Schell's Road New Ulm, MN 56073
     // 800-770-5020
     // Hours listed are for brewery tours. No tap room.
@@ -348,17 +348,28 @@ let StackedDeck = BreweryData(breweryName: "Stacked Deck", location: "St. Paul",
 */
 
 
-var allBreweries = [ AngryInch, TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, AugustShell, BadHabit, BadWeather, BadgerHill, BaldMan, Bang, Bank, BarleyJohns, BarrelTheory, Bauhaus, BeaverIsland, Bemidji, BentBrew, BentPaddle, BigAxe, BigWood, Birch, Blacklist, Boathouse, BoomIsland, Brau, BrokenClock, BurningBros, CanalPark, CarmodyIrish, CastleDanger, Clockwerks, Cosmos, DangerousMan, DayBlock, Disgruntled, EastLake, Enki, Excelsior, FTown, FairState, Finnegans, Fitgers, FlatEarth, Forager, FoxHole, Fulton, GoatRidge, GrandRounds, GreatWaters, GullDam, GunFlint, Hammerheart, Hayes, HeadFlyer, Hoops, Imminent, Inbound, Indeed, Insight, IslandCity, JackPine, JosephWolf, JunkYard, KinneyCreek, LakeMonster, LakesLegends, Lakeville, LiftBridge, LTD, LTS, Lupine, Lupulin, Lynlake, Mankato, MapleIsland, TownHall, Modist, Montgomery, MooseLake, Northbound, Northgate, NutmegA, NutmegB, Omni, Portage, Pryes, ReadsLanding, RedWing, Revelation, RockBotton, SpilledGrain, SteelToe, Summit, Surly, Take16, TalkingWaters, Tanzenwald, Freehouse, Herkimer, ThirdStreet, TinWhiskers, U4ic, Unmapped, UrbanGrowler, Utepils, VinePark, Voyageur, Wabasha, Waconia, Wayzata, Wicked, WildMind, BlackStack, TwelveEyes, Oswald ]
+var allBreweries = [ AngryInch, TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, AugustSchell, BadHabit, BadWeather, BadgerHill, BaldMan, Bang, Bank, BarleyJohns, BarrelTheory, Bauhaus, BeaverIsland, Bemidji, BentBrew, BentPaddle, BigAxe, BigWood, Birch, Blacklist, Boathouse, BoomIsland, Brau, BrokenClock, BurningBros, CanalPark, CarmodyIrish, CastleDanger, Clockwerks, Cosmos, DangerousMan, DayBlock, Disgruntled, EastLake, Enki, Excelsior, FTown, FairState, Finnegans, Fitgers, FlatEarth, Forager, FoxHole, Fulton, GoatRidge, GrandRounds, GreatWaters, GullDam, GunFlint, Hammerheart, Hayes, HeadFlyer, Hoops, Imminent, Inbound, Indeed, Insight, IslandCity, JackPine, JosephWolf, JunkYard, KinneyCreek, LakeMonster, LakesLegends, Lakeville, LiftBridge, LTD, LTS, Lupine, Lupulin, Lynlake, Mankato, MapleIsland, TownHall, Modist, Montgomery, MooseLake, Northbound, Northgate, NutmegA, NutmegB, Omni, Portage, Pryes, ReadsLanding, RedWing, Revelation, RockBotton, SpilledGrain, SteelToe, Summit, Surly, Take16, TalkingWaters, Tanzenwald, Freehouse, Herkimer, ThirdStreet, TinWhiskers, U4ic, Unmapped, UrbanGrowler, Utepils, VinePark, Voyageur, Wabasha, Waconia, Wayzata, Wicked, WildMind, BlackStack, TwelveEyes, Oswald ]
 
-// For listing nearest brewery to user.
-var nearbyBreweryNameArray = [String]()
+
+
+
+// MARK: Listing nearest brewery to user and instances for the picker.
+
+//var nearbyBreweryNameArray = [String]()
+var isBreweryNearby = false
 var complicationData = String()
+var nearbyBrewery = String()
+// Sorts the breweries by Lat/Long for finding nearest brewewry.
+let breweriesSortedByLatLong = allBreweries.sorted(by: { $0.latitude < $1.longitude })
 
 var nearbyLatitude = CLLocationDegrees()
 var nearbyLongitude = CLLocationDegrees()
 
-// Used in the brewery picker.
+// For the scrollable brewery picker.
 var breweryIdentifier = 0
 var currentBrewery = String()
+
+
+
 
 
