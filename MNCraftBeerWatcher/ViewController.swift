@@ -16,7 +16,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
-        manager.desiredAccuracy = kCLLocationAccuracyBest
+//        manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.delegate = self
         manager.requestAlwaysAuthorization()
         return manager
@@ -93,7 +93,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
                 MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)
             ]
             
-            mapItem.name = nearbyBrewery // ("\(nearbyBreweryNameArray[0])")
+            mapItem.name = nearbyBrewery
             mapItem.openInMaps(launchOptions: options)
             
         } else {
@@ -193,7 +193,8 @@ extension ViewController: CLLocationManagerDelegate {
         // Used in Debugging to see location in background.
         //        guard let mostRecentLocation = locations.last else { return }
         let userCurrentLocation = locationManager.location
-        locationManager.distanceFilter = 4827 // Distance in meters needed to move before app updates again. 3 miles
+//        locationManager.distanceFilter = 4827 // Distance in meters needed to move before app updates again. 3 miles
+        locationManager.startMonitoringSignificantLocationChanges()
         
         allBreweryLoop: for localBrewery in breweriesSortedByLatLong {
             let nearestBrewery = CLLocation(latitude: localBrewery.latitude, longitude: localBrewery.longitude)
@@ -206,6 +207,7 @@ extension ViewController: CLLocationManagerDelegate {
                     nearbyBreweryLabel.setTitle(localBrewery.breweryName, for: .normal)
                     isBreweryNearby = true
                     nearbyBrewery = localBrewery.breweryName
+                    print("1/2 mile Brewery is \(nearbyBrewery)")
                     break allBreweryLoop
                 case 805..<1609: // To 1 mile
                     nearbyLatitude = localBrewery.latitude
@@ -213,21 +215,24 @@ extension ViewController: CLLocationManagerDelegate {
                     nearbyBreweryLabel.setTitle(localBrewery.breweryName, for: .normal)
                     isBreweryNearby = true
                     nearbyBrewery = localBrewery.breweryName
-                    break allBreweryLoop
+                    print("1 mile Brewery is \(nearbyBrewery)")
+//                    break allBreweryLoop
                 case 1609..<8046: // To 5 miles
                     nearbyLatitude = localBrewery.latitude
                     nearbyLongitude = localBrewery.longitude
                     nearbyBreweryLabel.setTitle(localBrewery.breweryName, for: .normal)
                     isBreweryNearby = true
                     nearbyBrewery = localBrewery.breweryName
-                    break allBreweryLoop
-                case 8046..<16090: // To 10 miles
-                    nearbyLatitude = localBrewery.latitude
-                    nearbyLongitude = localBrewery.longitude
-                    nearbyBreweryLabel.setTitle(localBrewery.breweryName, for: .normal)
-                    isBreweryNearby = true
-                    nearbyBrewery = localBrewery.breweryName
-                    break allBreweryLoop
+                    print("5 mile Brewery is \(nearbyBrewery)")
+//                    break allBreweryLoop
+//                case 8046..<16090: // To 10 miles
+//                    nearbyLatitude = localBrewery.latitude
+//                    nearbyLongitude = localBrewery.longitude
+//                    nearbyBreweryLabel.setTitle(localBrewery.breweryName, for: .normal)
+//                    isBreweryNearby = true
+//                    nearbyBrewery = localBrewery.breweryName
+//                    print("10 mile Brewery is \(nearbyBrewery)")
+//                    break allBreweryLoop
                 default:
                     isBreweryNearby = false
                     nearbyBrewery = String()
@@ -248,12 +253,14 @@ extension ViewController: CLLocationManagerDelegate {
             assert(UIApplication.shared.applicationState != .active)
             let session = WCSession.default
             if WCSession.isSupported() && session.isComplicationEnabled {
+                locationManager.startMonitoringSignificantLocationChanges()
                 sendNearbyBreweryToWatch()
             }
         } else {
             return
         }
     }
+    
     
 }
 

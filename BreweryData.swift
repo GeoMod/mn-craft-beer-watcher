@@ -360,7 +360,8 @@ var isBreweryNearby = false
 var complicationData = String()
 var nearbyBrewery = String()
 // Sorts the breweries by Lat/Long for finding nearest brewewry.
-let breweriesSortedByLatLong = allBreweries.sorted(by: { $0.latitude < $1.longitude })
+let breweriesSortedByLatLong = allBreweries.sorted(by: { $0.latitude < $1.longitude }) // 0
+
 
 var nearbyLatitude = CLLocationDegrees()
 var nearbyLongitude = CLLocationDegrees()

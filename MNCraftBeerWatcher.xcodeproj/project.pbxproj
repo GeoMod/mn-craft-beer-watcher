@@ -24,7 +24,7 @@
 		184CE3681F72A6BB001E12CB /* BreweryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836CB9F1F43637400053AC0 /* BreweryData.swift */; };
 		18545B2B1FACAF0000083081 /* Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 18545B2A1FACAF0000083081 /* Button.png */; };
 		1855A0C51FA2584400603893 /* BreweryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836CB9F1F43637400053AC0 /* BreweryData.swift */; };
-		18CD90531F77506D00558E84 /* Stickers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CD90521F77506D00558E84 /* Stickers.xcassets */; };
+		18BBDF3D1FCBA3FC00E60443 /* Stickers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18BBDF3C1FCBA3FB00E60443 /* Stickers.xcassets */; };
 		18CD90571F77506D00558E84 /* StickerPack.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 18CD90501F77506D00558E84 /* StickerPack.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -109,8 +109,8 @@
 		1828C8B51F40D578003EDD64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1836CB9F1F43637400053AC0 /* BreweryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreweryData.swift; sourceTree = "<group>"; };
 		18545B2A1FACAF0000083081 /* Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button.png; sourceTree = "<group>"; };
+		18BBDF3C1FCBA3FB00E60443 /* Stickers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Stickers.xcassets; sourceTree = "<group>"; };
 		18CD90501F77506D00558E84 /* StickerPack.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StickerPack.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		18CD90521F77506D00558E84 /* Stickers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Stickers.xcassets; sourceTree = "<group>"; };
 		18CD90541F77506D00558E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,7 +203,7 @@
 		18CD90511F77506D00558E84 /* StickerPack */ = {
 			isa = PBXGroup;
 			children = (
-				18CD90521F77506D00558E84 /* Stickers.xcassets */,
+				18BBDF3C1FCBA3FB00E60443 /* Stickers.xcassets */,
 				18CD90541F77506D00558E84 /* Info.plist */,
 			);
 			path = StickerPack;
@@ -388,7 +388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18CD90531F77506D00558E84 /* Stickers.xcassets in Resources */,
+				18BBDF3D1FCBA3FC00E60443 /* Stickers.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
