@@ -12,15 +12,18 @@ import MapKit
 import CoreLocation
 import WatchConnectivity
 
-class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate {
     
-    private lazy var locationManager: CLLocationManager = {
-        let manager = CLLocationManager()
-//        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.delegate = self
-        manager.requestAlwaysAuthorization()
-        return manager
-    }()
+//    private lazy var locationManager: CLLocationManager = {
+//        let manager = CLLocationManager()
+////        manager.desiredAccuracy = kCLLocationAccuracyBest
+//        manager.delegate = self
+//        manager.requestAlwaysAuthorization()
+//        return manager
+//    }()
+    
+    var locationManager = CLLocationManager()
+    
     
     @IBOutlet var pickerView: UIPickerView!
     @IBOutlet var mapButtonLabel: UIButton!
@@ -39,6 +42,9 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+//        locationManager.startMonitoringSignificantLocationChanges()
         locationManager.startUpdatingLocation()
         
         if WCSession.isSupported() {
@@ -179,22 +185,13 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-}
-
-
-// MARK: - CLLocationManagerDelegate
-extension ViewController: CLLocationManagerDelegate {
+    // MARK Location Manager
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Used in Debugging to see location in background.
         //        guard let mostRecentLocation = locations.last else { return }
         let userCurrentLocation = locationManager.location
-//        locationManager.distanceFilter = 4827 // Distance in meters needed to move before app updates again. 3 miles
-        locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.distanceFilter = 4827 // Distance in meters needed to move before app updates again. 3 miles
         
         allBreweryLoop: for localBrewery in breweriesSortedByLatLong {
             let nearestBrewery = CLLocation(latitude: localBrewery.latitude, longitude: localBrewery.longitude)
@@ -242,25 +239,28 @@ extension ViewController: CLLocationManagerDelegate {
         }
         if isBreweryNearby == true {
             complicationData = nearbyBrewery
-            sendNearbyBreweryToWatch()
-        } else {
-            isBreweryNearby = false
+//            sendNearbyBreweryToWatch()
+        } else if isBreweryNearby == false {
             complicationData = "MN Breweries"
-            sendNearbyBreweryToWatch()
+//            sendNearbyBreweryToWatch()
         }
         if UIApplication.shared.applicationState != .active {
 //            print("App is not active. New location is %@", mostRecentLocation)
             assert(UIApplication.shared.applicationState != .active)
             let session = WCSession.default
             if WCSession.isSupported() && session.isComplicationEnabled {
-                locationManager.startMonitoringSignificantLocationChanges()
-                sendNearbyBreweryToWatch()
+//                locationManager.startMonitoringSignificantLocationChanges()
+//            sendNearbyBreweryToWatch()
             }
         } else {
             return
         }
+        sendNearbyBreweryToWatch()
+        
     }
     
-    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 }
-
