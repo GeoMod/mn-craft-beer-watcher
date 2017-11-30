@@ -24,7 +24,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     var locationManager = CLLocationManager()
     
-    
     @IBOutlet var pickerView: UIPickerView!
     @IBOutlet var mapButtonLabel: UIButton!
     @IBOutlet var nearbyBreweryLabel: UIButton!
@@ -191,7 +190,9 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         // Used in Debugging to see location in background.
         //        guard let mostRecentLocation = locations.last else { return }
         let userCurrentLocation = locationManager.location
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 4827 // Distance in meters needed to move before app updates again. 3 miles
+        
         
         allBreweryLoop: for localBrewery in breweriesSortedByLatLong {
             let nearestBrewery = CLLocation(latitude: localBrewery.latitude, longitude: localBrewery.longitude)
@@ -213,7 +214,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
                     isBreweryNearby = true
                     nearbyBrewery = localBrewery.breweryName
                     print("1 mile Brewery is \(nearbyBrewery)")
-//                    break allBreweryLoop
+                    break allBreweryLoop
                 case 1609..<8046: // To 5 miles
                     nearbyLatitude = localBrewery.latitude
                     nearbyLongitude = localBrewery.longitude
@@ -221,7 +222,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
                     isBreweryNearby = true
                     nearbyBrewery = localBrewery.breweryName
                     print("5 mile Brewery is \(nearbyBrewery)")
-//                    break allBreweryLoop
+                    break allBreweryLoop
 //                case 8046..<16090: // To 10 miles
 //                    nearbyLatitude = localBrewery.latitude
 //                    nearbyLongitude = localBrewery.longitude
@@ -231,7 +232,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
 //                    print("10 mile Brewery is \(nearbyBrewery)")
 //                    break allBreweryLoop
                 default:
-                    isBreweryNearby = false
+//                    isBreweryNearby = false
                     nearbyBrewery = String()
                     nearbyBreweryLabel.setTitle("Searching", for: .normal)
                 }

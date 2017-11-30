@@ -345,7 +345,14 @@ let Oswald = BreweryData(breweryName: "Oswald Brewing", location: "Blue Earth", 
 
 /* Check back on. As of 11/2/17 they were not open to the public yet.
 let StackedDeck = BreweryData(breweryName: "Stacked Deck", location: "St. Paul", latitude: 44.947191, longitude: -93.094266, sun: "Closed", mon: "Closed", tue: "Closed", wed: "Closed", thur: "Closed", fri: "Closed", sat: "Closed", beenHere: false)
+
+let Torg = BreweryData(breweryName: "Torg Brewiing", location: "Spring Lake Park", latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>, sun: "Closed", mon: "Closed", tue: "Closed", wed: "Closed", thur: "Closed", fri: "Closed", sat: "Closed", beenHere: false)
+ 
+let StCroix = BreweryData(breweryName: "St. Croix Brewing", location: "Stillwater", latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>, sun: "Closed", mon: "Closed", tue: "Closed", wed: "Closed", thur: "Closed", fri: "Closed", sat: "Closed", beenHere: false)
+ 
 */
+
+
 
 
 var allBreweries = [ AngryInch, TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, AugustSchell, BadHabit, BadWeather, BadgerHill, BaldMan, Bang, Bank, BarleyJohns, BarrelTheory, Bauhaus, BeaverIsland, Bemidji, BentBrew, BentPaddle, BigAxe, BigWood, Birch, Blacklist, Boathouse, BoomIsland, Brau, BrokenClock, BurningBros, CanalPark, CarmodyIrish, CastleDanger, Clockwerks, Cosmos, DangerousMan, DayBlock, Disgruntled, EastLake, Enki, Excelsior, FTown, FairState, Finnegans, Fitgers, FlatEarth, Forager, FoxHole, Fulton, GoatRidge, GrandRounds, GreatWaters, GullDam, GunFlint, Hammerheart, Hayes, HeadFlyer, Hoops, Imminent, Inbound, Indeed, Insight, IslandCity, JackPine, JosephWolf, JunkYard, KinneyCreek, LakeMonster, LakesLegends, Lakeville, LiftBridge, LTD, LTS, Lupine, Lupulin, Lynlake, Mankato, MapleIsland, TownHall, Modist, Montgomery, MooseLake, Northbound, Northgate, NutmegA, NutmegB, Omni, Portage, Pryes, ReadsLanding, RedWing, Revelation, RockBotton, SpilledGrain, SteelToe, Summit, Surly, Take16, TalkingWaters, Tanzenwald, Freehouse, Herkimer, ThirdStreet, TinWhiskers, U4ic, Unmapped, UrbanGrowler, Utepils, VinePark, Voyageur, Wabasha, Waconia, Wayzata, Wicked, WildMind, BlackStack, TwelveEyes, Oswald ]
