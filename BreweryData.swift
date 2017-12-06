@@ -364,6 +364,13 @@ var allBreweries = [ AngryInch, TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, Au
 
 //var nearbyBreweryNameArray = [String]()
 var isBreweryNearby = false
+
+// Possible deletion...
+var halfMileBrewery = false
+var oneMileBrewery = false
+var fiveMileBrewery = false
+var tenMileBrewery = false
+
 var complicationData = String()
 var nearbyBrewery = String()
 // Sorts the breweries by Lat/Long for finding nearest brewewry.
