@@ -14,14 +14,6 @@ import WatchConnectivity
 
 class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate {
     
-//    private lazy var locationManager: CLLocationManager = {
-//        let manager = CLLocationManager()
-////        manager.desiredAccuracy = kCLLocationAccuracyBest
-//        manager.delegate = self
-//        manager.requestAlwaysAuthorization()
-//        return manager
-//    }()
-    
     var locationManager = CLLocationManager()
     
     @IBOutlet var pickerView: UIPickerView!
@@ -43,7 +35,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         super.viewDidLoad()
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-//        locationManager.startMonitoringSignificantLocationChanges()
         locationManager.startUpdatingLocation()
         
         if WCSession.isSupported() {
@@ -64,44 +55,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         saturdayLabel.text = breweriesSortedAlphabetically[0].sat.uppercased()
         
     }
-    
-    // Selected brewery map button.
-    @IBAction func MapButton(_ sender: Any) {
-        let latitude: CLLocationDegrees = breweriesSortedAlphabetically[breweryIdentifier].latitude
-        let longitude: CLLocationDegrees = breweriesSortedAlphabetically[breweryIdentifier].longitude
-        
-        let breweryLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let region = MKCoordinateRegionMake(breweryLocation, MKCoordinateSpanMake(latitude, longitude))
-        let placeMark = MKPlacemark(coordinate: breweryLocation)
-        let mapItem = MKMapItem(placemark: placeMark)
-        
-        let options = [
-            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocation),
-            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)
-        ]
-        
-        mapItem.name = ("\(breweriesSortedAlphabetically[breweryIdentifier].breweryName)")
-        mapItem.openInMaps(launchOptions: options)
-    }
-    
-    
-    // Nearby Brewery Button.
-    @IBAction func nearbyBreweryButton(_ sender: UIButton) {
-        // Take user to map of nearby brewery.
-        let breweryLocation = CLLocationCoordinate2D(latitude: nearbyLatitude, longitude: nearbyLongitude)
-        let region = MKCoordinateRegionMake(breweryLocation, MKCoordinateSpanMake(nearbyLatitude, nearbyLongitude))
-        let placeMark = MKPlacemark(coordinate: breweryLocation)
-        let mapItem = MKMapItem(placemark: placeMark)
-        
-        let options = [
-            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocation),
-            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)
-        ]
-        
-        mapItem.name = nearbyBrewery
-        mapItem.openInMaps(launchOptions: options)
-    }
-
     
     // MARK: Pickerview Data Source
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -129,7 +82,82 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         fridayLabel.text = breweriesSortedAlphabetically[row].fri.uppercased()
         saturdayLabel.text = breweriesSortedAlphabetically[row].sat.uppercased()
     }
+    
+    
+    // Selected brewery map button.
+    @IBAction func MapButton(_ sender: Any) {
+        
+        let breweryLocationCoordinate = breweriesSortedAlphabetically[breweryIdentifier].latLong.coordinate
+        let placeMark = MKPlacemark(coordinate: breweryLocationCoordinate)
+        let mapItem = MKMapItem(placemark: placeMark)
 
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocationCoordinate)
+        ]
+
+        mapItem.name = ("\(breweriesSortedAlphabetically[breweryIdentifier].breweryName)")
+        mapItem.openInMaps(launchOptions: options)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = 4827 // Distance in meters needed to move before app updates again. 3 miles
+       
+        let userCurrentLocation = locationManager.location
+        if let currentLocation = userCurrentLocation {
+            let nearestBrewery = closestBrewery(allBreweries, currentLocation: currentLocation)
+            updateUI(brewery: nearestBrewery)
+        } else {
+            return
+        }
+        
+    }
+    
+    
+    // MARK Finding nearest brewery.
+    func closestBreweries(_ breweries: [BreweryData], currentLocation: CLLocation) -> [BreweryData] {
+        print("Closest breweries called")
+        return breweries.sorted {
+            $0.latLong.distance(from: currentLocation) <
+            $1.latLong.distance(from: currentLocation)
+        }
+    }
+    
+    func closestBrewery(_ breweries: [BreweryData], currentLocation: CLLocation) -> BreweryData {
+        assert(!breweries.isEmpty, "No breweries found.")
+        print("Closest Brewery called")
+        return closestBreweries(breweries, currentLocation: currentLocation)
+            .first! // The first brewery will be the closest one
+    }
+    
+    func updateUI(brewery: BreweryData) {
+        nearbyBrewery = brewery.breweryName
+        nearbyBreweryLabel.setTitle(brewery.breweryName, for: .normal)
+        nearbyLatLong = brewery.latLong.coordinate
+        complicationData = nearbyBrewery
+    }
+    
+    
+    // Nearby Brewery Button.
+    @IBAction func nearbyBreweryButton(_ sender: UIButton) {
+
+        // Take user to map of nearby brewery.
+        let breweryLocation = nearbyLatLong // CLLocationCoordinate2D(latitude: nearbyLatitude, longitude: nearbyLongitude)
+//        let region = MKCoordinateRegionMake(breweryLocation, MKCoordinateSpanMake(nearbyLatitude, nearbyLongitude))
+        let placeMark = MKPlacemark(coordinate: breweryLocation)
+        let mapItem = MKMapItem(placemark: placeMark)
+        
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocation),
+//            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)
+        ]
+        
+        mapItem.name = nearbyBrewery
+        mapItem.openInMaps(launchOptions: options)
+        
+    }
+    
     
     // MARK: Watch Connectivity.
     // Used to request App Store Rating and pushing nearest brewery to watch complication.
@@ -180,12 +208,10 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         }
     }
     
-    var tenMileBreweries = [String]()
-    var fiveMileBreweries = [String]()
-    var oneMileBreweries = [String]()
-    var halfMileBreweries = [String]()
     
-    // MARK Location Manager
+    
+   /*
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
         let userCurrentLocation = locationManager.location
@@ -254,7 +280,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         sendNearbyBreweryToWatch()
         
     }
-    
+    */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

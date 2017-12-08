@@ -95,21 +95,21 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     
     func openMaps() {
-        let latitude: CLLocationDegrees = allBreweries[breweryIdentifier].latitude
-        let longitude: CLLocationDegrees = allBreweries[breweryIdentifier].longitude
+//        let latitude: CLLocationDegrees = allBreweries[breweryIdentifier].latitude
+//        let longitude: CLLocationDegrees = allBreweries[breweryIdentifier].longitude
         
-        let breweryLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let region = MKCoordinateRegionMake(breweryLocation, MKCoordinateSpanMake(latitude, longitude))
-        let placeMark = MKPlacemark(coordinate: breweryLocation)
-        let mapItem = MKMapItem(placemark: placeMark)
+//        let breweryLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+//        let region = MKCoordinateRegionMake(breweryLocation, MKCoordinateSpanMake(latitude, longitude))
+//        let placeMark = MKPlacemark(coordinate: breweryLocation)
+//        let mapItem = MKMapItem(placemark: placeMark)
+//
+//        let options = [
+//            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocation),
+//            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)
+//        ]
 
-        let options = [
-            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocation),
-            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)
-        ]
-
-        mapItem.name = ("\(allBreweries[breweryIdentifier].breweryName)")
-        mapItem.openInMaps(launchOptions: options)
+//        mapItem.name = ("\(allBreweries[breweryIdentifier].breweryName)")
+//        mapItem.openInMaps(launchOptions: options)
         
     }
     
