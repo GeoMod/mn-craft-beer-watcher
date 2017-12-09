@@ -361,7 +361,6 @@ var allBreweries = [ AngryInch, TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, Au
 
 
 
-
 // MARK: Listing nearest brewery to user and instances for the picker.
 
 //var nearbyBreweryNameArray = [String]()

@@ -95,6 +95,17 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     
     func openMaps() {
+        
+        let breweryLocationCoordinate = breweriesSorted[breweryIdentifier].latLong.coordinate
+        let placeMark = MKPlacemark(coordinate: breweryLocationCoordinate)
+        let mapItem = MKMapItem(placemark: placeMark)
+        
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocationCoordinate)
+        ]
+        
+        mapItem.name = ("\(breweriesSorted[breweryIdentifier].breweryName)")
+        mapItem.openInMaps(launchOptions: options)
 //        let latitude: CLLocationDegrees = allBreweries[breweryIdentifier].latitude
 //        let longitude: CLLocationDegrees = allBreweries[breweryIdentifier].longitude
         
