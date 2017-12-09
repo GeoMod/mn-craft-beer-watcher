@@ -111,13 +111,11 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         } else {
             return
         }
-        
     }
     
     
     // MARK Finding nearest brewery.
     func closestBreweries(_ breweries: [BreweryData], currentLocation: CLLocation) -> [BreweryData] {
-        print("Closest breweries called")
         return breweries.sorted {
             $0.latLong.distance(from: currentLocation) <
             $1.latLong.distance(from: currentLocation)
@@ -126,16 +124,27 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     func closestBrewery(_ breweries: [BreweryData], currentLocation: CLLocation) -> BreweryData {
         assert(!breweries.isEmpty, "No breweries found.")
-        print("Closest Brewery called")
         return closestBreweries(breweries, currentLocation: currentLocation)
             .first! // The first brewery will be the closest one
     }
     
     func updateUI(brewery: BreweryData) {
         nearbyBrewery = brewery.breweryName
-        nearbyBreweryLabel.setTitle(brewery.breweryName, for: .normal)
         nearbyLatLong = brewery.latLong.coordinate
+        nearbyBreweryLabel.setTitle(nearbyBrewery, for: .normal)
         complicationData = nearbyBrewery
+        
+        // Update watch complication.
+        let session = WCSession.default
+        if UIApplication.shared.applicationState != .active {
+            assert(UIApplication.shared.applicationState != .active)
+            if WCSession.isSupported() && session.isComplicationEnabled {
+                sendNearbyBreweryToWatch()
+            }
+        }
+        if WCSession.isSupported() && session.isComplicationEnabled {
+            sendNearbyBreweryToWatch()
+        }
     }
     
     
