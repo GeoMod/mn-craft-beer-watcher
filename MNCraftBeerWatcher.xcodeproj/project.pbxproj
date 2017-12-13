@@ -584,7 +584,7 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.1;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
 			};
 			name = Debug;
 		};
@@ -602,7 +602,7 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.1;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
 			};
 			name = Release;
 		};
@@ -620,7 +620,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.1;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
 			};
 			name = Debug;
 		};
@@ -638,7 +638,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.1;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
 			};
 			name = Release;
 		};
@@ -649,7 +649,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4Q332864D3;
 				INFOPLIST_FILE = MNCraftBeerWatcher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ImpulseCoupledDevelopment.MNCraftBeerWatcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -665,7 +665,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4Q332864D3;
 				INFOPLIST_FILE = MNCraftBeerWatcher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ImpulseCoupledDevelopment.MNCraftBeerWatcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -685,11 +685,11 @@
 				DEVELOPMENT_TEAM = 4Q332864D3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = StickerPack/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ImpulseCoupledDevelopment.MNCraftBeerWatcher.StickerPack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -704,11 +704,11 @@
 				DEVELOPMENT_TEAM = 4Q332864D3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = StickerPack/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ImpulseCoupledDevelopment.MNCraftBeerWatcher.StickerPack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
