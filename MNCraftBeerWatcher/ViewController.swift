@@ -150,16 +150,13 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     // Nearby Brewery Button.
     @IBAction func nearbyBreweryButton(_ sender: UIButton) {
-
         // Take user to map of nearby brewery.
-        let breweryLocation = nearbyLatLong // CLLocationCoordinate2D(latitude: nearbyLatitude, longitude: nearbyLongitude)
-//        let region = MKCoordinateRegionMake(breweryLocation, MKCoordinateSpanMake(nearbyLatitude, nearbyLongitude))
+        let breweryLocation = nearbyLatLong
         let placeMark = MKPlacemark(coordinate: breweryLocation)
         let mapItem = MKMapItem(placemark: placeMark)
         
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocation),
-//            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)
         ]
         
         mapItem.name = nearbyBrewery
@@ -217,79 +214,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         }
     }
     
-    
-    
-   /*
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
-        let userCurrentLocation = locationManager.location
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 4827 // Distance in meters needed to move before app updates again. 3 miles
-        
-        allBreweryLoop: for localBrewery in breweriesSortedByLatLong {
-            let nearestBrewery = CLLocation(latitude: localBrewery.latitude, longitude: localBrewery.longitude)
-            if let currentLocation = userCurrentLocation {
-                switch currentLocation.distance(from: nearestBrewery) {
-                case 0..<805: // To 1/2 mile
-                    nearbyLatitude = localBrewery.latitude
-                    nearbyLongitude = localBrewery.longitude
-                    halfMileBrewery = true
-                    nearbyBrewery = localBrewery.breweryName
-                    print("1/2 mile Brewery is \(nearbyBrewery)")
-                    break allBreweryLoop
-                case 805..<1609: // To 1 mile
-                    nearbyLatitude = localBrewery.latitude
-                    nearbyLongitude = localBrewery.longitude
-                    oneMileBrewery = true
-                    nearbyBrewery = localBrewery.breweryName
-                    print("1 mile Brewery is \(nearbyBrewery)")
-                case 1609..<8046: // To 5 miles
-                    nearbyLatitude = localBrewery.latitude
-                    nearbyLongitude = localBrewery.longitude
-                    fiveMileBrewery = true
-                    nearbyBrewery = localBrewery.breweryName
-                    print("5 mile Brewery is \(nearbyBrewery)")
-                case 8046..<16090: // To 10 miles
-                    nearbyLatitude = localBrewery.latitude
-                    nearbyLongitude = localBrewery.longitude
-                    tenMileBrewery = true
-                    nearbyBrewery = localBrewery.breweryName
-                    print("10 mile Brewery is \(nearbyBrewery)")
-                default:
-                    break
-                }
-            }
-        }
- 
-        // Recognize nearest brewery and mark to send to watch.
-        if halfMileBrewery == true {
-            nearbyBreweryLabel.setTitle(nearbyBrewery, for: .normal)
-            complicationData = nearbyBrewery
-        } else if oneMileBrewery == true {
-            nearbyBreweryLabel.setTitle(nearbyBrewery, for: .normal)
-            complicationData = nearbyBrewery
-        } else if fiveMileBrewery == true {
-            nearbyBreweryLabel.setTitle(nearbyBrewery, for: .normal)
-            complicationData = nearbyBrewery
-        } else if tenMileBrewery == true {
-            nearbyBreweryLabel.setTitle(nearbyBrewery, for: .normal)
-            complicationData = nearbyBrewery
-        }
-        
-        if UIApplication.shared.applicationState != .active {
-            assert(UIApplication.shared.applicationState != .active)
-            let session = WCSession.default
-            if WCSession.isSupported() && session.isComplicationEnabled {
-            sendNearbyBreweryToWatch()
-            }
-        } else {
-            return
-        }
-        sendNearbyBreweryToWatch()
-        
-    }
-    */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

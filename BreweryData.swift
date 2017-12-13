@@ -365,23 +365,11 @@ var allBreweries = [ AngryInch, TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, Au
 
 // MARK: Listing nearest brewery to user and instances for the picker.
 
-//var nearbyBreweryNameArray = [String]()
-//var isBreweryNearby = false
-
-// Possible deletion...
-//var halfMileBrewery = false
-//var oneMileBrewery = false
-//var fiveMileBrewery = false
-//var tenMileBrewery = false
 
 var complicationData = String()
 var nearbyBrewery = String()
 var nearbyLatLong = CLLocationCoordinate2D()
-// Sorts the breweries by Lat/Long for finding nearest brewewry.
-//let breweriesSortedByLatLong = allBreweries.sorted(by: { $0.latitude < $1.longitude }) // 0
 
-//var nearbyLatitude = CLLocationDegrees()
-//var nearbyLongitude = CLLocationDegrees()
 
 // For the scrollable brewery picker.
 var breweryIdentifier = 0
