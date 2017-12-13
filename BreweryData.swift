@@ -338,7 +338,7 @@ let TwelveEyes = BreweryData(breweryName: "12welve Eyes", location: "St. Paul", 
 let Oswald = BreweryData(breweryName: "Oswald Brewing", location: "Blue Earth", latLong: CLLocation(latitude: 43.638219, longitude: -94.102716), sun: "Closed", mon: "Closed", tue: "Closed", wed: "Closed", thur: "3p-7p", fri: "3p-10p", sat: "1p-10p", beenHere: false)
 
 
-/* Check back on. As of 11/2/17 they were not open to the public yet.
+/* Check back on. As of 12/13/17 they were not open to the public yet.
 let StackedDeck = BreweryData(breweryName: "Stacked Deck", location: "St. Paul", latitude: 44.947191, longitude: -93.094266, sun: "Closed", mon: "Closed", tue: "Closed", wed: "Closed", thur: "Closed", fri: "Closed", sat: "Closed", beenHere: false)
 
 let Torg = BreweryData(breweryName: "Torg Brewiing", location: "Spring Lake Park", latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>, sun: "Closed", mon: "Closed", tue: "Closed", wed: "Closed", thur: "Closed", fri: "Closed", sat: "Closed", beenHere: false)
@@ -350,6 +350,8 @@ let Borealis = BreweryData(breweryName: "Borealis Fermentery", location: "Knife 
  P.O. Box 130 Knife River, MN 55609
  
 let invictus = BreweryData(breweryName: "Invictus", location: "Blane", latLong: CLLocation(latitude: 45.161666, longitude: -93.219470), sun: <#T##String#>, mon: <#T##String#>, tue: <#T##String#>, wed: <#T##String#>, thur: <#T##String#>, fri: <#T##String#>, sat: <#T##String#>, beenHere: <#T##Bool#>)
+ 
+ let Spirial = BreweryData(breweryName: "Spiral Brewery", location: "Hastings", latLong: <#T##CLLocation#>, sun: <#T##String#>, mon: <#T##String#>, tue: <#T##String#>, wed: <#T##String#>, thur: <#T##String#>, fri: <#T##String#>, sat: <#T##String#>, beenHere: false)
  
 */
 
