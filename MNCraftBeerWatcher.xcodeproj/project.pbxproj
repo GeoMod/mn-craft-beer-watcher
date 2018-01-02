@@ -24,6 +24,8 @@
 		184CE3681F72A6BB001E12CB /* BreweryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836CB9F1F43637400053AC0 /* BreweryData.swift */; };
 		18545B2B1FACAF0000083081 /* Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 18545B2A1FACAF0000083081 /* Button.png */; };
 		1855A0C51FA2584400603893 /* BreweryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836CB9F1F43637400053AC0 /* BreweryData.swift */; };
+		18571E211FF6F06400C4E25A /* SortingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18571E201FF6F06400C4E25A /* SortingExtension.swift */; };
+		1895749E1FEAA2F900FF6385 /* MNBeerLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1895749D1FEAA2F900FF6385 /* MNBeerLogo.png */; };
 		18BBDF3D1FCBA3FC00E60443 /* Stickers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18BBDF3C1FCBA3FB00E60443 /* Stickers.xcassets */; };
 		18CD90571F77506D00558E84 /* StickerPack.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 18CD90501F77506D00558E84 /* StickerPack.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -109,6 +111,8 @@
 		1828C8B51F40D578003EDD64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1836CB9F1F43637400053AC0 /* BreweryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreweryData.swift; sourceTree = "<group>"; };
 		18545B2A1FACAF0000083081 /* Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button.png; sourceTree = "<group>"; };
+		18571E201FF6F06400C4E25A /* SortingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingExtension.swift; sourceTree = "<group>"; };
+		1895749D1FEAA2F900FF6385 /* MNBeerLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MNBeerLogo.png; sourceTree = "<group>"; };
 		18BBDF3C1FCBA3FB00E60443 /* Stickers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Stickers.xcassets; sourceTree = "<group>"; };
 		18CD90501F77506D00558E84 /* StickerPack.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StickerPack.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		18CD90541F77506D00558E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -159,10 +163,12 @@
 		1828C8891F40D577003EDD64 /* MNCraftBeerWatcher */ = {
 			isa = PBXGroup;
 			children = (
+				18571E201FF6F06400C4E25A /* SortingExtension.swift */,
 				1828C88A1F40D577003EDD64 /* AppDelegate.swift */,
 				1828C88C1F40D577003EDD64 /* ViewController.swift */,
 				1828C88E1F40D577003EDD64 /* Main.storyboard */,
 				18545B2A1FACAF0000083081 /* Button.png */,
+				1895749D1FEAA2F900FF6385 /* MNBeerLogo.png */,
 				1828C8911F40D577003EDD64 /* Assets.xcassets */,
 				1828C8931F40D577003EDD64 /* LaunchScreen.storyboard */,
 				1828C8961F40D577003EDD64 /* Info.plist */,
@@ -364,6 +370,7 @@
 				18545B2B1FACAF0000083081 /* Button.png in Resources */,
 				1828C8921F40D577003EDD64 /* Assets.xcassets in Resources */,
 				1828C8901F40D577003EDD64 /* Main.storyboard in Resources */,
+				1895749E1FEAA2F900FF6385 /* MNBeerLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18571E211FF6F06400C4E25A /* SortingExtension.swift in Sources */,
 				1828C88D1F40D577003EDD64 /* ViewController.swift in Sources */,
 				184CE3681F72A6BB001E12CB /* BreweryData.swift in Sources */,
 				1828C88B1F40D577003EDD64 /* AppDelegate.swift in Sources */,

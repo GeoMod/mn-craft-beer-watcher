@@ -71,7 +71,7 @@ let Bauhaus = BreweryData(breweryName: "Bauhaus Brew", location: "Minneapolis", 
 let BeaverIsland = BreweryData(breweryName: "Beaver Island", location: "St. Cloud", latLong: CLLocation(latitude: 45.558394, longitude: -94.156472), sun: "11a-7p", mon: "Closed", tue: "Closed", wed: "4p-10p", thur: "4p-10p", fri: "4p-10p", sat: "12p-10p", beenHere: false)
     // 216 6th Ave S, St Cloud, MN 56301
     // (320) 253-5907
-let Bemidji = BreweryData(breweryName: "Bemidji Brewing", location: "Bemidji", latLong: CLLocation(latitude: 47.470031, longitude: -94.884894), sun: "12p-7p", mon: "Closed", tue: "Closed", wed: "12p-11p", thur: "12p-11p", fri: "12p-11p", sat: "12p-11p", beenHere: false)
+let Bemidji = BreweryData(breweryName: "Bemidji Brewing", location: "Bemidji", latLong: CLLocation(latitude: 47.470066, longitude:  -94.884388), sun: "12p-7p", mon: "Closed", tue: "Closed", wed: "12p-11p", thur: "12p-11p", fri: "12p-11p", sat: "12p-11p", beenHere: false)
     // 211 America Ave. NW Bemidji, MN 56601
     // 218-444-7011
 let BentBrew = BreweryData(breweryName: "Bent Brewstillery", location: "Roseville", latLong: CLLocation(latitude: 45.024532, longitude: -93.173723), sun: "12p-9p", mon: "Closed", tue: "4p-10p", wed: "4p-10p", thur: "4p-10p", fri: "2:30p-12p", sat: "12p-12a", beenHere: false)
@@ -311,6 +311,7 @@ let UrbanGrowler = BreweryData(breweryName: "Urban Growler", location: "St. Paul
 let Utepils = BreweryData(breweryName: "Utepils", location: "Minneapolis", latLong: CLLocation(latitude: 44.978688, longitude: -93.311819), sun: "12p-8p", mon: "4p-10p", tue: "4p-10p", wed: "12p-10p", thur: "12p-10p", fri: "12p-11p", sat: "12p-11p", beenHere: false)
     // 225 THOMAS AVE N MINNEAPOLIS, MN 55405
     // 612-249-7800
+let Venn = BreweryData(breweryName: "Venn Brewing", location: "Minneapolis", latLong: CLLocation(latitude: 44.920194, longitude: -93.218544), sun: "12p-9p", mon: "Closed", tue: "Closed", wed: "3p-10p", thur: "3p-10p", fri: "2p-12a", sat: "12p-12a", beenHere: false)
 let VinePark = BreweryData(breweryName: "Vine Park", location: "St. Paul", latLong: CLLocation(latitude: 44.922248, longitude: -93.133789), sun: "Closed", mon: "9a-5p", tue: "12p-8p", wed: "12p-8p", thur: "12p-8p", fri: "12p-9p", sat: "9a-5p", beenHere: false)
     // 1254 West 7th Street St. Paul, Minnesota 55102
     // 651.228.1355
@@ -359,7 +360,7 @@ let invictus = BreweryData(breweryName: "Invictus", location: "Blane", latLong: 
 
 
 
-var allBreweries = [ AngryInch, TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, AugustSchell, BadHabit, BadWeather, BadgerHill, BaldMan, Bang, Bank, BarleyJohns, BarrelTheory, Bauhaus, BeaverIsland, Bemidji, BentBrew, BentPaddle, BigAxe, BigWood, Birch, Blacklist, Boathouse, BoomIsland, Brau, BrokenClock, BurningBros, CanalPark, CarmodyIrish, CastleDanger, Clockwerks, Cosmos, DangerousMan, DayBlock, Disgruntled, EastLake, Enki, Excelsior, FTown, FairState, Finnegans, Fitgers, FlatEarth, Forager, FoxHole, Fulton, GoatRidge, GrandRounds, GreatWaters, GullDam, GunFlint, Hammerheart, Hayes, HeadFlyer, Hoops, Imminent, Inbound, Indeed, Insight, IslandCity, JackPine, JosephWolf, JunkYard, KinneyCreek, LakeMonster, LakesLegends, Lakeville, LiftBridge, LTD, LTS, Lupine, Lupulin, Lynlake, Mankato, MapleIsland, TownHall, Modist, Montgomery, MooseLake, Northbound, Northgate, NutmegA, NutmegB, Omni, Portage, Pryes, ReadsLanding, RedWing, Revelation, RockBotton, SpilledGrain, SteelToe, Summit, Surly, Take16, TalkingWaters, Tanzenwald, Freehouse, Herkimer, ThirdStreet, TinWhiskers, U4ic, Unmapped, UrbanGrowler, Utepils, VinePark, Voyageur, Wabasha, Waconia, Wayzata, Wicked, WildMind, BlackStack, TwelveEyes, Oswald ]
+var allBreweries = [ AngryInch, TenKBrewing, FiveSix, SixOneTwo, Able, Alloy, AugustSchell, BadHabit, BadWeather, BadgerHill, BaldMan, Bang, Bank, BarleyJohns, BarrelTheory, Bauhaus, BeaverIsland, Bemidji, BentBrew, BentPaddle, BigAxe, BigWood, Birch, Blacklist, Boathouse, BoomIsland, Brau, BrokenClock, BurningBros, CanalPark, CarmodyIrish, CastleDanger, Clockwerks, Cosmos, DangerousMan, DayBlock, Disgruntled, EastLake, Enki, Excelsior, FTown, FairState, Finnegans, Fitgers, FlatEarth, Forager, FoxHole, Fulton, GoatRidge, GrandRounds, GreatWaters, GullDam, GunFlint, Hammerheart, Hayes, HeadFlyer, Hoops, Imminent, Inbound, Indeed, Insight, IslandCity, JackPine, JosephWolf, JunkYard, KinneyCreek, LakeMonster, LakesLegends, Lakeville, LiftBridge, LTD, LTS, Lupine, Lupulin, Lynlake, Mankato, MapleIsland, TownHall, Modist, Montgomery, MooseLake, Northbound, Northgate, NutmegA, NutmegB, Omni, Portage, Pryes, ReadsLanding, RedWing, Revelation, RockBotton, SpilledGrain, SteelToe, Summit, Surly, Take16, TalkingWaters, Tanzenwald, Freehouse, Herkimer, ThirdStreet, TinWhiskers, U4ic, Unmapped, UrbanGrowler, Utepils, Venn, VinePark, Voyageur, Wabasha, Waconia, Wayzata, Wicked, WildMind, BlackStack, TwelveEyes, Oswald ]
 
 
 

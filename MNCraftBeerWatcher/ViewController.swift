@@ -20,15 +20,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     @IBOutlet var mapButtonLabel: UIButton!
     @IBOutlet var nearbyBreweryLabel: UIButton!
     
-    // Hours Labels
-    @IBOutlet var sundayLabel: UILabel!
-    @IBOutlet var mondayLabel: UILabel!
-    @IBOutlet var tuesdayLabel: UILabel!
-    @IBOutlet var wednesdayLabel: UILabel!
-    @IBOutlet var thursdayLabel: UILabel!
-    @IBOutlet var fridayLabel: UILabel!
-    @IBOutlet var saturdayLabel: UILabel!
-    
+
     let breweriesSortedAlphabetically = allBreweries.sorted(by: { $0.breweryName < $1.breweryName })
     
     override func viewDidLoad() {
@@ -46,19 +38,12 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         pickerView.delegate = self
         
         mapButtonLabel.setTitle(breweriesSortedAlphabetically[0].location, for: .normal)
-        sundayLabel.text = breweriesSortedAlphabetically[0].sun.uppercased()
-        mondayLabel.text = breweriesSortedAlphabetically[0].mon.uppercased()
-        tuesdayLabel.text = breweriesSortedAlphabetically[0].tue.uppercased()
-        wednesdayLabel.text = breweriesSortedAlphabetically[0].wed.uppercased()
-        thursdayLabel.text = breweriesSortedAlphabetically[0].thur.uppercased()
-        fridayLabel.text = breweriesSortedAlphabetically[0].fri.uppercased()
-        saturdayLabel.text = breweriesSortedAlphabetically[0].sat.uppercased()
         
     }
     
     // MARK: Pickerview Data Source
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -67,20 +52,22 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     // Pickerview Delegates
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?  {
-        return breweriesSortedAlphabetically[row].breweryName
+        
+        switch component {
+        case 0:
+            return breweriesSortedAlphabetically[row].location
+        case 1:
+            return breweriesSortedAlphabetically[row].breweryName
+        default:
+            return "nil"
+        }
+//        return breweriesSortedAlphabetically[row].breweryName
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         breweryIdentifier = row // Used for setting the mapButtonTitle
-        mapButtonLabel.setTitle(breweriesSortedAlphabetically[row].location, for: .normal)
-        
-        sundayLabel.text = breweriesSortedAlphabetically[row].sun.uppercased()
-        mondayLabel.text = breweriesSortedAlphabetically[row].mon.uppercased()
-        tuesdayLabel.text = breweriesSortedAlphabetically[row].tue.uppercased()
-        wednesdayLabel.text = breweriesSortedAlphabetically[row].wed.uppercased()
-        thursdayLabel.text = breweriesSortedAlphabetically[row].thur.uppercased()
-        fridayLabel.text = breweriesSortedAlphabetically[row].fri.uppercased()
-        saturdayLabel.text = breweriesSortedAlphabetically[row].sat.uppercased()
+        mapButtonLabel.setTitle(breweriesSortedAlphabetically[row].breweryName, for: .normal)
+//        mapButtonLabel.setTitle(breweriesSortedAlphabetically[row].location, for: .normal)
     }
     
     
