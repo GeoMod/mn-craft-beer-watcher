@@ -374,8 +374,11 @@ var nearbyLatLong = CLLocationCoordinate2D()
 
 // For the scrollable brewery picker.
 var breweryIdentifier = 0
+var cityIdentifier = 0
 var currentBrewery = String()
 
+// To display only the breweries from the selected city.
+var filteredBreweries: [BreweryData] = []
 
 
 

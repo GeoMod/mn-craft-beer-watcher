@@ -36,44 +36,75 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         }
         pickerView.dataSource = self
         pickerView.delegate = self
-        
-        mapButtonLabel.setTitle(breweriesSortedAlphabetically[0].location, for: .normal)
-        
+        mapButtonLabel.setTitle(breweriesSortedAlphabetically[0].breweryName, for: .normal)
     }
+    
     
     // MARK: Pickerview Data Source
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
     
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return breweriesSortedAlphabetically.count
+        switch component {
+        case 0:
+            let locations = allBreweries.map { $0.location }
+            let uniqueCities = locations.uniqueElements
+//            uniqueCities.sorted { $0 < $1 }
+            return uniqueCities.count
+        case 1:
+            let breweries = allBreweries.map { $0.breweryName }
+//            let uniqueBreweries = breweries.uniqueElements
+//            uniqueBreweries.sorted { $0 < $1 }
+//            return uniqueBreweries.count
+            return breweries.count
+        default:
+            return 0
+        }
     }
+
     
     // Pickerview Delegates
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?  {
-        
         switch component {
         case 0:
-            return breweriesSortedAlphabetically[row].location
+            let locations = allBreweries.map { $0.location }
+            var uniqueCities = locations.uniqueElements
+            uniqueCities.sort { $0 < $1 }
+            return uniqueCities[row]
         case 1:
-            return breweriesSortedAlphabetically[row].breweryName
+            let breweries = allBreweries.map { $0.breweryName }
+            var uniqueBreweries = breweries.uniqueElements
+            uniqueBreweries.sort { $0 < $1 }
+            return uniqueBreweries[row]
+//            return breweriesSortedAlphabetically[row].breweryName
         default:
             return "nil"
         }
-//        return breweriesSortedAlphabetically[row].breweryName
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        breweryIdentifier = row // Used for setting the mapButtonTitle
-        mapButtonLabel.setTitle(breweriesSortedAlphabetically[row].breweryName, for: .normal)
+        switch component {
+        case 0:
+            let locations = allBreweries.map { $0.location }
+            var uniqueCities = locations.uniqueElements
+            uniqueCities.sort { $0 < $1 }
+            cityIdentifier = row
+            print(uniqueCities[row])
+            print("City ID is \(cityIdentifier).")
+        case 1:
+            breweryIdentifier = row // Used for setting the mapButtonTitle
+            mapButtonLabel.setTitle(breweriesSortedAlphabetically[row].breweryName, for: .normal)
+        default:
+            return
+        }
 //        mapButtonLabel.setTitle(breweriesSortedAlphabetically[row].location, for: .normal)
     }
     
     
     // Selected brewery map button.
     @IBAction func MapButton(_ sender: Any) {
-        
         let breweryLocationCoordinate = breweriesSortedAlphabetically[breweryIdentifier].latLong.coordinate
         let placeMark = MKPlacemark(coordinate: breweryLocationCoordinate)
         let mapItem = MKMapItem(placemark: placeMark)
@@ -87,7 +118,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 4827 // Distance in meters needed to move before app updates again. 3 miles
        
