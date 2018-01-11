@@ -14,14 +14,12 @@ import WatchConnectivity
 
 class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate {
     
+    let breweriesSortedAlphabetically = allBreweries.sorted(by: { $0.breweryName < $1.breweryName })
     var locationManager = CLLocationManager()
     
     @IBOutlet var pickerView: UIPickerView!
     @IBOutlet var mapButtonLabel: UIButton!
     @IBOutlet var nearbyBreweryLabel: UIButton!
-    
-
-    let breweriesSortedAlphabetically = allBreweries.sorted(by: { $0.breweryName < $1.breweryName })
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,59 +39,61 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     
     // MARK: Pickerview Data Source
+    let locations = allBreweries.map { $0.location }
+    let breweries = allBreweries.map { $0.breweryName }
+    var filteredBreweries = [String]()  // To display only the breweries from the selected city.
+    
+ 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
     
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        let uniqueCities = locations.uniqueElements
+        
         switch component {
         case 0:
-            let locations = allBreweries.map { $0.location }
-            let uniqueCities = locations.uniqueElements
-//            uniqueCities.sorted { $0 < $1 }
             return uniqueCities.count
         case 1:
-            let breweries = allBreweries.map { $0.breweryName }
-//            let uniqueBreweries = breweries.uniqueElements
-//            uniqueBreweries.sorted { $0 < $1 }
-//            return uniqueBreweries.count
-            return breweries.count
+            return filteredBreweries.count
         default:
-            return 0
+            return 1
+        }
+    }
+
+    // Pickerview Delegates
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?  {
+        var uniqueCities = locations.uniqueElements
+        
+        switch component {
+        case 0:
+            uniqueCities.sort { $0 < $1 }
+            return uniqueCities[row]
+        case 1:
+//            filteredBreweries.sort { $0 < $1 }
+            return filteredBreweries[row]
+        default:
+            return nil
         }
     }
 
     
-    // Pickerview Delegates
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?  {
-        switch component {
-        case 0:
-            let locations = allBreweries.map { $0.location }
-            var uniqueCities = locations.uniqueElements
-            uniqueCities.sort { $0 < $1 }
-            return uniqueCities[row]
-        case 1:
-            let breweries = allBreweries.map { $0.breweryName }
-            var uniqueBreweries = breweries.uniqueElements
-            uniqueBreweries.sort { $0 < $1 }
-            return uniqueBreweries[row]
-//            return breweriesSortedAlphabetically[row].breweryName
-        default:
-            return "nil"
-        }
-    }
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        var uniqueCities = locations.uniqueElements
+        
         switch component {
         case 0:
-            let locations = allBreweries.map { $0.location }
-            var uniqueCities = locations.uniqueElements
             uniqueCities.sort { $0 < $1 }
-            cityIdentifier = row
-            print(uniqueCities[row])
-            print("City ID is \(cityIdentifier).")
+            selectedCity = uniqueCities[row]
+            for i in uniqueCities {
+                if i == selectedCity {
+                    filteredBreweries.append(i)
+                }
+            }
+            pickerView.reloadAllComponents()
+            print("City is \(uniqueCities[row])")
         case 1:
+//            filteredBreweries(selection: selectedBrewery)
             breweryIdentifier = row // Used for setting the mapButtonTitle
             mapButtonLabel.setTitle(breweriesSortedAlphabetically[row].breweryName, for: .normal)
         default:
@@ -101,6 +101,18 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         }
 //        mapButtonLabel.setTitle(breweriesSortedAlphabetically[row].location, for: .normal)
     }
+    
+    func filteredBreweries(selection: String) -> [String] {
+        let uniqueCities = locations.uniqueElements
+        
+        for i in uniqueCities {
+            if i == selectedCity {
+                filteredBreweries.append(i)
+            }
+        }
+        return filteredBreweries
+    }
+    
     
     
     // Selected brewery map button.
