@@ -70,7 +70,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
             uniqueCities.sort { $0 < $1 }
             return uniqueCities[row]
         case 1:
-//            filteredBreweries.sort { $0 < $1 }
             return filteredBreweries[row]
         default:
             return nil
@@ -83,28 +82,21 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         
         switch component {
         case 0:
-            filteredBreweries.removeAll(keepingCapacity: false)
             uniqueCities.sort { $0 < $1 }
+            filteredBreweries.removeAll(keepingCapacity: false)
             selectedCity = uniqueCities[row]
-            for i in allBreweries {
-                let a = i.location
-                let b = i.breweryName
-                
-                if selectedCity == a {
-                    filteredBreweries.append(b)
-                    print(filteredBreweries)
-                }
+            let currentBreweries = allBreweries.filter { return $0.location == selectedCity }
+            for i in currentBreweries.map({ $0.breweryName }) {
+                filteredBreweries.append(i)
+                print(filteredBreweries)
             }
             pickerView.reloadComponent(1)
-            print("City is \(uniqueCities[row])")
         case 1:
-//            filteredBreweries(selection: selectedBrewery)
             breweryIdentifier = row // Used for setting the mapButtonTitle
             mapButtonLabel.setTitle(breweriesSortedAlphabetically[row].breweryName, for: .normal)
         default:
             return
         }
-//        mapButtonLabel.setTitle(breweriesSortedAlphabetically[row].location, for: .normal)
     }
     
     func filteredBreweries(selection: String) -> [String] {
