@@ -83,14 +83,19 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         
         switch component {
         case 0:
+            filteredBreweries.removeAll(keepingCapacity: false)
             uniqueCities.sort { $0 < $1 }
             selectedCity = uniqueCities[row]
-            for i in uniqueCities {
-                if i == selectedCity {
-                    filteredBreweries.append(i)
+            for i in allBreweries {
+                let a = i.location
+                let b = i.breweryName
+                
+                if selectedCity == a {
+                    filteredBreweries.append(b)
+                    print(filteredBreweries)
                 }
             }
-            pickerView.reloadAllComponents()
+            pickerView.reloadComponent(1)
             print("City is \(uniqueCities[row])")
         case 1:
 //            filteredBreweries(selection: selectedBrewery)
