@@ -34,7 +34,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         }
         pickerView.dataSource = self
         pickerView.delegate = self
-        mapButtonLabel.setTitle(breweriesSortedAlphabetically[0].breweryName, for: .normal)
+        mapButtonLabel.setTitle("Make selection", for: .normal)
     }
     
     
@@ -50,21 +50,19 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         let uniqueCities = locations.uniqueElements
-        
         switch component {
         case 0:
             return uniqueCities.count
         case 1:
             return filteredBreweries.count
         default:
-            return 1
+            return 0
         }
     }
 
     // Pickerview Delegates
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?  {
         var uniqueCities = locations.uniqueElements
-        
         switch component {
         case 0:
             uniqueCities.sort { $0 < $1 }
@@ -88,27 +86,43 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
             let currentBreweries = allBreweries.filter { return $0.location == selectedCity }
             for i in currentBreweries.map({ $0.breweryName }) {
                 filteredBreweries.append(i)
-                print(filteredBreweries)
             }
             pickerView.reloadComponent(1)
         case 1:
-            breweryIdentifier = row // Used for setting the mapButtonTitle
-            mapButtonLabel.setTitle(breweriesSortedAlphabetically[row].breweryName, for: .normal)
+            breweryIdentifier = 0
+//            breweryIdentifier = row // Used for setting the mapButtonTitle
+            mapButtonLabel.setTitle(filteredBreweries[row], for: .normal)
+            if let i = breweries.index(of: filteredBreweries[row]) {
+                breweryIdentifier = i
+            }
+            print("\(breweryIdentifier) is brewery ID.")
+            print("\(breweriesSortedAlphabetically[breweryIdentifier].breweryName) is alphabetical.")
         default:
             return
         }
     }
     
-    func filteredBreweries(selection: String) -> [String] {
-        let uniqueCities = locations.uniqueElements
-        
-        for i in uniqueCities {
-            if i == selectedCity {
-                filteredBreweries.append(i)
-            }
-        }
-        return filteredBreweries
-    }
+    
+//    func findBreweryInList(selectedBrewery i: String) -> Int {
+//        for _ in breweries {
+//            if i == breweries[index] {
+//                breweryNumberInBreweryList = breweriesSortedAlphabetically.index(after: breweryNumberInBreweryList)
+//                breweryIdentifier = breweryNumberInBreweryList
+//            }
+//        }
+//        return breweryIdentifier
+//    }
+    
+//    func filteredBreweries(selection: String) -> [String] {
+//        let uniqueCities = locations.uniqueElements
+//
+//        for i in uniqueCities {
+//            if i == selectedCity {
+//                filteredBreweries.append(i)
+//            }
+//        }
+//        return filteredBreweries
+//    }
     
     
     
