@@ -166,47 +166,7 @@ let Spirial = BreweryData(breweryName: "Spiral Brewery", location: "Hastings", l
  
 */
 
-
-// Sort breweries by City. Append to New Array.
-let breweriesSortedByCity = Dictionary(grouping: breweries) { (city) -> String in
-    return city.location
-}
-var arrayOfBreweriesSortedByCity = [[BreweryData]]()
-let cities = breweriesSortedByCity.keys.sorted()
-
-// Call in order to build the array of sorted breweries by City.
-func sortByCity() {
-    cities.forEach { (key) in
-        if let city = breweriesSortedByCity[key] {
-            arrayOfBreweriesSortedByCity.append(city)
-        } else {
-            return
-        }
-    }
-}
-
-// Sort breweries by Name. Append to New Array.
-let breweriesSortedByBreweryName = Dictionary(grouping: breweries) { (brewery) -> String in
-    return brewery.breweryName
-}
-var dictOfBreweriesSortedByBreweryName = [[BreweryData]]()
-let breweryNames = breweriesSortedByBreweryName.keys.sorted()
-// Call in order to build the array of sorted breweries by Brewery Name.
-func sortByName() {
-    breweryNames.forEach { (key) in
-        if let name = breweriesSortedByBreweryName[key] {
-            dictOfBreweriesSortedByBreweryName.append(name)
-        } else {
-            return
-        }
-    }
-}
-
-
-
-
 // MARK: Listing nearest brewery to user and instances for the picker.
-
 var complicationData = String()
 var nearbyBrewery = String()
 var nearbyLatLong = CLLocationCoordinate2D()

@@ -26,9 +26,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
-        sortByCity()
-        sortByName()
-        
         if WCSession.isSupported() {
             let session = WCSession.default
             session.delegate = self
@@ -70,6 +67,8 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         case 0:
             return uniqueCities[row]
         case 1:
+            mapButtonLabel.setTitle(filteredBreweries[row].breweryName, for: .normal)
+            breweryIdentifier = row
             return filteredBreweries[row].breweryName
         default:
             return nil
@@ -90,9 +89,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
                 filteredBreweries.append(i)
             }
             pickerView.reloadComponent(1)
-        case 1:
-            breweryIdentifier = row // Used for setting the mapButtonTitle
-            mapButtonLabel.setTitle(filteredBreweries[row].breweryName, for: .normal)
         default:
             return
         }
@@ -108,7 +104,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocationCoordinate)
         ]
-
         mapItem.name = ("\(filteredBreweries[breweryIdentifier].breweryName)")
         mapItem.openInMaps(launchOptions: options)
     }
@@ -136,7 +131,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         } else {
             return
         }
-        
         
     }
     
@@ -174,10 +168,8 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocation),
         ]
-        
         mapItem.name = nearbyBrewery
         mapItem.openInMaps(launchOptions: options)
-        
     }
     
     
