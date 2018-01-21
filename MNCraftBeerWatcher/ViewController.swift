@@ -68,7 +68,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
             return uniqueCities[row]
         case 1:
             mapButtonLabel.setTitle(filteredBreweries[row].breweryName, for: .normal)
-            breweryIdentifier = row
             return filteredBreweries[row].breweryName
         default:
             return nil
@@ -89,6 +88,9 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
                 filteredBreweries.append(i)
             }
             pickerView.reloadComponent(1)
+        case 1:
+            breweryIdentifier = row
+            mapButtonLabel.setTitle(filteredBreweries[row].breweryName, for: .normal)
         default:
             return
         }
