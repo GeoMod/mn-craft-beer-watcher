@@ -26,7 +26,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     // Sorts the breweries alphabetically.
-    let breweriesSorted = allBreweries.sorted(by: { $0.breweryName < $1.breweryName })
+//    let breweriesSorted = allBreweries.sorted(by: { $0.breweryName < $1.breweryName })
+    let breweriesSorted = breweries.sorted(by: { $0.breweryName < $1.breweryName })
     
     @IBOutlet var table: WKInterfaceTable!
     @IBOutlet var locationButtonTitle: WKInterfaceButton!

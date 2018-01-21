@@ -14,7 +14,6 @@ import WatchConnectivity
 
 class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate {
     
-    let breweriesSortedAlphabetically = allBreweries.sorted(by: { $0.breweryName < $1.breweryName })
     var locationManager = CLLocationManager()
     
     @IBOutlet var pickerView: UIPickerView!
@@ -26,6 +25,9 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        
+        sortByCity()
+        sortByName()
         
         if WCSession.isSupported() {
             let session = WCSession.default
@@ -39,10 +41,9 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     
     // MARK: Pickerview Data Source
-    let locations = allBreweries.map { $0.location }
-    let breweries = allBreweries.map { $0.breweryName }
-    var filteredBreweries = [String]()  // To display only the breweries from the selected city.
-    
+    let locations = breweries.map { $0.location }
+    let breweryNames = breweries.map { $0.breweryName }
+    var filteredBreweries = [BreweryData]() // To display only the breweries from the selected city.
  
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
@@ -60,15 +61,16 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         }
     }
 
+    
     // Pickerview Delegates
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?  {
         var uniqueCities = locations.uniqueElements
+        uniqueCities.sort { $0 < $1 }
         switch component {
         case 0:
-            uniqueCities.sort { $0 < $1 }
             return uniqueCities[row]
         case 1:
-            return filteredBreweries[row]
+            return filteredBreweries[row].breweryName
         default:
             return nil
         }
@@ -77,58 +79,29 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         var uniqueCities = locations.uniqueElements
-        
+        uniqueCities.sort { $0 < $1 }
+
         switch component {
         case 0:
-            uniqueCities.sort { $0 < $1 }
             filteredBreweries.removeAll(keepingCapacity: false)
             selectedCity = uniqueCities[row]
-            let currentBreweries = allBreweries.filter { return $0.location == selectedCity }
-            for i in currentBreweries.map({ $0.breweryName }) {
+            let currentBreweries = breweries.filter { return $0.location == selectedCity }
+            for i in currentBreweries.map({ $0 }) {
                 filteredBreweries.append(i)
             }
             pickerView.reloadComponent(1)
         case 1:
-            breweryIdentifier = 0
-//            breweryIdentifier = row // Used for setting the mapButtonTitle
-            mapButtonLabel.setTitle(filteredBreweries[row], for: .normal)
-            if let i = breweries.index(of: filteredBreweries[row]) {
-                breweryIdentifier = i
-            }
-            print("\(breweryIdentifier) is brewery ID.")
-            print("\(breweriesSortedAlphabetically[breweryIdentifier].breweryName) is alphabetical.")
+            breweryIdentifier = row // Used for setting the mapButtonTitle
+            mapButtonLabel.setTitle(filteredBreweries[row].breweryName, for: .normal)
         default:
             return
         }
     }
     
     
-//    func findBreweryInList(selectedBrewery i: String) -> Int {
-//        for _ in breweries {
-//            if i == breweries[index] {
-//                breweryNumberInBreweryList = breweriesSortedAlphabetically.index(after: breweryNumberInBreweryList)
-//                breweryIdentifier = breweryNumberInBreweryList
-//            }
-//        }
-//        return breweryIdentifier
-//    }
-    
-//    func filteredBreweries(selection: String) -> [String] {
-//        let uniqueCities = locations.uniqueElements
-//
-//        for i in uniqueCities {
-//            if i == selectedCity {
-//                filteredBreweries.append(i)
-//            }
-//        }
-//        return filteredBreweries
-//    }
-    
-    
-    
     // Selected brewery map button.
     @IBAction func MapButton(_ sender: Any) {
-        let breweryLocationCoordinate = breweriesSortedAlphabetically[breweryIdentifier].latLong.coordinate
+        let breweryLocationCoordinate = filteredBreweries[breweryIdentifier].latLong.coordinate
         let placeMark = MKPlacemark(coordinate: breweryLocationCoordinate)
         let mapItem = MKMapItem(placemark: placeMark)
 
@@ -136,7 +109,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocationCoordinate)
         ]
 
-        mapItem.name = ("\(breweriesSortedAlphabetically[breweryIdentifier].breweryName)")
+        mapItem.name = ("\(filteredBreweries[breweryIdentifier].breweryName)")
         mapItem.openInMaps(launchOptions: options)
     }
     
@@ -146,11 +119,25 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
        
         let userCurrentLocation = locationManager.location
         if let currentLocation = userCurrentLocation {
-            let nearestBrewery = closestBrewery(allBreweries, currentLocation: currentLocation)
+            let nearestBrewery = closestBrewery(breweries, currentLocation: currentLocation)
             updateUI(brewery: nearestBrewery)
+            
+            // Update watch complication. Moved from updateUI(brewery:)
+            let session = WCSession.default
+            if UIApplication.shared.applicationState != .active {
+                assert(UIApplication.shared.applicationState != .active)
+                if WCSession.isSupported() && session.isComplicationEnabled {
+                    sendNearbyBreweryToWatch()
+                }
+            }
+            if WCSession.isSupported() && session.isComplicationEnabled {
+                sendNearbyBreweryToWatch()
+            }
         } else {
             return
         }
+        
+        
     }
     
     
@@ -174,17 +161,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         nearbyBreweryLabel.setTitle(nearbyBrewery, for: .normal)
         complicationData = nearbyBrewery
         
-        // Update watch complication.
-        let session = WCSession.default
-        if UIApplication.shared.applicationState != .active {
-            assert(UIApplication.shared.applicationState != .active)
-            if WCSession.isSupported() && session.isComplicationEnabled {
-                sendNearbyBreweryToWatch()
-            }
-        }
-        if WCSession.isSupported() && session.isComplicationEnabled {
-            sendNearbyBreweryToWatch()
-        }
     }
     
     
