@@ -33,7 +33,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         }
         pickerView.dataSource = self
         pickerView.delegate = self
-        mapButtonLabel.setTitle("Make selection", for: .normal)
+//        mapButtonLabel.setTitle("Make selection", for: .normal)
     }
     
     
@@ -60,40 +60,48 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
 
     
     // Pickerview Delegates
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?  {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         var uniqueCities = locations.uniqueElements
         uniqueCities.sort { $0 < $1 }
+        
         switch component {
         case 0:
             return uniqueCities[row]
         case 1:
-            mapButtonLabel.setTitle(filteredBreweries[row].breweryName, for: .normal)
             return filteredBreweries[row].breweryName
         default:
             return nil
         }
     }
-
+    
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         var uniqueCities = locations.uniqueElements
         uniqueCities.sort { $0 < $1 }
-
+        
         switch component {
         case 0:
+            breweryIdentifier = 0
             filteredBreweries.removeAll(keepingCapacity: false)
             selectedCity = uniqueCities[row]
             let currentBreweries = breweries.filter { return $0.location == selectedCity }
             for i in currentBreweries.map({ $0 }) {
                 filteredBreweries.append(i)
             }
+            setMapButtonTitle()
             pickerView.reloadComponent(1)
+            pickerView.selectRow(0, inComponent: 1, animated: true)
         case 1:
             breweryIdentifier = row
-            mapButtonLabel.setTitle(filteredBreweries[row].breweryName, for: .normal)
+            setMapButtonTitle()
         default:
             return
         }
+    }
+    
+    
+    func setMapButtonTitle() {
+        mapButtonLabel.setTitle(filteredBreweries[breweryIdentifier].breweryName, for: .normal)
     }
     
     
@@ -109,6 +117,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         mapItem.name = ("\(filteredBreweries[breweryIdentifier].breweryName)")
         mapItem.openInMaps(launchOptions: options)
     }
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -133,7 +142,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         } else {
             return
         }
-        
     }
     
     
