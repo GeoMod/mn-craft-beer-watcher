@@ -107,7 +107,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     func setMapButtonTitle() {
         mapButtonLabel.setTitle(filteredBreweries[breweryIdentifier].breweryName, for: .normal)
-        webLinkOutlet.setTitle((String(describing: filteredBreweries[breweryIdentifier].url)), for: .normal)
+//        webLinkOutlet.setTitle((String(describing: filteredBreweries[breweryIdentifier].url)), for: .normal)
     }
     
     @IBAction func webLink(_ sender: Any) {
