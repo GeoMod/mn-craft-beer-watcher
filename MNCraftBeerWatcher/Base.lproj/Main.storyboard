@@ -21,13 +21,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tDE-6d-IVf">
-                                <rect key="frame" x="1" y="28" width="374" height="216"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDE-6d-IVf">
+                                <rect key="frame" x="28" y="28" width="320" height="216"/>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbr-K3-hj7">
-                                <rect key="frame" x="45" y="326" width="293" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbr-K3-hj7">
+                                <rect key="frame" x="44.5" y="326" width="286" height="54"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" button="YES" updatesFrequently="YES"/>
                                 </accessibility>
@@ -37,47 +35,64 @@
                                     <action selector="MapButton:" destination="eaN-ey-ANP" eventType="touchUpInside" id="43k-jy-evE"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="www.websiteofbeer.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmP-UL-vnD">
-                                <rect key="frame" x="45" y="252" width="293" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearby" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzM-6x-zXq">
+                                <rect key="frame" x="160.5" y="476" width="55.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PG6-8Z-odA">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MNBeerLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="bfN-jq-NXL">
+                                <rect key="frame" x="148" y="388" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Thn-tU-lQg"/>
+                                    <constraint firstAttribute="width" constant="80" id="aGB-t3-PhK"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PG6-8Z-odA">
                                 <rect key="frame" x="45" y="505" width="286" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title=" 🍺" backgroundImage="Button.png"/>
                                 <connections>
                                     <action selector="nearbyBreweryButton:" destination="eaN-ey-ANP" eventType="touchUpInside" id="ZI7-IK-0Xa"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nearby Brewery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzM-6x-zXq">
-                                <rect key="frame" x="44" y="476" width="286" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Navigate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQp-qi-2dA">
+                                <rect key="frame" x="154" y="297" width="67.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MNBeerLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="bfN-jq-NXL">
-                                <rect key="frame" x="147" y="388" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Navigate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQp-qi-2dA">
-                                <rect key="frame" x="45" y="297" width="286" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3z7-sk-tKZ">
+                                <rect key="frame" x="165" y="252" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="webLink:" destination="eaN-ey-ANP" eventType="touchUpInside" id="dp3-jo-YkJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JQp-qi-2dA" firstAttribute="top" secondItem="hgb-WI-VmG" secondAttribute="bottom" constant="277" id="1TW-VF-I6z"/>
+                            <constraint firstItem="JQp-qi-2dA" firstAttribute="centerX" secondItem="KD3-7b-2LA" secondAttribute="centerX" id="3jM-wb-N7X"/>
+                            <constraint firstItem="tDE-6d-IVf" firstAttribute="centerX" secondItem="KD3-7b-2LA" secondAttribute="centerX" id="C6T-Oz-hAX"/>
+                            <constraint firstItem="Zbr-K3-hj7" firstAttribute="centerX" secondItem="KD3-7b-2LA" secondAttribute="centerX" id="Mu9-tE-OZG"/>
+                            <constraint firstItem="bfN-jq-NXL" firstAttribute="top" secondItem="hgb-WI-VmG" secondAttribute="bottom" constant="368" id="MvC-8Y-EOt"/>
+                            <constraint firstItem="PG6-8Z-odA" firstAttribute="top" secondItem="hgb-WI-VmG" secondAttribute="bottom" constant="485" id="SYn-mG-kEs"/>
+                            <constraint firstItem="3z7-sk-tKZ" firstAttribute="centerX" secondItem="KD3-7b-2LA" secondAttribute="centerX" id="TSd-3e-0Vs"/>
+                            <constraint firstItem="mzM-6x-zXq" firstAttribute="centerX" secondItem="KD3-7b-2LA" secondAttribute="centerX" id="Wm5-xk-QGR"/>
+                            <constraint firstItem="tDE-6d-IVf" firstAttribute="top" secondItem="hgb-WI-VmG" secondAttribute="bottom" constant="8" id="clP-13-dnu"/>
+                            <constraint firstItem="3z7-sk-tKZ" firstAttribute="top" secondItem="tDE-6d-IVf" secondAttribute="bottom" constant="8" id="czg-eJ-trK"/>
+                            <constraint firstItem="Zbr-K3-hj7" firstAttribute="top" secondItem="hgb-WI-VmG" secondAttribute="bottom" constant="306" id="dlE-O3-fwP"/>
+                            <constraint firstItem="mzM-6x-zXq" firstAttribute="top" secondItem="hgb-WI-VmG" secondAttribute="bottom" constant="456" id="eEB-Pm-Eyd"/>
+                            <constraint firstItem="bfN-jq-NXL" firstAttribute="centerX" secondItem="KD3-7b-2LA" secondAttribute="centerX" id="mye-Vi-HRH"/>
+                            <constraint firstItem="PG6-8Z-odA" firstAttribute="centerX" secondItem="KD3-7b-2LA" secondAttribute="centerX" id="nqG-TZ-QRe"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="mapButtonLabel" destination="Zbr-K3-hj7" id="u4K-YE-vw0"/>
                         <outlet property="nearbyBreweryLabel" destination="PG6-8Z-odA" id="iYG-th-IGj"/>
                         <outlet property="pickerView" destination="tDE-6d-IVf" id="we1-No-5xx"/>
+                        <outlet property="webLinkOutlet" destination="3z7-sk-tKZ" id="evF-bX-WMV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gai-sp-jhJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
