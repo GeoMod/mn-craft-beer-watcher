@@ -9,7 +9,6 @@
 import UIKit
 import StoreKit
 import MapKit
-import WebKit
 import CoreLocation
 import WatchConnectivity
 
@@ -21,7 +20,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     @IBOutlet var mapButtonLabel: UIButton!
     @IBOutlet var nearbyBreweryLabel: UIButton!
     @IBOutlet weak var webLinkOutlet: UIButton!
-    
     
     
     override func viewDidLoad() {
@@ -38,7 +36,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         pickerView.dataSource = self
         pickerView.delegate = self
         pickerView(pickerView, didSelectRow: 0, inComponent: 0)
-//        mapButtonLabel.setTitle("Make selection", for: .normal)
     }
     
     
@@ -107,7 +104,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     func setMapButtonTitle() {
         mapButtonLabel.setTitle(filteredBreweries[breweryIdentifier].breweryName, for: .normal)
-//        webLinkOutlet.setTitle((String(describing: filteredBreweries[breweryIdentifier].url)), for: .normal)
     }
     
     @IBAction func webLink(_ sender: Any) {
