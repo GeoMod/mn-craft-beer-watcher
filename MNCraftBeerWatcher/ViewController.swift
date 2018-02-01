@@ -19,17 +19,8 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     @IBOutlet var pickerView: UIPickerView!
     @IBOutlet var mapButtonLabel: UIButton!
     @IBOutlet var nearbyBreweryLabel: UIButton!
+    @IBOutlet weak var webLinkOutlet: UIButton!
     
-    // Hours Labels
-    @IBOutlet var sundayLabel: UILabel!
-    @IBOutlet var mondayLabel: UILabel!
-    @IBOutlet var tuesdayLabel: UILabel!
-    @IBOutlet var wednesdayLabel: UILabel!
-    @IBOutlet var thursdayLabel: UILabel!
-    @IBOutlet var fridayLabel: UILabel!
-    @IBOutlet var saturdayLabel: UILabel!
-    
-    let breweriesSortedAlphabetically = breweries.sorted(by: { $0.breweryName < $1.breweryName })
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,61 +35,116 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         }
         pickerView.dataSource = self
         pickerView.delegate = self
-        
+        pickerView(pickerView, didSelectRow: 0, inComponent: 0)
     }
     
+    
     // MARK: Pickerview Data Source
+    let locations = breweries.map { $0.location }
+    let breweryNames = breweries.map { $0.breweryName }
+    var filteredBreweries = [BreweryData]() // To display only the breweries from the selected city.
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return breweriesSortedAlphabetically.count
+        let uniqueCities = locations.uniqueElements
+        switch component {
+        case 0:
+            return uniqueCities.count
+        case 1:
+            return filteredBreweries.count
+        default:
+            return 0
+        }
     }
+    
     
     // Pickerview Delegates
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?  {
-        return breweriesSortedAlphabetically[row].breweryName
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        var uniqueCities = locations.uniqueElements
+        uniqueCities.sort { $0 < $1 }
+        
+        switch component {
+        case 0:
+            return uniqueCities[row]
+        case 1:
+            return filteredBreweries[row].breweryName
+        default:
+            return nil
+        }
     }
     
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        breweryIdentifier = row // Used for setting the mapButtonTitle
-        mapButtonLabel.setTitle(breweriesSortedAlphabetically[row].location, for: .normal)
+        var uniqueCities = locations.uniqueElements
+        uniqueCities.sort { $0 < $1 }
         
-        sundayLabel.text = breweriesSortedAlphabetically[row].sun.uppercased()
-        mondayLabel.text = breweriesSortedAlphabetically[row].mon.uppercased()
-        tuesdayLabel.text = breweriesSortedAlphabetically[row].tue.uppercased()
-        wednesdayLabel.text = breweriesSortedAlphabetically[row].wed.uppercased()
-        thursdayLabel.text = breweriesSortedAlphabetically[row].thur.uppercased()
-        fridayLabel.text = breweriesSortedAlphabetically[row].fri.uppercased()
-        saturdayLabel.text = breweriesSortedAlphabetically[row].sat.uppercased()
+        switch component {
+        case 0:
+            breweryIdentifier = 0
+            filteredBreweries.removeAll(keepingCapacity: false)
+            selectedCity = uniqueCities[row]
+            let currentBreweries = breweries.filter { return $0.location == selectedCity }
+            for i in currentBreweries.map({ $0 }) {
+                filteredBreweries.append(i)
+            }
+            setMapButtonTitle()
+            pickerView.reloadComponent(1)
+            pickerView.selectRow(0, inComponent: 1, animated: true)
+        case 1:
+            breweryIdentifier = row
+            setMapButtonTitle()
+        default:
+            return
+        }
+    }
+    
+    
+    func setMapButtonTitle() {
+        mapButtonLabel.setTitle(filteredBreweries[breweryIdentifier].breweryName, for: .normal)
+    }
+    
+    @IBAction func webLink(_ sender: Any) {
+        UIApplication.shared.open(filteredBreweries[breweryIdentifier].url, options: [:], completionHandler: nil)
     }
     
     
     // Selected brewery map button.
     @IBAction func MapButton(_ sender: Any) {
-        
-        let breweryLocationCoordinate = breweriesSortedAlphabetically[breweryIdentifier].latLong.coordinate
+        let breweryLocationCoordinate = filteredBreweries[breweryIdentifier].latLong.coordinate
         let placeMark = MKPlacemark(coordinate: breweryLocationCoordinate)
         let mapItem = MKMapItem(placemark: placeMark)
-
+        
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocationCoordinate)
         ]
-
-        mapItem.name = ("\(breweriesSortedAlphabetically[breweryIdentifier].breweryName)")
+        mapItem.name = ("\(filteredBreweries[breweryIdentifier].breweryName)")
         mapItem.openInMaps(launchOptions: options)
     }
     
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 4827 // Distance in meters needed to move before app updates again. 3 miles
-       
+        
         let userCurrentLocation = locationManager.location
         if let currentLocation = userCurrentLocation {
             let nearestBrewery = closestBrewery(breweries, currentLocation: currentLocation)
             updateUI(brewery: nearestBrewery)
+            
+            // Update watch complication. Moved from updateUI(brewery:)
+            let session = WCSession.default
+            if UIApplication.shared.applicationState != .active {
+                assert(UIApplication.shared.applicationState != .active)
+                if WCSession.isSupported() && session.isComplicationEnabled {
+                    sendNearbyBreweryToWatch()
+                }
+            }
+            if WCSession.isSupported() && session.isComplicationEnabled {
+                sendNearbyBreweryToWatch()
+            }
         } else {
             return
         }
@@ -109,7 +155,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     func closestBreweries(_ breweries: [BreweryData], currentLocation: CLLocation) -> [BreweryData] {
         return breweries.sorted {
             $0.latLong.distance(from: currentLocation) <
-            $1.latLong.distance(from: currentLocation)
+                $1.latLong.distance(from: currentLocation)
         }
     }
     
@@ -125,17 +171,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         nearbyBreweryLabel.setTitle(nearbyBrewery, for: .normal)
         complicationData = nearbyBrewery
         
-        // Update watch complication.
-        let session = WCSession.default
-        if UIApplication.shared.applicationState != .active {
-            assert(UIApplication.shared.applicationState != .active)
-            if WCSession.isSupported() && session.isComplicationEnabled {
-                sendNearbyBreweryToWatch()
-            }
-        }
-        if WCSession.isSupported() && session.isComplicationEnabled {
-            sendNearbyBreweryToWatch()
-        }
     }
     
     
@@ -148,11 +183,11 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocation),
-        ]
+            ]
         mapItem.name = nearbyBrewery
         mapItem.openInMaps(launchOptions: options)
     }
-    
+
     
     // MARK: Watch Connectivity.
     // Used to request App Store Rating and pushing nearest brewery to watch complication.
