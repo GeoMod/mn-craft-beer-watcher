@@ -29,7 +29,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     @IBOutlet var fridayLabel: UILabel!
     @IBOutlet var saturdayLabel: UILabel!
     
-    let breweriesSortedAlphabetically = allBreweries.sorted(by: { $0.breweryName < $1.breweryName })
+    let breweriesSortedAlphabetically = breweries.sorted(by: { $0.breweryName < $1.breweryName })
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,15 +44,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         }
         pickerView.dataSource = self
         pickerView.delegate = self
-        
-        mapButtonLabel.setTitle(breweriesSortedAlphabetically[0].location, for: .normal)
-        sundayLabel.text = breweriesSortedAlphabetically[0].sun.uppercased()
-        mondayLabel.text = breweriesSortedAlphabetically[0].mon.uppercased()
-        tuesdayLabel.text = breweriesSortedAlphabetically[0].tue.uppercased()
-        wednesdayLabel.text = breweriesSortedAlphabetically[0].wed.uppercased()
-        thursdayLabel.text = breweriesSortedAlphabetically[0].thur.uppercased()
-        fridayLabel.text = breweriesSortedAlphabetically[0].fri.uppercased()
-        saturdayLabel.text = breweriesSortedAlphabetically[0].sat.uppercased()
         
     }
     
@@ -106,7 +97,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
        
         let userCurrentLocation = locationManager.location
         if let currentLocation = userCurrentLocation {
-            let nearestBrewery = closestBrewery(allBreweries, currentLocation: currentLocation)
+            let nearestBrewery = closestBrewery(breweries, currentLocation: currentLocation)
             updateUI(brewery: nearestBrewery)
         } else {
             return
@@ -158,10 +149,8 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocation),
         ]
-        
         mapItem.name = nearbyBrewery
         mapItem.openInMaps(launchOptions: options)
-        
     }
     
     
