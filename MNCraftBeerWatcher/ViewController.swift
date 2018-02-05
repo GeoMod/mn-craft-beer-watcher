@@ -126,23 +126,26 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 4827 // Distance in meters needed to move before app updates again. 3 miles
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.distanceFilter = kCLDistanceFilterNone // Distance in meters needed to move before app updates again. 3 miles = 4826
         
-        let userCurrentLocation = locationManager.location
+        let userCurrentLocation = manager.location
         if let currentLocation = userCurrentLocation {
             let nearestBrewery = closestBrewery(breweries, currentLocation: currentLocation)
             updateUI(brewery: nearestBrewery)
             
-            // Update watch complication. Moved from updateUI(brewery:)
+            // Update watch complication.
             let session = WCSession.default
             if UIApplication.shared.applicationState != .active {
                 assert(UIApplication.shared.applicationState != .active)
                 if WCSession.isSupported() && session.isComplicationEnabled {
+                    manager.allowsBackgroundLocationUpdates = true
+                    manager.allowDeferredLocationUpdates(untilTraveled: 4827, timeout: 7200) // 4827 is 3 miles in meters. 7200 is 2 hours in seconds.
                     sendNearbyBreweryToWatch()
                 }
             }
             if WCSession.isSupported() && session.isComplicationEnabled {
+                manager.disallowDeferredLocationUpdates()
                 sendNearbyBreweryToWatch()
             }
         } else {
@@ -155,7 +158,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     func closestBreweries(_ breweries: [BreweryData], currentLocation: CLLocation) -> [BreweryData] {
         return breweries.sorted {
             $0.latLong.distance(from: currentLocation) <
-                $1.latLong.distance(from: currentLocation)
+            $1.latLong.distance(from: currentLocation)
         }
     }
     
@@ -209,7 +212,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         }
         print("Phone activated with state: \(activationState.rawValue)")
     }
-    
+
     // Receive app usage count from watch.
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         let message = applicationContext["UsageCount"] as? Bool
