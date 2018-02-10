@@ -26,7 +26,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     // Sorts the breweries alphabetically.
-//    let breweriesSorted = allBreweries.sorted(by: { $0.breweryName < $1.breweryName })
     let breweriesSorted = breweries.sorted(by: { $0.breweryName < $1.breweryName })
     
     @IBOutlet var table: WKInterfaceTable!
@@ -84,19 +83,18 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     
     @IBAction func locationButton() {
-            UserDefaultsManager.count += 1
-            print(UserDefaultsManager.count)
+        UserDefaultsManager.count += 1
+        print(UserDefaultsManager.count)
         
         // Becuase my son picked "8".
-            if UserDefaultsManager.count == 8 {
-                sendCountToPhone()
-            }
+        if UserDefaultsManager.count == 8 {
+            sendCountToPhone()
+        }
         openMaps()
     }
     
     
     func openMaps() {
-        
         let breweryLocationCoordinate = breweriesSorted[breweryIdentifier].latLong.coordinate
         let placeMark = MKPlacemark(coordinate: breweryLocationCoordinate)
         let mapItem = MKMapItem(placemark: placeMark)
@@ -104,10 +102,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: breweryLocationCoordinate)
         ]
-        
         mapItem.name = ("\(breweriesSorted[breweryIdentifier].breweryName)")
         mapItem.openInMaps(launchOptions: options)
-        
     }
     
     
@@ -137,6 +133,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
+    
+    
     // MARK: Watch Connectivity. Used send a message from the Watch to iPhone requesting App Store Rating.
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error = error {
@@ -159,6 +157,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             }
         }
     }
+    
     
     // Updating Complication on watch face.
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {

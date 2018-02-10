@@ -7,7 +7,6 @@
 //
 
 import ClockKit
-import CoreLocation
 import WatchConnectivity
 
 class ComplicationController: NSObject, CLKComplicationDataSource, WCSessionDelegate {

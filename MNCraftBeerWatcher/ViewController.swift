@@ -13,7 +13,7 @@ import CoreLocation
 import WatchConnectivity
 
 class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate {
-    
+
     var locationManager = CLLocationManager()
     
     @IBOutlet var pickerView: UIPickerView!
@@ -129,8 +129,8 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.distanceFilter = kCLDistanceFilterNone // Distance in meters needed to move before app updates again. 3 miles = 4826
         
-        let userCurrentLocation = manager.location
-        if let currentLocation = userCurrentLocation {
+//        let userCurrentLocation = manager.location
+        if let currentLocation = locations.last  { // userCurrentLocation
             let nearestBrewery = closestBrewery(breweries, currentLocation: currentLocation)
             updateUI(brewery: nearestBrewery)
             
@@ -173,7 +173,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         nearbyLatLong = brewery.latLong.coordinate
         nearbyBreweryLabel.setTitle(nearbyBrewery, for: .normal)
         complicationData = nearbyBrewery
-        
     }
     
     
