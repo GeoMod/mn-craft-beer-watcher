@@ -14,7 +14,8 @@ import WatchConnectivity
 
 class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate {
 
-    var locationManager = CLLocationManager()
+    let locationManager = CLLocationManager()
+    let session = WCSession.default
     
     @IBOutlet var pickerView: UIPickerView!
     @IBOutlet var mapButtonLabel: UIButton!
@@ -24,12 +25,13 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+//        locationManager.delegate = self
+//        locationManager.requestAlwaysAuthorization()
+//        locationManager.startUpdatingLocation()
+        enableLocationServices()
         
         if WCSession.isSupported() {
-            let session = WCSession.default
+//            let session = WCSession.default
             session.delegate = self
             session.activate()
         }
@@ -125,33 +127,115 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     }
     
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.distanceFilter = kCLDistanceFilterNone // Distance in meters needed to move before app updates again. 3 miles = 4826
+    // MARK: Location Services
+    func enableLocationServices() {
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
         
-//        let userCurrentLocation = manager.location
-        if let currentLocation = locations.last  { // userCurrentLocation
-            let nearestBrewery = closestBrewery(breweries, currentLocation: currentLocation)
-            updateUI(brewery: nearestBrewery)
-            
-            // Update watch complication.
-            let session = WCSession.default
-            if UIApplication.shared.applicationState != .active {
-                assert(UIApplication.shared.applicationState != .active)
-                if WCSession.isSupported() && session.isComplicationEnabled {
-                    manager.allowsBackgroundLocationUpdates = true
-                    manager.allowDeferredLocationUpdates(untilTraveled: 4827, timeout: 7200) // 4827 is 3 miles in meters. 7200 is 2 hours in seconds.
-                    sendNearbyBreweryToWatch()
-                }
-            }
-            if WCSession.isSupported() && session.isComplicationEnabled {
-                manager.disallowDeferredLocationUpdates()
-                sendNearbyBreweryToWatch()
-            }
-        } else {
-            return
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            // Request when-in-use authorization initially
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted, .denied:
+            // Disable location features
+            disableLocationBasedFeatures()
+        case .authorizedWhenInUse:
+            // Enable basic location features
+            enableWhenInUseFeatures()
+            locationManager.startUpdatingLocation()
+        case .authorizedAlways:
+            // Enable any of your app's location features
+            enableAlwaysFeatures()
+            locationManager.startUpdatingLocation()
         }
     }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .restricted, .denied:
+            disableLocationBasedFeatures()
+        case .authorizedWhenInUse:
+            enableWhenInUseFeatures()
+        case .authorizedAlways:
+            enableAlwaysFeatures()
+        case .notDetermined:
+            break
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = 4826 // Distance in meters needed to move before app updates again. 3 miles = 4826
+        
+        if let currentLocation = locations.last  {
+            let nearestBrewery = closestBrewery(breweries, currentLocation: currentLocation)
+            updateUI(brewery: nearestBrewery)
+        }
+        
+        if WCSession.isSupported() && session.isComplicationEnabled {
+            sendNearbyBreweryToWatch()
+        }
+
+    }
+    
+
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error in Location Services is: \(error.localizedDescription)")
+    }
+
+    func escalateLocationServiceAuthorization() {
+        // Escalate only when the authorization is set to when-in-use
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            locationManager.requestAlwaysAuthorization()
+        }
+    }
+    
+    func disableLocationBasedFeatures() {
+        // Turn off location services.
+        locationManager.stopUpdatingLocation()
+    }
+    func enableWhenInUseFeatures() {
+        // Turn on in use location services.
+        locationManager.requestWhenInUseAuthorization()
+    }
+    func enableAlwaysFeatures() {
+        // Turn onn Always in use locaiton servies.
+        locationManager.requestAlwaysAuthorization()
+    }
+    
+    
+
+
+    
+    
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        manager.desiredAccuracy = kCLLocationAccuracyBest
+//        manager.distanceFilter = kCLDistanceFilterNone // Distance in meters needed to move before app updates again. 3 miles = 4826
+//
+////        let userCurrentLocation = manager.location
+//        if let currentLocation = locations.last  { // userCurrentLocation
+//            let nearestBrewery = closestBrewery(breweries, currentLocation: currentLocation)
+//            updateUI(brewery: nearestBrewery)
+//
+//            // Update watch complication.
+//            let session = WCSession.default
+//            if UIApplication.shared.applicationState != .active {
+//                assert(UIApplication.shared.applicationState != .active)
+//                if WCSession.isSupported() && session.isComplicationEnabled {
+//                    manager.allowsBackgroundLocationUpdates = true
+//                    manager.allowDeferredLocationUpdates(untilTraveled: 4827, timeout: 7200) // 4827 is 3 miles in meters. 7200 is 2 hours in seconds.
+//                    sendNearbyBreweryToWatch()
+//                }
+//            }
+//            if WCSession.isSupported() && session.isComplicationEnabled {
+//                manager.disallowDeferredLocationUpdates()
+//                sendNearbyBreweryToWatch()
+//            }
+//        } else {
+//            return
+//        }
+//    }
     
     
     // MARK Finding nearest brewery.
@@ -224,7 +308,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     // Send nearby brewery to watch complication.
     func sendNearbyBreweryToWatch() {
-        let session = WCSession.default
+//        let session = WCSession.default
         if session.activationState == .activated && session.isComplicationEnabled {
             assert(session.activationState == .activated)
             assert(session.isComplicationEnabled)
