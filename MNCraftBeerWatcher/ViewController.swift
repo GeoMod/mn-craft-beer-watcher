@@ -165,7 +165,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 4826 // Distance in meters needed to move before app updates again. 3 miles = 4826
+        locationManager.distanceFilter = 4826 // Distance in meters needed to move before app updates again. 3 miles
         
         if let currentLocation = locations.last  {
             let nearestBrewery = closestBrewery(breweries, currentLocation: currentLocation)
@@ -320,6 +320,17 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
         } else {
             locationManager.allowsBackgroundLocationUpdates = false
             print("Background Location data not in use.")
+            return
+        }
+    }
+    
+    func backgroundLocationUpdates(_ status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways:
+            locationManager.startMonitoringSignificantLocationChanges()
+            print("Backgound updates.")
+        default:
+            print("Default")
             return
         }
     }
