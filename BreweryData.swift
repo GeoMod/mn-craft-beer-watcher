@@ -142,7 +142,8 @@ let breweries = [
     BreweryData(breweryName: "Wild Mind", location: "Minneapolis", latLong: CLLocation(latitude: 44.893139, longitude: -93.281309), sun: "12p-8p", mon: "Closed", tue: "4p-10p", wed: "4p-10p", thur: "4p-10p", fri: "2p-11p", sat: "12p-11p", url: URL(string: "https://www.wildmindales.com")!),
     BreweryData(breweryName: "Black Stack", location: "St. Paul", latLong: CLLocation(latitude: 44.963947, longitude: -93.182632), sun: "12p-10p", mon: "4p-11p", tue: "4p-11p", wed: "4p-11p", thur: "4p-11p", fri: "12p-12a", sat: "12p-12a", url: URL(string: "http://www.blackstackbrewing.com")!),
     BreweryData(breweryName: "12welve Eyes", location: "St. Paul", latLong: CLLocation(latitude: 44.947100, longitude: -93.089205), sun: "12p-8p", mon: "4p-9p", tue: "4p-9p", wed: "4p-9p", thur: "4p-9p", fri: "3p-10p", sat: "12p-10p", url: URL(string: "https://12welveeyes.com")!),
-    BreweryData(breweryName: "Oswald Brewing", location: "Blue Earth", latLong: CLLocation(latitude: 43.638219, longitude: -94.102716), sun: "Closed", mon: "Closed", tue: "Closed", wed: "3p-7p", thur: "3p-7p", fri: "3p-10p", sat: "1p-10p", url: URL(string: "https://www.oswaldbrewingcompany.com")!)
+    BreweryData(breweryName: "Oswald Brewing", location: "Blue Earth", latLong: CLLocation(latitude: 43.638219, longitude: -94.102716), sun: "Closed", mon: "Closed", tue: "Closed", wed: "3p-7p", thur: "3p-7p", fri: "3p-10p", sat: "1p-10p", url: URL(string: "https://www.oswaldbrewingcompany.com")!),
+    BreweryData(breweryName: "Roundhouse", location: "Brainerd", latLong: CLLocation(latitude: 46.356835, longitude: -94.183893), sun: "12p-6p", mon: "Closed", tue: "2p-9p", wed: "2p-9p", thur: "2p-9p", fri: "12p-10p", sat: "12p-10p", url: URL(string: "http://www.roundhousebrew.com")!)
 ]
 
 

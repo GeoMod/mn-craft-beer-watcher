@@ -316,7 +316,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
             // Transfer to watch complication.
             let message = ["complication": complicationData]
             session.transferCurrentComplicationUserInfo(message)
-            print("Remaining transfers: \(session.remainingComplicationUserInfoTransfers)")
+            print("Foregound transfer: \(session.remainingComplicationUserInfoTransfers)")
         } else {
             locationManager.allowsBackgroundLocationUpdates = false
             print("Background Location data not in use.")

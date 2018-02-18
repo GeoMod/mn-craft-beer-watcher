@@ -25,9 +25,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Use "Always" to provide background location in order to update Apple Watch Complications. Select "While Using" for iPhone only usage.</string>
+	<string>Use &quot;Always&quot; to provide background location in order to update Apple Watch Complications. Select &quot;While Using&quot; for iPhone only usage.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Select "While Using" for iPhone only usage. No Apple Watch Support.</string>
+	<string>Select &quot;While Using&quot; for iPhone only usage. No Apple Watch Support.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
