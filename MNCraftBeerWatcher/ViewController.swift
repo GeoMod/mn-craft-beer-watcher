@@ -14,7 +14,7 @@ import WatchConnectivity
 
 class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate {
 
-    let locationManager = CLLocationManager()
+    var locationManager: CLLocationManager?
     let session = WCSession.default
     
     @IBOutlet var pickerView: UIPickerView!
@@ -25,13 +25,13 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        locationManager.delegate = self
-//        locationManager.requestAlwaysAuthorization()
-//        locationManager.startUpdatingLocation()
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.requestAlwaysAuthorization()
         enableLocationServices()
         
         if WCSession.isSupported() {
-//            let session = WCSession.default
+            let session = WCSession.default
             session.delegate = self
             session.activate()
         }
@@ -129,55 +129,53 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     // MARK: Location Services
     func enableLocationServices() {
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
             // Request when-in-use authorization initially
-            locationManager.requestWhenInUseAuthorization()
+            locationManager?.requestWhenInUseAuthorization()
         case .restricted, .denied:
             // Disable location features
-            disableLocationBasedFeatures()
-        case .authorizedWhenInUse:
-            // Enable basic location features
-            enableWhenInUseFeatures()
-            locationManager.startUpdatingLocation()
+            locationManager?.stopUpdatingLocation()
         case .authorizedAlways:
             // Enable any of your app's location features
-            enableAlwaysFeatures()
-            locationManager.startUpdatingLocation()
+            locationManager?.requestAlwaysAuthorization()
+            locationManager?.startUpdatingLocation()
+        case .authorizedWhenInUse:
+            // Enable basic location features
+            locationManager?.startUpdatingLocation()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .restricted, .denied:
-            disableLocationBasedFeatures()
-        case .authorizedWhenInUse:
-            enableWhenInUseFeatures()
+            locationManager?.stopUpdatingLocation()
         case .authorizedAlways:
-            enableAlwaysFeatures()
+            locationManager?.requestAlwaysAuthorization()
+            locationManager?.startUpdatingLocation()
+        case .authorizedWhenInUse:
+            locationManager?.startUpdatingLocation()
         case .notDetermined:
             break
         }
     }
 
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 4826 // Distance in meters needed to move before app updates again. 3 miles
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.distanceFilter = 4826 // Distance in meters needed to move before app updates again. 3 miles
         
         if let currentLocation = locations.last  {
+            print("Current location is \(currentLocation).")
             let nearestBrewery = closestBrewery(breweries, currentLocation: currentLocation)
             updateUI(brewery: nearestBrewery)
+            if session.isComplicationEnabled { // WCSession.isSupported() &&
+                escalateLocationServiceAuthorization()
+                locationManager?.allowsBackgroundLocationUpdates = true
+                sendNearbyBreweryToWatch()
+            }
         }
-        
-        if WCSession.isSupported() && session.isComplicationEnabled {
-            sendNearbyBreweryToWatch()
-        }
-
     }
-    
 
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -187,26 +185,11 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     func escalateLocationServiceAuthorization() {
         // Escalate only when the authorization is set to when-in-use
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            locationManager.requestAlwaysAuthorization()
+            locationManager?.requestAlwaysAuthorization()
+        } else {
+            return
         }
     }
-    
-    func disableLocationBasedFeatures() {
-        // Turn off location services.
-        locationManager.stopUpdatingLocation()
-    }
-    func enableWhenInUseFeatures() {
-        // Turn on in use location services.
-        locationManager.requestWhenInUseAuthorization()
-    }
-    func enableAlwaysFeatures() {
-        // Turn onn Always in use locaiton servies.
-        locationManager.requestAlwaysAuthorization()
-    }
-    
-    
-
-
     
     
 //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -308,32 +291,30 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     // Send nearby brewery to watch complication.
     func sendNearbyBreweryToWatch() {
-//        let session = WCSession.default
         if session.activationState == .activated && session.isComplicationEnabled {
             assert(session.activationState == .activated)
             assert(session.isComplicationEnabled)
-            locationManager.allowsBackgroundLocationUpdates = true
             // Transfer to watch complication.
             let message = ["complication": complicationData]
             session.transferCurrentComplicationUserInfo(message)
             print("Foregound transfer: \(session.remainingComplicationUserInfoTransfers)")
         } else {
-            locationManager.allowsBackgroundLocationUpdates = false
+            locationManager?.allowsBackgroundLocationUpdates = false
             print("Background Location data not in use.")
             return
         }
     }
     
-    func backgroundLocationUpdates(_ status: CLAuthorizationStatus) {
-        switch status {
-        case .authorizedAlways:
-            locationManager.startMonitoringSignificantLocationChanges()
-            print("Backgound updates.")
-        default:
-            print("Default")
-            return
-        }
-    }
+//    func backgroundLocationUpdates(_ status: CLAuthorizationStatus) {
+//        switch status {
+//        case .authorizedAlways:
+//            locationManager?.startMonitoringSignificantLocationChanges()
+//            print("Backgound updates.")
+//        default:
+//            print("Default")
+//            return
+//        }
+//    }
     
 
     override func didReceiveMemoryWarning() {

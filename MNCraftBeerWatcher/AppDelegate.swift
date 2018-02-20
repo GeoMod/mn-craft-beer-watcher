@@ -7,24 +7,15 @@
 //
 
 import UIKit
-import CoreLocation
-import WatchConnectivity
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
-    
-    // Creating a property for a CLLocationManger
-    var locationManager: CLLocationManager?
-    let session = WCSession.default
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        // Fetch data once every 30 minutes.
-        UIApplication.shared.setMinimumBackgroundFetchInterval(1800)
         return true
     }
 
@@ -36,34 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        locationManager = CLLocationManager()
-        locationManager?.delegate = self
-        
-        if session.isComplicationEnabled && session.activationState == .activated {
-            locationManager?.requestAlwaysAuthorization()
-            print("Status is \(application.backgroundRefreshStatus)")
-//            locationManager.allowsBackgroundLocationUpdates = true
-            locationManager?.startMonitoringSignificantLocationChanges()
-            sendNearbyBreweryToBackgroundWatch()
-        }
-//        else {
-//            locationManager.allowsBackgroundLocationUpdates = false
-//            print("Background Location data not in use.")
-//            return
-//        }
     
     }
     
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
     }
-    
-    func sendNearbyBreweryToBackgroundWatch() {
-        // Transfer to watch complication.
-        let message = ["complication": complicationData]
-        session.transferCurrentComplicationUserInfo(message)
-        print("Background transfer: \(session.remainingComplicationUserInfoTransfers)")
-    }
+
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
