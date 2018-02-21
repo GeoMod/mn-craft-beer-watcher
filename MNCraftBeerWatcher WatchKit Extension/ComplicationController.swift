@@ -10,6 +10,7 @@ import ClockKit
 import WatchConnectivity
 
 class ComplicationController: NSObject, CLKComplicationDataSource, WCSessionDelegate {
+    var server: CLKComplicationServer?
     
     // MARK: - Timeline Configuration
     
@@ -29,9 +30,11 @@ class ComplicationController: NSObject, CLKComplicationDataSource, WCSessionDele
         handler(.showOnLockScreen)
     }
     
+    
+    
     // MARK: - Timeline Population
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
-        
+        server?.reloadTimeline(for: complication)
         switch complication.family {
         case .modularSmall:
             let modularSmall = CLKComplicationTemplateModularSmallSimpleText()

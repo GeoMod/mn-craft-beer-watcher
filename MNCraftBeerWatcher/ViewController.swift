@@ -169,7 +169,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
             print("Current location is \(currentLocation).")
             let nearestBrewery = closestBrewery(breweries, currentLocation: currentLocation)
             updateUI(brewery: nearestBrewery)
-            if session.isComplicationEnabled { // WCSession.isSupported() &&
+            if session.isComplicationEnabled {
                 escalateLocationServiceAuthorization()
                 locationManager?.allowsBackgroundLocationUpdates = true
                 sendNearbyBreweryToWatch()
@@ -190,35 +190,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
             return
         }
     }
-    
-    
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        manager.desiredAccuracy = kCLLocationAccuracyBest
-//        manager.distanceFilter = kCLDistanceFilterNone // Distance in meters needed to move before app updates again. 3 miles = 4826
-//
-////        let userCurrentLocation = manager.location
-//        if let currentLocation = locations.last  { // userCurrentLocation
-//            let nearestBrewery = closestBrewery(breweries, currentLocation: currentLocation)
-//            updateUI(brewery: nearestBrewery)
-//
-//            // Update watch complication.
-//            let session = WCSession.default
-//            if UIApplication.shared.applicationState != .active {
-//                assert(UIApplication.shared.applicationState != .active)
-//                if WCSession.isSupported() && session.isComplicationEnabled {
-//                    manager.allowsBackgroundLocationUpdates = true
-//                    manager.allowDeferredLocationUpdates(untilTraveled: 4827, timeout: 7200) // 4827 is 3 miles in meters. 7200 is 2 hours in seconds.
-//                    sendNearbyBreweryToWatch()
-//                }
-//            }
-//            if WCSession.isSupported() && session.isComplicationEnabled {
-//                manager.disallowDeferredLocationUpdates()
-//                sendNearbyBreweryToWatch()
-//            }
-//        } else {
-//            return
-//        }
-//    }
     
     
     // MARK Finding nearest brewery.
@@ -291,30 +262,18 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDataSourc
     
     // Send nearby brewery to watch complication.
     func sendNearbyBreweryToWatch() {
-        if session.activationState == .activated && session.isComplicationEnabled {
+        print("send nearby brewery to watch Called")
+        if session.activationState == .activated { //  && session.isComplicationEnabled
             assert(session.activationState == .activated)
-            assert(session.isComplicationEnabled)
             // Transfer to watch complication.
             let message = ["complication": complicationData]
             session.transferCurrentComplicationUserInfo(message)
-            print("Foregound transfer: \(session.remainingComplicationUserInfoTransfers)")
         } else {
             locationManager?.allowsBackgroundLocationUpdates = false
             print("Background Location data not in use.")
             return
         }
     }
-    
-//    func backgroundLocationUpdates(_ status: CLAuthorizationStatus) {
-//        switch status {
-//        case .authorizedAlways:
-//            locationManager?.startMonitoringSignificantLocationChanges()
-//            print("Backgound updates.")
-//        default:
-//            print("Default")
-//            return
-//        }
-//    }
     
 
     override func didReceiveMemoryWarning() {
